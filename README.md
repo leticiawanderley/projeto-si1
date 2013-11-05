@@ -3,7 +3,7 @@ Repositório do Projeto de SI1
 
 Sistemas de Informação I 2013.2
 
-Curso de Ciência da computação
+Curso de Ciência da Computação
 
 Universidade Federal de Campina Grande
 
