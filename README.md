@@ -13,3 +13,4 @@ Desenvolvedores
 - Júlio Leitão de Melo Júnior, julio.leitao.jr@gmail.com
 - Leticia Farias Wanderley, leticiafwanderley@gmail.com
 - Maysa de Macedo Souza, maysa.macedo95@gmail.com
+- Fellype Cavalcante de Albuquerque, fellype.cavalcante@gmail.com
