@@ -1,0 +1,4 @@
+#Pastas ignoradas
+RemoteSystemsTempFiles/**/*
+.metadata/**/*
+#Arquivos ignorados
