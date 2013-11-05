@@ -6,3 +6,4 @@ Universidade Federal de Campina Grande
 Desenvolvedores:
 
 - Júlio Leitão de Melo Júnior, julio.leitao.jr@gmail.com
+- Leticia Farias Wanderley, leticiafwanderley@gmail.co.
