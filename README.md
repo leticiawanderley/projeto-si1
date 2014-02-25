@@ -18,5 +18,5 @@ Desenvolvedores
 ===============
 
 Link para decisões do projeto:
-https://docs.google.com/document/d/1j2-SiKwGKH1_jXxTDmiwdZtCBhxNS-VSkjuiIyTf8ug/edit?usp=sharing
+http://bit.ly/Mr8qNT
 
