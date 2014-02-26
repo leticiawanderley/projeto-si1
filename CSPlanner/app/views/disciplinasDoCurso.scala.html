@@ -1,0 +1,53 @@
+@(aluno : models.Aluno, planejador: models.Planejador)
+
+@import helper._
+
+@main("Planejador de curso") {
+
+<head>
+        <h1><small><div class="well">Ciência da Computação - Grade do Curso</div></h1></small>
+</head>
+
+<body>
+<div class="container-fluid">
+
+                <div class="row">
+                        <div style="float: left; WIDTH: 100%">
+                                <div class="thumbnail">
+                                        <div class="caption">
+                                                <h3>
+                                                        Disciplinas para Ciência da Computação
+                                                </h3>
+                                                <h6>(Você verá as disciplinas que você ainda pode se matricular)</h6>
+                                                <h4>Nome da Disciplina | Número de Créditos | Dificuldade da Disciplina</h4>
+                                                <p>
+                                                
+                                                @for(disciplina <- planejador.getGrade().getDisciplinasDoCurso()) {
+                                                        @if(!planejador.getTodasDisciplinasDoAluno(aluno).contains(disciplina)) {
+                                                                 <ul class="nav nav nav-stacked">
+                                                                    <li>
+                                                                      <a href="#">
+                                                                        <form>
+                                                                            <li class="list-group">
+                                                                                    @disciplina.getNome()
+                                                                                    <span class="badge">@disciplina.getCreditos()</span>
+                                                                                 	<span class="badge">@disciplina.getDificuldade()</span>
+                                                                                   </li>
+                                                                        </form>
+                                                              </a>
+                                                            </li>
+                                                          </ul>
+                                                        }
+                                                }
+                                                </p>
+                                        </div>
+                                </div>
+                        </div>
+</div>
+</body>
+
+ @form(routes.Application.index()) {
+                            <input type="submit" class="btn btn-info" value="Voltar para a página inicial">
+  }
+
+}
