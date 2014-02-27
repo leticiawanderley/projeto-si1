@@ -1,0 +1,567 @@
+@(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador, mensagem: String)
+
+@import helper._
+
+@main("Planejador de curso") {
+
+<head>	
+	@if(mensagem != "") {
+		<div class="alert alert-error">
+ 		 <button type="button" class="close" data-dismiss="alert">×</button>
+ 		 <h4>Atenção</h4>
+ 			 @mensagem
+		</div>
+		@planejador.setMensagemDeErro("")
+	}
+
+	<h1><small><div class="well">Ciência da Computação - Grade do Curso</div></h1></small>
+</head>
+
+<body>
+	<div class="thumbnail">
+	<div class="btn-group">
+		  @form(routes.Application.verGrade()) {
+    			<input type="submit" class="btn btn-info" value="Ver grade do curso">
+   		 }	
+   		 
+   		 @form(routes.Application.selecionarDisciplinas()) {
+   		 	<input type="submit" class="btn btn-info" value="Disciplinas do Curso">
+   		 }
+	
+   	</div>
+	</div>
+   		 
+			<div class="thumbnail">
+				<div class="caption">
+					<h3>
+						Adicionar/Remover Disciplinas
+						 @form(routes.Application.matriculaNaDisciplina()) {
+       						 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")
+						     @inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")
+      						 <input type="submit" class="btn btn-success" value="Adicionar disciplina">
+ 					     }
+ 					     
+ 					     @form(routes.Application.removeDisciplina()) {
+       						 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")
+      						 <input type="submit" class="btn btn-danger" value="Remover disciplina" onclick="return confirm('Tem certeza mesmo que deseja remover? As cadeiras dependentes também serão removidas.');">
+ 					     }
+					</h3>
+					<p>
+					<div class="btn-group">
+					  <ul class="dropdown-menu" role="menu">
+					    <li><a href="#">2º Período</a></li>
+					    <li><a href="#">3º Período</a></li>
+					    <li><a href="#">4º Período</a></li>
+					    <li><a href="#">5º Período</a></li>
+					    <li><a href="#">6º Período</a></li>
+					    <li><a href="#">7º Período</a></li>
+					    <li><a href="#">8º Período</a></li>
+					    <li><a href="#">9º Período</a></li>
+					    <li><a href="#">10º Período</a></li>
+					  </ul>
+					</div>
+					</p>
+				</div>
+			</div>
+
+<div class="container-fluid">
+
+		<div class="row">
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							1° Período
+						</h3>
+						<p>
+						<ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(0).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(0).getDificuldadeDoPeriodo()</a>
+						  </li>
+						</ul>
+						<h6>Estas disciplinas não são possíveis de remover</h6>
+
+						@for(disciplina <- aluno.getListaDePeriodos().get(0).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							2° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(1).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 14){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+
+						@for(disciplina <- aluno.getListaDePeriodos().get(1).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							3° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(2).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(2).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							4° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(3).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(3).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							5° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(4).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(4).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+		<div class="row">
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							6° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(5).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(5).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							7° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(6).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(6).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							8° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(7).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(7).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							9° Período
+						</h3>
+						<p>
+						  <ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(8).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 28){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-danger alert-dismissable">
+							  
+							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
+							</div>
+							}
+							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 29){
+							<div class="alert alert-warning alert-dismissable">
+							  
+							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							</div>
+							}
+						</ul>
+						@for(disciplina <- aluno.getListaDePeriodos().get(8).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div style="float: left; WIDTH: 20%">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>
+							10° Período
+						</h3>
+						<p>
+							<ul class="nav nav-pills nav-stacked ">
+						  <li class="active">
+						    <a href="#">
+							Total de Créditos: @aluno.getListaDePeriodos().get(9).getNumeroDeCreditosDoPeriodo()
+						    </a>
+						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(9).getDificuldadeDoPeriodo()</a>
+						  </li>
+							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() < 14){
+							<div class="alert alert-info alert-dismissable">
+							  
+							  <strong>Nada dever ser alocado aqui!</strong> Você não completou o período anterior.
+							</div>
+							}
+						</ul>
+
+						@for(disciplina <- aluno.getListaDePeriodos().get(9).getDisciplinas()) {
+						  <ul class="nav nav nav-stacked">
+						    <li>
+						      <a href="#">
+							<form>
+							  <li class="list-group">
+							    @disciplina.getNome()
+							    <span class="badge">@disciplina.getCreditos()</span>
+							  </li>
+							</form>
+						      </a>
+						    </li>
+						  </ul>
+						}
+						</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+</div>
+</body>
+
+}
