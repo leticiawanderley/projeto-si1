@@ -60,15 +60,15 @@ public class GridController {
 	 */
 	private void addPeriodosAoAluno() {
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), SEGUNDO_PERIODO));
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), TERCEIRO_PERIODO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSegundoPeriodo(), SEGUNDO_PERIODO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoTerceiroPeriodo(), TERCEIRO_PERIODO));
 		
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), QUARTO_PERIODO));
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), QUINTO_PERIODO));
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), SEXTO_PERIODO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoQuartoPeriodo(), QUARTO_PERIODO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoQuintoPeriodo(), QUINTO_PERIODO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSextoPeriodo(), SEXTO_PERIODO));
 		
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), SETIMO_PERIODO));
-		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), OITAVO_PERIDO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSetimoPeriodo(), SETIMO_PERIODO));
+		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoOitavoPeriodo(), OITAVO_PERIDO));
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), NONO_PERIODO));
 		
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));

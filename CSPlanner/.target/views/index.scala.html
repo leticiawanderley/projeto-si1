@@ -33,21 +33,19 @@
    		 
 			<div class="thumbnail">
 				<div class="caption">
-				@*********************************************************************************************************************************************************************************************************			
-				*	<h3>																																																 *
-				*		Adicionar/Remover Disciplinas																																									 *
-				*		 @form(routes.Application.matriculaNaDisciplina()) {																																			 *
-       			*			 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")																											 *
-				*		     @inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")																															 *	
-      			*			 <input type="submit" class="btn btn-success" value="Adicionar disciplina">																													 *
- 				*	     }																																																 *
- 				*	     																																																 *
- 				*	     @form(routes.Application.removeDisciplina()) {																																					 *
-       			*			 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")																											 *
-      			*			 <input type="submit" class="btn btn-danger" value="Remover disciplina" onclick="return confirm('Tem certeza mesmo que deseja remover? As cadeiras dependentes também serão removidas.');">  *
- 				*	     }																																																 *
-				*	</h3>																																																 *
-				*********************************************************************************************************************************************************************************************************@
+					<h3>
+						Adicionar/Remover Disciplinas
+						 @form(routes.Application.matriculaNaDisciplina()) {
+       						 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")
+						     @inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")
+      						 <input type="submit" class="btn btn-success" value="Adicionar disciplina">
+ 					     }
+ 					     
+ 					     @form(routes.Application.removeDisciplina()) {
+       						 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")
+      						 <input type="submit" class="btn btn-danger" value="Remover disciplina" onclick="return confirm('Tem certeza mesmo que deseja remover? As cadeiras dependentes também serão removidas.');">
+ 					     }
+					</h3>
 					<p>
 					<div class="btn-group">
 					  <ul class="dropdown-menu" role="menu">
@@ -84,6 +82,7 @@
 						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(0).getDificuldadeDoPeriodo()</a>
 						  </li>
 						</ul>
+						<h6>Estas disciplinas não são possíveis de remover</h6>
 
 						@for(disciplina <- aluno.getListaDePeriodos().get(0).getDisciplinas()) {
 						  <ul class="nav nav nav-stacked">

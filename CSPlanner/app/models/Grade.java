@@ -12,6 +12,7 @@ public class Grade {
 	
 	private static final int DOIS_CREDITOS = 2;
 	private static final int QUATRO_CREDITOS = 4;
+	private static final int SEIS_CREDITOS = 6;
 	//INFORMATION EXPERT - Contém as informações da Grade: listaDeDisciplinas.
 	private List<Disciplina> listaDeDisciplinas;
 
@@ -60,7 +61,30 @@ public class Grade {
 		SI2(new Disciplina("Sistemas de Informação II", QUATRO_CREDITOS , new Disciplina[]{SI1.getDisciplina()})),
 		LES(new Disciplina("Laboratório de Engenharia de Software", DOIS_CREDITOS, new Disciplina[]{ES.getDisciplina()})),
 		
+		SO(new Disciplina("Sistemas Operacionais", QUATRO_CREDITOS, new Disciplina[]{OAC.getDisciplina(), LOAC.getDisciplina()})),
+		IRC(new Disciplina("Interconexão de Redes de Computadores", DOIS_CREDITOS, new Disciplina[]{REDES.getDisciplina()})),
+		LIRC(new Disciplina("Laboratório de Interconexão de Redes de Computadores", DOIS_CREDITOS, new Disciplina[]{REDES.getDisciplina()})),
+		IA(new Disciplina("Integência Artificial I", QUATRO_CREDITOS, new Disciplina[]{ATAL.getDisciplina(), PLP.getDisciplina(), METODOS.getDisciplina()})),
+		BD2(new Disciplina("Banco de Dados II", QUATRO_CREDITOS, new Disciplina[]{BD1.getDisciplina(), SI2.getDisciplina()})),
 		DIREITO(new Disciplina("Direito e Cidadania", QUATRO_CREDITOS )),
+		OP1(new Disciplina("Optativa 1", QUATRO_CREDITOS)),
+		OP2(new Disciplina("Optativa 2", DOIS_CREDITOS)),
+		
+		MSN(new Disciplina("Métodos e Softwares Numéricos", QUATRO_CREDITOS, new Disciplina[]{ATAL.getDisciplina(), ALGEBRALINEAR.getDisciplina()})),
+		ADSD(new Disciplina("Avaliação de Desempenho de Sistemas Discretos", QUATRO_CREDITOS, new Disciplina[]{PROBABILIDADE.getDisciplina()})),
+		PROJETO1(new Disciplina("Projeto em Computação 1", QUATRO_CREDITOS, new Disciplina[]{METODOLOGIA.getDisciplina(), LES.getDisciplina()})),
+		OP3(new Disciplina("Optativa 3", QUATRO_CREDITOS)),
+		OP4(new Disciplina("Optativa 4", DOIS_CREDITOS)),
+		OP5(new Disciplina("Optativa 5", QUATRO_CREDITOS)),
+		OP6(new Disciplina("Optativa 6", DOIS_CREDITOS)),
+		
+		PROJETO2(new Disciplina("Projeto em Computação 2", SEIS_CREDITOS, new Disciplina[]{PROJETO1.getDisciplina()})),
+		OP7(new Disciplina("Optativa 7", QUATRO_CREDITOS)),
+		OP8(new Disciplina("Optativa 8", DOIS_CREDITOS)),
+		OP9(new Disciplina("Optativa 9", QUATRO_CREDITOS)),
+		OP10(new Disciplina("Optativa 10",	QUATRO_CREDITOS)),
+		OP11(new Disciplina("Optativa 11", QUATRO_CREDITOS)),
+		
 		
 		BASQUETE(new Disciplina("Basquetebol - Fem", DOIS_CREDITOS )),
 		CALC3(new Disciplina("Cálculo Diferencial e Integral 3", QUATRO_CREDITOS)),
@@ -108,41 +132,7 @@ public class Grade {
 	 * Adiciona disciplinas a grade
 	 * 
 	 */
-	private void populaGrade() {
-		listaDeDisciplinas.addAll(getDisciplinasDoPrimeiroPeriodo());
-
-		List<Disciplina> disciplinasDoSegundoPeriodo = Arrays.asList(DisciplinasDSC.CALCULO2.getDisciplina(), 
-				DisciplinasDSC.CLASSICA.getDisciplina(), 
-				DisciplinasDSC.DISCRETA.getDisciplina(), 
-				DisciplinasDSC.GRAFOS.getDisciplina(), 
-				DisciplinasDSC.P2.getDisciplina(), 
-				DisciplinasDSC.LP2.getDisciplina(),
-				DisciplinasDSC.METODOLOGIA.getDisciplina());
-		
-		List<Disciplina> disciplinasDoTerceiroPeriodo = Arrays.asList(DisciplinasDSC.ALGEBRALINEAR.getDisciplina(),
-				DisciplinasDSC.PROBABILIDADE.getDisciplina(),
-				DisciplinasDSC.EDA.getDisciplina(),
-				DisciplinasDSC.LEDA.getDisciplina(),
-				DisciplinasDSC.TC.getDisciplina(),
-				DisciplinasDSC.GI.getDisciplina(),
-				DisciplinasDSC.MODERNA.getDisciplina());
-		
-		List<Disciplina> disciplinasDoQuartoPeriodo = Arrays.asList(DisciplinasDSC.LOGICA.getDisciplina(),
-				DisciplinasDSC.SI1.getDisciplina(),
-				DisciplinasDSC.PLP.getDisciplina(),
-				DisciplinasDSC.OAC.getDisciplina(),
-				DisciplinasDSC.LOAC.getDisciplina(),
-				DisciplinasDSC.METODOS.getDisciplina(),
-				DisciplinasDSC.ES.getDisciplina());
-		
-		List<Disciplina> disciplinasDoQuintoPeriodo = Arrays.asList(DisciplinasDSC.COMPILADORES.getDisciplina(),
-				DisciplinasDSC.LES.getDisciplina(),
-				DisciplinasDSC.ATAL.getDisciplina(),
-				DisciplinasDSC.SI2.getDisciplina(),
-				DisciplinasDSC.REDES.getDisciplina(),
-				DisciplinasDSC.BD1.getDisciplina(),
-				DisciplinasDSC.INFOSOC.getDisciplina());
-		
+	private void populaGrade() {		
 		List<Disciplina> disciplinasOptativas = Arrays.asList(DisciplinasDSC.CALC3.getDisciplina(),
 				DisciplinasDSC.BASQUETE.getDisciplina(),
 				DisciplinasDSC.CRIATIVIDADE.getDisciplina(),
@@ -155,11 +145,15 @@ public class Grade {
 				DisciplinasDSC.GRADESCOMP.getDisciplina(),
 				DisciplinasDSC.METODOSFORMAIS.getDisciplina(),
 				DisciplinasDSC.PROG3.getDisciplina());
-				
-		listaDeDisciplinas.addAll(disciplinasDoSegundoPeriodo);
-		listaDeDisciplinas.addAll(disciplinasDoTerceiroPeriodo);
-		listaDeDisciplinas.addAll(disciplinasDoQuartoPeriodo);
-		listaDeDisciplinas.addAll(disciplinasDoQuintoPeriodo);
+		
+		listaDeDisciplinas.addAll(getDisciplinasDoPrimeiroPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoSegundoPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoTerceiroPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoQuartoPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoQuintoPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoSextoPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoSetimoPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoOitavoPeriodo());
 		listaDeDisciplinas.addAll(disciplinasOptativas);
 		listaDeDisciplinas.addAll(disciplinasTECC);
 		listaDeDisciplinas.add(DisciplinasDSC.DIREITO.getDisciplina());
@@ -194,6 +188,90 @@ public class Grade {
 		disciplinasDoPrimeiroPeriodo.add(DisciplinasDSC.LP1.getDisciplina());
 		disciplinasDoPrimeiroPeriodo.add(DisciplinasDSC.IC.getDisciplina());
 		return disciplinasDoPrimeiroPeriodo;
+	}
+	
+	public List<Disciplina> getDisciplinasDoSegundoPeriodo() {
+		List<Disciplina> disciplinasDoSegundoPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.CALCULO2.getDisciplina());
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.CLASSICA.getDisciplina());
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.DISCRETA.getDisciplina());
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.GRAFOS.getDisciplina());
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.P2.getDisciplina());
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.LP2.getDisciplina());
+		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.METODOLOGIA.getDisciplina());
+		return disciplinasDoSegundoPeriodo;
+	}
+	
+	public List<Disciplina> getDisciplinasDoTerceiroPeriodo() {
+		List<Disciplina> disciplinasDoTerceiroPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.PROBABILIDADE.getDisciplina());
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.EDA.getDisciplina());
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.LEDA.getDisciplina());
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.TC.getDisciplina());
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.GI.getDisciplina());
+		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.MODERNA.getDisciplina());
+		return disciplinasDoTerceiroPeriodo;
+	}
+	
+	public List<Disciplina> getDisciplinasDoQuartoPeriodo() {
+		List<Disciplina> disciplinasDoQuartoPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.LOGICA.getDisciplina());
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.SI1.getDisciplina());
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.PLP.getDisciplina());
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.OAC.getDisciplina());
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.LOAC.getDisciplina());
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.METODOS.getDisciplina());
+		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.ES.getDisciplina());
+		return disciplinasDoQuartoPeriodo;
+	}
+	
+	public List<Disciplina> getDisciplinasDoQuintoPeriodo() {
+		List<Disciplina> disciplinasDoQuintoPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.COMPILADORES.getDisciplina());
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.LES.getDisciplina());
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.ATAL.getDisciplina());
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.SI2.getDisciplina());
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.REDES.getDisciplina());
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.BD1.getDisciplina());
+		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.INFOSOC.getDisciplina());
+		return disciplinasDoQuintoPeriodo;
+	}
+	
+	public List<Disciplina> getDisciplinasDoSextoPeriodo() {
+		List<Disciplina> disciplinasDoSextoPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.SO.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.IRC.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.LIRC.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.IA.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.BD2.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.DIREITO.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.OP1.getDisciplina());
+		disciplinasDoSextoPeriodo.add(DisciplinasDSC.OP2.getDisciplina());
+		return disciplinasDoSextoPeriodo;
+	}
+
+	public List<Disciplina> getDisciplinasDoSetimoPeriodo() {
+		List<Disciplina> disciplinasDoSetimoPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.MSN.getDisciplina());
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.ADSD.getDisciplina());
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.PROJETO1.getDisciplina());
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.OP3.getDisciplina());
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.OP4.getDisciplina());
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.OP5.getDisciplina());
+		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.OP6.getDisciplina());
+		return disciplinasDoSetimoPeriodo;
+	}
+	
+	public List<Disciplina> getDisciplinasDoOitavoPeriodo() {
+		List<Disciplina> disciplinasDoOitavoPeriodo = new ArrayList<Disciplina>();
+		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.PROJETO2.getDisciplina());
+		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP7.getDisciplina());
+		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP8.getDisciplina());
+		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP9.getDisciplina());
+		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP10.getDisciplina());
+		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP11.getDisciplina());
+		return disciplinasDoOitavoPeriodo;
 	}
 	
 	/**
