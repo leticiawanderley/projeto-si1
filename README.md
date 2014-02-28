@@ -15,5 +15,6 @@ Desenvolvedores
 - Maysa de Macedo Souza, maysa.souza@ccc.ufcg.edu.br
 - Fellype Cavalcante de Albuquerque, fellype.cavalcante@gmail.com
 
+Acompanhamento
 ===============
 Link para decisões do projeto: http://bit.ly/Mr8qNT
