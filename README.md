@@ -14,3 +14,6 @@ Desenvolvedores
 - Leticia Farias Wanderley, leticiafwanderley@gmail.com
 - Maysa de Macedo Souza, maysa.souza@ccc.ufcg.edu.br
 - Fellype Cavalcante de Albuquerque, fellype.cavalcante@gmail.com
+
+===============
+Link para decisões do projeto: bit.ly/Mr8qNT
