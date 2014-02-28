@@ -3,6 +3,16 @@
 @import helper._
 
 @main("Planejador de curso") {
+
+ <script type="text/javascript">
+  $(function () {
+	$(".periodo").droppable();
+    $(".periodo").sortable({
+      connectWith: ".connected"
+    });
+  });
+
+</script>
 <head>	
 	@if(mensagem != "") {
 		<div class="alert alert-error">
@@ -84,20 +94,14 @@
 						  </li>
 						</ul>
 
-						@for(disciplina <- aluno.getListaDePeriodos().get(0).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(0).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -131,20 +135,14 @@
 							}
 						</ul>
 
-						@for(disciplina <- aluno.getListaDePeriodos().get(1).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(1).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -183,20 +181,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(2).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(2).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -235,20 +227,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(3).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(3).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -287,20 +273,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(4).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(4).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -343,20 +323,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(5).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(5).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -395,20 +369,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(6).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(6).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -447,20 +415,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(7).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(7).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -499,20 +461,14 @@
 							</div>
 							}
 						</ul>
-						@for(disciplina <- aluno.getListaDePeriodos().get(8).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(8).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 					</div>
 				</div>
@@ -540,20 +496,14 @@
 							}
 						</ul>
 
-						@for(disciplina <- aluno.getListaDePeriodos().get(9).getDisciplinas()) {
-						  <ul class="nav nav nav-stacked">
-						    <li>
-						      <a href="#">
-							<form>
-							  <li class="list-group">
-							    @disciplina.getNome()
-							    <span class="badge">@disciplina.getCreditos()</span>
-							  </li>
-							</form>
-						      </a>
-						    </li>
-						  </ul>
-						}
+						<ul class="periodo connected">
+							@for(disciplina <- aluno.getListaDePeriodos().get(9).getDisciplinas()) {
+								 <li class="list-group" draggable="true">
+								    @disciplina.getNome()
+								    <span class="badge">@disciplina.getCreditos()</span>
+							    </li>
+							}
+						</ul>
 						</p>
 
 					</div>
