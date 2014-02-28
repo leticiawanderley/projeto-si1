@@ -16,4 +16,4 @@ Desenvolvedores
 - Fellype Cavalcante de Albuquerque, fellype.cavalcante@gmail.com
 
 ===============
-Link para decisões do projeto: bit.ly/Mr8qNT
+Link para decisões do projeto: http://bit.ly/Mr8qNT
