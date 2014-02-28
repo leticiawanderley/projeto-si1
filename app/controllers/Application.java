@@ -104,6 +104,7 @@ public class Application extends Controller {
 			}
 			
 			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), disciplina, periodo - 1);
+			grid.getAluno().save();
 			return index();
 		} catch (AlunoNaoPossuiPreRequisitos e) {
 			// O ALUNO NAO ALOCOU OS PRE-REQUISITOS
