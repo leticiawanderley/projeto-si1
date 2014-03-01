@@ -119,6 +119,7 @@ public class Application extends Controller {
     private static Result redirect(char c) {
 		// TODO Auto-generated method stub
 		return null;
+    }
 
 	/**
      * Remove uma disciplina do usuario
