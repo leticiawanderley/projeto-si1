@@ -6,6 +6,7 @@ import models.Aluno;
 import models.Disciplina;
 import models.Periodo;
 import models.Planejador;
+import play.db.ebean.Model.Finder;
 
 /**
  * Classe que ira conter os objetos para utilizar no sistema pelo usuario
@@ -25,16 +26,23 @@ public class GridController {
 	private static final int OITAVO_PERIDO = 8;
 	private static final int NONO_PERIODO = 9;
 	private static final int DECIMO_PERIODO = 10;
+	private static final int UNICO_ALUNO_DO_SISTEMA = 0;
 	
 	private Aluno aluno;
 	private Planejador planejador;
+	private Finder<Long, Aluno> finder = new Finder<Long, Aluno>(Long.class, Aluno.class);
 	
 	/**
 	 * 
 	 * Construtor
 	 */
 	public GridController() {
-		this.aluno = new Aluno();
+		if (finder.all().size() == 0) {
+			this.aluno = new Aluno();
+			this.aluno.save();
+		} else {
+			this.aluno = finder.all().get(UNICO_ALUNO_DO_SISTEMA);
+		}
 		this.planejador = new Planejador();
 		addPeriodosAoAluno();
 	}

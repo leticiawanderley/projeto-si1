@@ -57,6 +57,7 @@ public class Application extends Controller {
 			Disciplina displicaRealocada =  grid.getPlanejador().getDisciplina(disciplina);
 			grid.getPlanejador().removeDisciplina(grid.getAluno(), displicaRealocada);
 			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
+			grid.getAluno().update();
 		}
     	return redirect("/");
     }
@@ -117,7 +118,6 @@ public class Application extends Controller {
 	}*/
 
     private static Result redirect(char c) {
-		// TODO Auto-generated method stub
 		return null;
     }
 
@@ -134,6 +134,7 @@ public class Application extends Controller {
     		return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
     	}
 		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(grid.getAluno(), tmp);
+		grid.getAluno().update();
 		return index();
     }
     
