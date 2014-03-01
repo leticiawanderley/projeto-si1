@@ -54,9 +54,9 @@ public class Application extends Controller {
     	if (filledForm.hasErrors()) {
 			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
 		} else {
-			Disciplina d =  grid.getPlanejador().getDisciplina(disciplina);
-			grid.getPlanejador().removeDisciplina(grid.getAluno(), d);
-			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), d, periodo - 1);
+			Disciplina displicaRealocada =  grid.getPlanejador().getDisciplina(disciplina);
+			grid.getPlanejador().removeDisciplina(grid.getAluno(), displicaRealocada);
+			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
 		}
     	return redirect("/");
     }
