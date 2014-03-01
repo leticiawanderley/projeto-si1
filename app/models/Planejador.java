@@ -44,10 +44,10 @@ public class Planejador {
 	 * @param disciplina nova disciplina do aluno
 	 * @throws AlunoNaoPossuiPreRequisitos Excecao lancada se o aluno nao tiver os pre-requisitos da disciplina
 	 */
-	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo) throws AlunoNaoPossuiPreRequisitos {
-		if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
+	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo)/* throws AlunoNaoPossuiPreRequisitos */{
+		/*if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
 			throw new AlunoNaoPossuiPreRequisitos();
-		}
+		}*/
 		aluno.getListaDePeriodos().get(periodo).getDisciplinas().add(disciplina);
 	}
 	
@@ -140,6 +140,16 @@ public class Planejador {
 			}
 		}
 		
+	}
+	
+	public void removeDisciplina(Aluno aluno, Disciplina disciplina) {
+		for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
+			for (int j = 0; j < aluno.getListaDePeriodos().get(i).getDisciplinas().size(); j++) {
+				if (aluno.getListaDePeriodos().get(i).getDisciplinas().get(j).equals(disciplina)) {
+					aluno.getListaDePeriodos().get(i).getDisciplinas().remove(disciplina);
+				}
+			}
+		}
 	}
 	
 	/**

@@ -10,5 +10,5 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET		/verGrade					controllers.Application.verGrade()
 GET 	/selecionarDisciplinas		controllers.Application.selecionarDisciplinas()
-GET		/matriculaNaDisciplina		controllers.Application.matriculaNaDisciplina()
+GET		/matriculaNaDisciplina/:periodo/:disciplina		controllers.Application.matriculaNaDisciplina(periodo: Integer, disciplina: String)
 GET 	/removerDisciplina			controllers.Application.removeDisciplina()

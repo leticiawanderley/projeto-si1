@@ -49,13 +49,16 @@ public class Application extends Controller {
      * Matricula o usuario na disciplina
      * @return um resultado/pagina que serah exibida no navegador
      */
-    public static Result matriculaNaDisciplina() {
+    public static Result matriculaNaDisciplina(int periodo, String disciplina) {
     	Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
     	if (filledForm.hasErrors()) {
 			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
 		} else {
-			return tratamentoDeErrosDaInterface(filledForm);
+			Disciplina d =  grid.getPlanejador().getDisciplina(disciplina);
+			grid.getPlanejador().removeDisciplina(grid.getAluno(), d);
+			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), d, periodo - 1);
 		}
+    	return index();
     }
 
     /**
@@ -63,7 +66,7 @@ public class Application extends Controller {
      * @param filledForm
      * @return um resultado/pagina que serah exibida no navegador
      */
-	private static Result tratamentoDeErrosDaInterface(Form<Disciplina> filledForm) {
+	/*private static Result tratamentoDeErrosDaInterface(Form<Disciplina> filledForm) {
 		try {
 			// CAMPOS VAZIOS
 			if (filledForm.data().get("nomeDaDisciplina").equals("") || filledForm.data().get("periodoAlocado").equals("")) {
@@ -111,7 +114,7 @@ public class Application extends Controller {
 			grid.getPlanejador().setMensagemDeErro(PRE_REQUISITOS);
 			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
 		}
-	}
+	}*/
 
     /**
      * Remove uma disciplina do usuario
