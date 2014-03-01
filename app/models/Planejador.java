@@ -62,11 +62,11 @@ public class Planejador {
 		if (disciplina.getListaDePreRequisitos().size() == 0) {
 			return false;
 		}
-		for (Periodo pe : aluno.getListaDePeriodos()) {
-			for (Disciplina disc : pe.getDisciplinas()) {
-				if (disc.getListaDePreRequisitos().contains(disciplina) && pe.getPeriodo() - 1 <= periodo) {
+		for (Periodo periodoAnalisado:aluno.getListaDePeriodos()) {
+			for (Disciplina disciplinaAnalisada:periodoAnalisado.getDisciplinas()) {
+				if (disciplinaAnalisada.getListaDePreRequisitos().contains(disciplina) && periodoAnalisado.getPeriodo() - 1 <= periodo) {
 					return true;
-				} else if (disciplina.getListaDePreRequisitos().contains(disc) && pe.getPeriodo() - 1 >= periodo) {
+				} else if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) && periodoAnalisado.getPeriodo() - 1 >= periodo) {
 					return true;
 				}
 			}
