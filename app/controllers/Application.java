@@ -58,7 +58,7 @@ public class Application extends Controller {
 			grid.getPlanejador().removeDisciplina(grid.getAluno(), d);
 			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), d, periodo - 1);
 		}
-    	return index();
+    	return redirect("/");
     }
 
     /**
