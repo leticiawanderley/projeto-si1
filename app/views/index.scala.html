@@ -107,7 +107,7 @@
 
 						<div class="periodo connected" ondrop="drop(event, 1)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getListaDePeriodos().get(0).getDisciplinas()) {
-								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,0)){
+								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 0)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
 										<span class="badge">@disciplina.getCreditos()</span>								    								  
