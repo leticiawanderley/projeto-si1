@@ -21,7 +21,7 @@ public class Aluno extends Model {
 	private static final long serialVersionUID = 7507028957989504099L;
 	private List<Periodo> listaDePeriodo;
 	
-	//private Finder<Long, Aluno> finder = new Finder<Long, Aluno>(Long.class, Aluno.class);
+	private Finder<Long, Aluno> finder = new Finder<Long, Aluno>(Long.class, Aluno.class);
 	
 	/**
 	 * Construtor da classe	
@@ -39,8 +39,8 @@ public class Aluno extends Model {
 		return listaDePeriodo;
 	}
 
-	/*public Finder<Long, Aluno> getFinder() {
+	public Finder<Long, Aluno> getFinder() {
 		return finder;
-	}*/
+	}
 
 }
