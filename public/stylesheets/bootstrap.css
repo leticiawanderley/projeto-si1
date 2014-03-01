@@ -3030,7 +3030,7 @@ table th[class*="span"],
   padding-left: 20px;
 }
 
-ul.periodo {
+div.periodo {
   min-height: 50px;
   margin: 0px 25px 10px 0px;
   padding: 2px;
@@ -3042,11 +3042,11 @@ ul.periodo {
   list-style-type: none;
   list-style-position: inside;
 }
-ul.periodo {
+div.periodo {
   border-color: #f8e0b1;
 }
 
-.periodo li {
+.periodo div {
   margin: 5px;
   padding: 5px;
   -webkit-border-radius: 4px;
@@ -3054,7 +3054,7 @@ ul.periodo {
   border-radius: 4px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
-.periodo li {
+.periodo div {
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
   color: #c09853;
