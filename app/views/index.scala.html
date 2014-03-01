@@ -107,10 +107,18 @@
 
 						<div class="periodo connected" ondrop="drop(event, 1)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getListaDePeriodos().get(0).getDisciplinas()) {
-								 <div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
-								    @disciplina.getNome()
-								    <span class="badge">@disciplina.getCreditos()</span>
-							    </div>
+								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,0)){
+									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+										@disciplina.getNome()
+										<span class="badge">@disciplina.getCreditos()</span>								    								  
+									</div>
+								 
+								} else {
+									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+										@disciplina.getNome()
+										<span class="badge">@disciplina.getCreditos()</span>								    								  
+									</div>
+							    }
 							}
 						</div>
 						</p>
@@ -148,10 +156,18 @@
 
 						<div class="periodo connected" ondrop="drop(event, 2)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getListaDePeriodos().get(1).getDisciplinas()) {
-								 <div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
-								    @disciplina.getNome()
-								    <span class="badge">@disciplina.getCreditos()</span>
-							    </div>
+								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,1)){
+									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+										@disciplina.getNome()
+										<span class="badge">@disciplina.getCreditos()</span>								    								  
+									</div>
+								 
+								} else {
+									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+										@disciplina.getNome()
+										<span class="badge">@disciplina.getCreditos()</span>								    								  
+									</div>
+							    }
 							}
 						</div>
 						</p>

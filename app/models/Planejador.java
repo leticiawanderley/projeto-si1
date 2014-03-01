@@ -58,7 +58,7 @@ public class Planejador {
 	 * @param periodo periodo em que a disciplina esta alocada
 	 * @return se a disciplina estah em um periodo diferente que os seus pre-requisitos
 	 */
-	private boolean verificaPeriodoDiferenteDosRequisitos(Aluno aluno, Disciplina disciplina, int periodo) {
+	public boolean verificaPeriodoDiferenteDosRequisitos(Aluno aluno, Disciplina disciplina, int periodo) {
 		if (disciplina.getListaDePreRequisitos().size() == 0) {
 			return false;
 		}
