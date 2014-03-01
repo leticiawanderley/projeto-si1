@@ -62,26 +62,18 @@ public class Planejador {
 		if (disciplina.getListaDePreRequisitos().size() == 0) {
 			return false;
 		}
-		
-/*		for (int i = 0; i < periodo + 1; i++) {
-			List<Disciplina> disciplinas = aluno.getListaDePeriodos().get(i).getDisciplinas(); 
-			for (int j = 0; j < disciplina.getListaDePreRequisitos().size(); j++) {
-				if (disciplinas.contains(disciplina.getListaDePreRequisitos().get(j))) {
-					return false; 
+		for (Periodo pe : aluno.getListaDePeriodos()) {
+			for (Disciplina disc : pe.getDisciplinas()) {
+				if (disc.getListaDePreRequisitos().contains(disciplina) && pe.getPeriodo() - 1 <= periodo) {
+					return true;
+				} else if (disciplina.getListaDePreRequisitos().contains(disc) && pe.getPeriodo() - 1 >= periodo) {
+					return true;
 				}
 			}
 		}
-*/		
-		for (int i = 0; i < periodo; i++) {
-			for (int j = 0; j < disciplina.getListaDePreRequisitos().size(); j++) {
-				if (aluno.getListaDePeriodos().get(i).getDisciplinas().contains(disciplina.getListaDePreRequisitos().get(j))) {
-					return false;
-				}
-			}
-		}
-		return true;
+		return false;
 	}
-
+	
 	/**
 	 * 
 	 * @param aluno aluno que estah no sistema
