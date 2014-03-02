@@ -37,12 +37,12 @@ public class GridController {
 	 * Construtor
 	 */
 	public GridController() {
-		//if (finder.all().size() == 0) {
+		if (finder.all().size() == 0) {
 			this.aluno = new Aluno();
-		//	this.aluno.save();
-		/*} else {
+			this.aluno.save();
+		} else {
 			this.aluno = finder.all().get(UNICO_ALUNO_DO_SISTEMA);
-		}*/
+		}
 		this.planejador = new Planejador();
 		addPeriodosAoAluno();
 	}
