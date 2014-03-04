@@ -59,11 +59,9 @@ public class Planejador {
 	 * @return se a disciplina estah em um periodo diferente que os seus pre-requisitos
 	 */
 	public boolean verificaPeriodoDiferenteDosRequisitos(Aluno aluno, Disciplina disciplina, int periodo) {
-		for (Periodo periodoAnalisado:aluno.getListaDePeriodos()) {
-			for (Disciplina disciplinaAnalisada:periodoAnalisado.getDisciplinas()) {
-				if (disciplinaAnalisada.getListaDePreRequisitos().contains(disciplina) && periodoAnalisado.getPeriodo() - 1 <= periodo) {
-					return true;
-				} else if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) && periodoAnalisado.getPeriodo() - 1 >= periodo) {
+		for (Periodo periodoAnalisado : aluno.getListaDePeriodos()) {
+			for (Disciplina disciplinaAnalisada : periodoAnalisado.getDisciplinas()) {
+				if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) && periodoAnalisado.getPeriodo() - 1 >= periodo) {
 					return true;
 				}
 			}

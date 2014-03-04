@@ -40,7 +40,8 @@ public class GridController {
 		if (finder.all().isEmpty()) {
 			this.aluno = new Aluno();
 			this.aluno.save();
-			System.out.println("Nem existia");			System.out.println("DEVERIA EXISTIR " + finder.all().get(0));
+			System.out.println("Nem existia");
+			System.out.println("DEVERIA EXISTIR " + finder.all().get(0));
 		} else {
 			System.out.println("EXISTIA");
 			this.aluno = finder.all().get(UNICO_ALUNO_DO_SISTEMA);
