@@ -55,6 +55,22 @@ public class GridController {
 	 * @return Aluno do sistema
 	 */
 	public Aluno getAluno() {
+		/**
+		 * Estado do usuario...syso =P
+		 */
+		System.out.println();
+		System.out.println("*************************************");
+		for (Periodo periodo : aluno.getListaDePeriodos()) {
+			System.out.println("========================================");
+			System.out.println("NUMERO DO PERIODO " + periodo.getPeriodo());
+			System.out.println("NUMERO DE DISCIPLINAS " + periodo.getDisciplinas().size());
+			System.out.println("DISCIPLINAS:");
+			for (Disciplina disciplina : periodo.getDisciplinas()) {
+				System.out.println("Nome da disciplina " + disciplina.getNome());
+			}
+			System.out.println("========================================");
+		}
+		System.out.println("*************************************");
 		return aluno;
 	}
 	
