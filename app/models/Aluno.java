@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 import play.db.ebean.Model;
 
+
 /**
  * Classe que representa um aluno
  *

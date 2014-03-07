@@ -53,21 +53,14 @@
    		 
 			<div class="thumbnail">
 				<div class="caption">
-				@*********************************************************************************************************************************************************************************************************			
-				*	<h3>																																																 *
-				*		Adicionar/Remover Disciplinas																																									 *
-				*		 @form(routes.Application.matriculaNaDisciplina()) {																																			 *
-       			*			 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")																											 *
-				*		     @inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")																															 *	
-      			*			 <input type="submit" class="btn btn-success" value="Adicionar disciplina">																													 *
- 				*	     }																																																 *
- 				*	     																																																 *
- 				*	     @form(routes.Application.removeDisciplina()) {																																					 *
-       			*			 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")																											 *
-      			*			 <input type="submit" class="btn btn-danger" value="Remover disciplina" onclick="return confirm('Tem certeza mesmo que deseja remover? As cadeiras dependentes também serão removidas.');">  *
- 				*	     }																																																 *
-				*	</h3>																																																 *
-				*********************************************************************************************************************************************************************************************************@
+					<h3>																																																 
+						Remover disciplina																																												 
+ 					     @form(routes.Application.removeDisciplina()) {																																					 
+       						 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")																											 
+      						 <input type="submit" class="btn btn-danger" value="Remover disciplina" onclick="return confirm('Tem certeza mesmo que deseja remover? As cadeiras dependentes também serão removidas.');">  
+ 					     }																																																 
+					</h3>		
+																																																			
 					<p>
 					<div class="btn-group">
 					  <ul class="dropdown-menu" role="menu">

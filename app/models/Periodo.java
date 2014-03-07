@@ -54,8 +54,8 @@ public class Periodo {
 	 */
 	public int getNumeroDeCreditosDoPeriodo() {
 		int numeroDeCreditosDoPeriodo = 0;
-		for (int i = 0; i < disciplinas.size(); i++) {
-				numeroDeCreditosDoPeriodo += disciplinas.get(i).getCreditos();	
+		for (Disciplina disciplina : disciplinas) {
+			numeroDeCreditosDoPeriodo += disciplina.getCreditos();
 		}
 		return numeroDeCreditosDoPeriodo;
 	}
@@ -68,14 +68,6 @@ public class Periodo {
 		dificuldadeDoPeriodo(disciplinas, dificuldadeDoPeriodo);
 		return dificuldadeDoPeriodo;
 	}
-
-	/**
-	 * Altera dificuldade
-	 * @param dificuldadeDoPeriodo
-	 */
-	public void setDificuldadeDoPeriodo(int dificuldadeDoPeriodo) {
-		this.dificuldadeDoPeriodo = dificuldadeDoPeriodo;
-	}
 	
 	/**
 	 * Calcula Dificuldade do periodo
@@ -84,8 +76,8 @@ public class Periodo {
 	 */
 	private void dificuldadeDoPeriodo(List<Disciplina> disciplinas, int periodo) {
 		dificuldadeDoPeriodo = 0;
-		for (int i = 0; i < disciplinas.size(); i++) {
-			dificuldadeDoPeriodo += disciplinas.get(i).getDificuldade();
+		for (Disciplina disciplina : disciplinas) {
+			dificuldadeDoPeriodo += disciplina.getDificuldade();
 		}
 	}
 

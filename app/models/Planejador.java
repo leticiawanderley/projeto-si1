@@ -61,7 +61,8 @@ public class Planejador {
 	public boolean verificaPeriodoDiferenteDosRequisitos(Aluno aluno, Disciplina disciplina, int periodo) {
 		for (Periodo periodoAnalisado : aluno.getListaDePeriodos()) {
 			for (Disciplina disciplinaAnalisada : periodoAnalisado.getDisciplinas()) {
-				if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) && periodoAnalisado.getPeriodo() - 1 >= periodo) {
+				if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) 
+					&& periodoAnalisado.getPeriodo() - 1 >= periodo) {
 					return true;
 				}
 			}
@@ -110,8 +111,8 @@ public class Planejador {
 	 */
 	public List<Disciplina> getTodasDisciplinasDoAluno(Aluno aluno) {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-		for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
-			disciplinas.addAll(aluno.getListaDePeriodos().get(i).getDisciplinas());
+		for (Periodo periodo : aluno.getListaDePeriodos()) {
+			disciplinas.addAll(periodo.getDisciplinas());
 		}
 		return disciplinas;
 	}
@@ -156,10 +157,9 @@ public class Planejador {
 	 */
 	private List<Disciplina> getDisciplinasDependentes(Aluno aluno, Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = new ArrayList<Disciplina>();
-		for (int i = 0; i < getTodasDisciplinasDoAluno(aluno).size(); i++) {
-			Disciplina tmp = getTodasDisciplinasDoAluno(aluno).get(i);
-			if (tmp.getListaDePreRequisitos().contains(disciplina)) {
-				disciplinasDependentes.add(tmp);
+		for (Disciplina disciplinaDoAluno : getTodasDisciplinasDoAluno(aluno)) {
+			if (disciplinaDoAluno.getListaDePreRequisitos().contains(disciplina)) {
+				disciplinasDependentes.add(disciplinaDoAluno);
 			}
 		}
 		return disciplinasDependentes;
@@ -181,13 +181,12 @@ public class Planejador {
 	 * @return a disciplina com o nome do parametro
 	 */
 	public Disciplina getDisciplina(String nomeDaDisciplina) {
-		Disciplina disciplina = null;
-		for (int i = 0; i < grade.getDisciplinasDoCurso().size(); i++) {
-			if (grade.getDisciplinasDoCurso().get(i).getNome().equals(nomeDaDisciplina)) {
-				disciplina = grade.getDisciplinasDoCurso().get(i);
+		for (Disciplina disciplina : grade.getDisciplinasDoCurso()) {
+			if (disciplina.getNome().equals(nomeDaDisciplina)) {
+				return disciplina;
 			}
 		}
-		return disciplina;
+		return null;
 	}
 	
 	/**
