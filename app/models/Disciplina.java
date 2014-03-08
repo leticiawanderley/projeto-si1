@@ -23,6 +23,7 @@ public class Disciplina extends Model {
 	//INFORMATION EXPERT - Contém as informações da disciplina: id,nomeDaDisciplina, numeroDeCreditos, listaDePreRequisitos e o periodoAlocado. 
 	private String nomeDaDisciplina;
 	private int numeroDeCreditos;
+	@ManyToMany
 	private List<Disciplina> listaDePreRequisitos;
 	private int dificuldadeDaDisciplina;
 	
