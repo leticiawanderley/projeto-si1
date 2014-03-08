@@ -1,9 +1,13 @@
 package controllers;
 
-import models.AlunoNaoPossuiPreRequisitos;
+import com.avaje.ebean.Ebean;
+
+import models.Aluno;
 import models.Disciplina;
+import models.User;
 import play.data.Form;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 
 /**
  * Classe que controla as requisições do sistema web
@@ -12,20 +16,19 @@ import play.mvc.*;
 public class Application extends Controller {
 	
 	private static final String CADEIRA_NAO_EXISTENTE = "O nome da disciplina está incorreta ou não existe";
-	private static final String CAMPO_VAZIO = "Campo Vazio";
-	private static final String VALOR_INVALIDO = "O valor do período precisa ser um número e estar no intervalo [2, 10]";
-	private static final String PRE_REQUISITOS = "Você precisa ter adicionado os pré-requisitos da disciplina";
-	private static final String JA_MATRICULADO = "Você já está matriculado na disciplina";
-	private static final String NUMERO_GRANDE_DE_CREDITOS = "Você tem mais de 28 créditos neste período";
 			
 	private static GridController grid = new GridController();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
+	private static Aluno USUARIO_NAO_LOGADO;
 	
 	/**
 	 * Pagina inicial da alocacao das disciplinas
 	 * @return um resultado/pagina que serah exibida no navegador
 	 */
     public static Result index() {
+    	if (grid.getAluno() ==  USUARIO_NAO_LOGADO) {
+    		return redirect(routes.Application.login());
+    	}
         return ok(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
     }
     
@@ -62,65 +65,6 @@ public class Application extends Controller {
     	return redirect("/");
     }
 
-    /**
-     * Metodo para tratamento de erros da UI
-     * @param filledForm
-     * @return um resultado/pagina que serah exibida no navegador
-     */
-	/*private static Result tratamentoDeErrosDaInterface(Form<Disciplina> filledForm) {
-		try {
-			// CAMPOS VAZIOS
-			if (filledForm.data().get("nomeDaDisciplina").equals("") || filledForm.data().get("periodoAlocado").equals("")) {
-				grid.getPlanejador().setMensagemDeErro(CAMPO_VAZIO);
-				return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-			}
-			
-			String nomeDaDisciplina = filledForm.data().get("nomeDaDisciplina");
-			// VALOR DO PERIODO INVALIDO
-			if (!isNumber(filledForm.data().get("periodoAlocado"))) {
-				grid.getPlanejador().setMensagemDeErro(VALOR_INVALIDO);
-				return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-			}
-			// PERIODO EM UM INTERVALO INVALIDO
-			int periodo = Integer.parseInt(filledForm.data().get("periodoAlocado"));
-			if (periodo > 10 || periodo <= 1) {
-				grid.getPlanejador().setMensagemDeErro(VALOR_INVALIDO);
-				return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-			}
-			
-			// CADEIRA INEXISTENTE
-			if (!grid.getPlanejador().existeCadeira(nomeDaDisciplina)) {
-				grid.getPlanejador().setMensagemDeErro(CADEIRA_NAO_EXISTENTE);
-				return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-			}
-			
-			Disciplina disciplina = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
-			// EXCEDEU O NUMERO DE CREDITOS
-			if (grid.getPlanejador().alunoTemMaximoDeCreditos(grid.getAluno(), periodo -1)) {
-				grid.getPlanejador().setMensagemDeErro(NUMERO_GRANDE_DE_CREDITOS);
-				return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-			}
-			// ALUNO JAH ESTAH MATRICULADO NA DISCIPLINA
-			if (grid.getPlanejador().jaEstaMatriculado(grid.getAluno(), disciplina) 
-					|| grid.getAluno().getListaDePeriodos().get(periodo-1).getNumeroDeCreditosDoPeriodo() + disciplina.getCreditos() > 28) {
-				grid.getPlanejador().setMensagemDeErro(JA_MATRICULADO);
-				return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-			}
-			
-			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), disciplina, periodo - 1);
-			grid.getAluno().save();
-			return index();
-		} catch (AlunoNaoPossuiPreRequisitos e) {
-			// O ALUNO NAO ALOCOU OS PRE-REQUISITOS
-			grid.getPlanejador().setMensagemDeErro(PRE_REQUISITOS);
-			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
-		}
-	}*/
-
-    private static Result redirect(char c) {
-		return null;
-    }
-
 	/**
      * Remove uma disciplina do usuario
      * @return um resultado/pagina que serah exibida no navegador
@@ -137,6 +81,44 @@ public class Application extends Controller {
 		grid.getAluno().update();
 		return index();
     }
+	
+	
+	public static Result cadastrarNovoUsuario() {
+		return ok(views.html.cadastrarUsuario.render(Form.form(User.class)));
+	}
+	
+	public static Result criarUsuario() {
+		Form<User> loginForm = Form.form(User.class).bindFromRequest();
+    	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
+    	Ebean.save(novoAluno);
+    	return login();
+	}
+	
+	public static Result login() {
+	    return ok(views.html.login.render(Form.form(User.class)));
+	}
+	
+	public static Result authenticate() {
+	    Form<User> loginForm = Form.form(User.class).bindFromRequest();
+	    if (loginForm.hasErrors()) {
+	        return badRequest(views.html.login.render(loginForm));
+	    } else {
+	    	if (grid.getFinder().all().contains(new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword()))) {
+	    		for (Aluno aluno : grid.getFinder().all()) {
+	    			if (aluno.equals(new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword()))) {
+	    				 grid.setAluno(grid.getFinder().findMap().get(aluno.getId()));
+	    				 break;
+	    			}
+	    		}
+	    		session().clear();
+		        session("email", loginForm.get().getEmail());
+		        return redirect(routes.Application.index());
+	    	} else {
+	    		return badRequest(views.html.login.render(Form.form(User.class)));
+	    	}
+	        
+	    }
+	}
     
     /**
      * Verifica se o valor inserido pelo usuário é um número
@@ -146,4 +128,5 @@ public class Application extends Controller {
     public static boolean isNumber(String input) {
         return input.matches("^-?[0-9]+(\\.[0-9]+)?$");
     }
+    
 }

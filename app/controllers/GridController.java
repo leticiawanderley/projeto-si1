@@ -37,14 +37,11 @@ public class GridController {
 	 * Construtor
 	 */
 	public GridController() {
-		if (finder.all().isEmpty()) {
-			this.aluno = new Aluno();
-			this.aluno.save();
-		} else {
-			this.aluno = finder.all().get(UNICO_ALUNO_DO_SISTEMA);
-		}
 		this.planejador = new Planejador();
-		addPeriodosAoAluno();
+	}
+	
+	public Finder<Long, Aluno> getFinder() {
+		return finder;
 	}
 
 	/**
@@ -53,6 +50,14 @@ public class GridController {
 	 */
 	public Aluno getAluno() {
 		return aluno;
+	}
+	
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+		// TODO remover
+		if (this.aluno.getListaDePeriodos().size() == 0) {
+			addPeriodosAoAluno();
+		}
 	}
 	
 	/**

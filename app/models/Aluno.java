@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import play.db.ebean.Model;
-
+import javax.persistence.ManyToMany;
 
 /**
  * Classe que representa um aluno
  *
  */
 @Entity
-public class Aluno extends Model {
+public class Aluno extends User {
 
-	@Id
-	private Long id;
 	// INFORMATION EXPERT - contém as informacoes do aluno:nomeDoAluno,listaDePeriodos .
 	private static final long serialVersionUID = 7507028957989504099L;
 	private List<Periodo> listaDePeriodo;
@@ -26,7 +21,8 @@ public class Aluno extends Model {
 	 * Construtor da classe	
 	 * @param nome Nome do aluno
 	 */
-	public Aluno() {
+	public Aluno(String name, String email, String password) {
+		super(name, email, password);
 		this.listaDePeriodo = new ArrayList<Periodo>();
 	}
 	
@@ -35,7 +31,11 @@ public class Aluno extends Model {
 	 * @return a lista dos periodos do aluno
 	 */
 	public List<Periodo> getListaDePeriodos() {
+		// TODO remover
+		if (listaDePeriodo == null) {
+			listaDePeriodo = new ArrayList<Periodo>();
+		}
 		return listaDePeriodo;
 	}
-
+	
 }

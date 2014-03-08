@@ -8,6 +8,14 @@ GET     /                           controllers.Application.index()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
+GET 	/cadastrar					controllers.Application.cadastrarNovoUsuario()
+
+GET			/criar					controllers.Application.criarUsuario()
+POST		/criar					controllers.Application.criarUsuario()
+
+GET     /login                  	controllers.Application.login()
+POST    /login                      controllers.Application.authenticate()
+
 GET		/verGrade					controllers.Application.verGrade()
 GET 	/selecionarDisciplinas		controllers.Application.selecionarDisciplinas()
 GET		/matriculaNaDisciplina/:periodo/:disciplina		controllers.Application.matriculaNaDisciplina(periodo: Integer, disciplina: String)

@@ -2,12 +2,21 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import play.db.ebean.Model;
+
 /**
  * Representa um periodo de um aluno
  *
  */
-public class Periodo {
+@Entity
+public class Periodo extends Model {
 	
+	@Id
+	private Long id;
 	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
 	private List<Disciplina> disciplinas;
 	private int periodo;

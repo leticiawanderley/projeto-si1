@@ -31,7 +31,7 @@ public class AlunoTest {
 	
 	@Before
 	public void setup() {
-		aluno = new Aluno();
+		aluno = new Aluno("Severino", "severino@gmail.com", "oxe");
 		sistema = new Planejador();
 	}
 	

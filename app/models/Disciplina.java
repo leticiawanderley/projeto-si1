@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import play.db.ebean.Model;
 
@@ -13,8 +15,10 @@ import play.db.ebean.Model;
  *
  */
 @Entity
-public class Disciplina extends Model{
+public class Disciplina extends Model {
 	
+	@Id
+	private Long id;
 	private static final long serialVersionUID = 1L;
 	//INFORMATION EXPERT - Contém as informações da disciplina: id,nomeDaDisciplina, numeroDeCreditos, listaDePreRequisitos e o periodoAlocado. 
 	private String nomeDaDisciplina;
