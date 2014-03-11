@@ -53,7 +53,7 @@ public class GridController {
 	
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
-		// TODO remover
+		// TODO remover BANCO requisito
 		if (this.aluno != null) {
 			if (this.aluno.getListaDePeriodos().size() == 0) {
 				addPeriodosAoAluno();
