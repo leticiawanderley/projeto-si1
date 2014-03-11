@@ -16,6 +16,8 @@ POST		/criar					controllers.Application.criarUsuario()
 GET     /login                  	controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
 
+GET     /logout                     controllers.Application.logout()
+
 GET		/verGrade					controllers.Application.verGrade()
 GET 	/selecionarDisciplinas		controllers.Application.selecionarDisciplinas()
 GET		/matriculaNaDisciplina/:periodo/:disciplina		controllers.Application.matriculaNaDisciplina(periodo: Integer, disciplina: String)

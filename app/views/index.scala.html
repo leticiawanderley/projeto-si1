@@ -1,4 +1,4 @@
-@(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador, mensagem: String)
+@(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador)
 
 @import helper._
 
@@ -26,16 +26,12 @@
 			location.href = '/matriculaNaDisciplina/'+ periodo + '/' + disciplina;
 		}
 	</script>
-	@if(mensagem != "") {
-		<div class="alert alert-error">
- 		 <button type="button" class="close" data-dismiss="alert">×</button>
- 		 <h4>Atenção</h4>
- 			 @mensagem
-		</div>
-		@planejador.setMensagemDeErro("")
-	}
-
-	<h1><small><div class="well"><a href="@routes.Application.login" >CSPlanner - Grade do Curso </a></div></h1></small>
+	<h1><small><div class="well"><a>CSPlanner - Grade do Curso </a></div></h1></small>
+	<p>
+        <dd>
+            <a href="@routes.Application.logout()">Logout</a>
+        </dd>
+    </p>
 </head>
 
 <body>

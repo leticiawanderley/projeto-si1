@@ -16,9 +16,6 @@ public class Planejador {
 	private static final int MINIMO_CREDITOS = 14;
 	private static final int MAXIMO_CREDITOS = 28;
 	
-	/** Mensagem que irah para interface, indicando ao usuario o que foi feito inadequadamente */
-	private String mensagemDeErro = "";
-	
 	/**
 	 * 
 	 * @param nome nome da disciplina
@@ -208,20 +205,4 @@ public class Planejador {
 		return getDisciplina(nomeDaCadeira) != null;
 	}
 	
-	/**
-	 * 
-	 * @return A mensagem de erro devido à tentativas de uso erradas do usuario
-	 */
-	public String getMensagemDeErro() {
-		return mensagemDeErro;
-	}
-
-	/**
-	 * Altera a mensagem de erro do sistema
-	 * @param mensagemDeErro
-	 */
-	public void setMensagemDeErro(String mensagemDeErro) {
-		this.mensagemDeErro = mensagemDeErro;
-	}
-
 }

@@ -29,7 +29,7 @@ public class Application extends Controller {
     	if (grid.getAluno() ==  USUARIO_NAO_LOGADO) {
     		return redirect(routes.Application.login());
     	}
-        return ok(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
+        return ok(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
     }
     
     /**
@@ -55,7 +55,7 @@ public class Application extends Controller {
     public static Result matriculaNaDisciplina(int periodo, String disciplina) {
     	Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
     	if (filledForm.hasErrors()) {
-			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
+			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
 		} else {
 			Disciplina displicaRealocada =  grid.getPlanejador().getDisciplina(disciplina);
 			grid.getPlanejador().removeDisciplina(grid.getAluno(), displicaRealocada);
@@ -74,8 +74,8 @@ public class Application extends Controller {
     	String nomeDaDisciplina = filledForm.data().get("nomeDaDisciplina");
 		Disciplina tmp = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
 		if (!grid.getPlanejador().existeCadeira(nomeDaDisciplina)) {
-    		grid.getPlanejador().setMensagemDeErro(CADEIRA_NAO_EXISTENTE);
-    		return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador(), grid.getPlanejador().getMensagemDeErro()));
+    		flash("sucess", CADEIRA_NAO_EXISTENTE);
+    		return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
     	}
 		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(grid.getAluno(), tmp);
 		grid.getAluno().update();
@@ -96,6 +96,13 @@ public class Application extends Controller {
 	
 	public static Result login() {
 	    return ok(views.html.login.render(Form.form(User.class)));
+	}
+	
+	public static Result logout() {
+	    session().clear();
+	    flash("success", "You've been logged out");
+	    grid.setAluno(USUARIO_NAO_LOGADO);
+	    return redirect(routes.Application.index());
 	}
 	
 	public static Result authenticate() {
@@ -119,14 +126,5 @@ public class Application extends Controller {
 	        
 	    }
 	}
-    
-    /**
-     * Verifica se o valor inserido pelo usuário é um número
-     * @param input valor inserido
-     * @return se o valor eh numerico
-     */
-    public static boolean isNumber(String input) {
-        return input.matches("^-?[0-9]+(\\.[0-9]+)?$");
-    }
     
 }

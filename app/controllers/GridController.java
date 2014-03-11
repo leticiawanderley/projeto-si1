@@ -26,7 +26,6 @@ public class GridController {
 	private static final int OITAVO_PERIDO = 8;
 	private static final int NONO_PERIODO = 9;
 	private static final int DECIMO_PERIODO = 10;
-	private static final int UNICO_ALUNO_DO_SISTEMA = 0;
 	
 	private Aluno aluno;
 	private Planejador planejador;
@@ -55,8 +54,10 @@ public class GridController {
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 		// TODO remover
-		if (this.aluno.getListaDePeriodos().size() == 0) {
-			addPeriodosAoAluno();
+		if (this.aluno != null) {
+			if (this.aluno.getListaDePeriodos().size() == 0) {
+				addPeriodosAoAluno();
+			}
 		}
 	}
 	
