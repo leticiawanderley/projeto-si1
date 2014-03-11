@@ -3,8 +3,9 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  * Classe que representa um aluno
@@ -15,7 +16,7 @@ public class Aluno extends User {
 
 	// INFORMATION EXPERT - contém as informacoes do aluno:nomeDoAluno,listaDePeriodos .
 	private static final long serialVersionUID = 7507028957989504099L;
-	//@ManyToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
 	
 	/**

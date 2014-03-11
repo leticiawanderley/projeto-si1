@@ -2,9 +2,10 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import play.db.ebean.Model;
 
@@ -17,9 +18,9 @@ public class Periodo extends Model {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	private Long id;
+	public Long id;
 	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
-	//@ManyToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
 	private int periodo;
 	private int dificuldadeDoPeriodo;
@@ -91,5 +92,15 @@ public class Periodo extends Model {
 			dificuldadeDoPeriodo += disciplina.getDificuldade();
 		}
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 
 }

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import play.db.ebean.Model;
@@ -18,12 +21,14 @@ import play.db.ebean.Model;
 public class Disciplina extends Model {
 	
 	@Id
-	private Long id;
+	public Long id;
 	private static final long serialVersionUID = 1L;
 	//INFORMATION EXPERT - Contém as informações da disciplina: id,nomeDaDisciplina, numeroDeCreditos, listaDePreRequisitos e o periodoAlocado. 
 	private String nomeDaDisciplina;
 	private int numeroDeCreditos;
-	//@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="listaDePreRequisitos", joinColumns=@JoinColumn(name="disciplina_codigo", referencedColumnName="id"),
+	inverseJoinColumns=@JoinColumn(name="requisito_codigo", referencedColumnName="id"))
 	private List<Disciplina> listaDePreRequisitos;
 	private int dificuldadeDaDisciplina;
 	
@@ -124,4 +129,12 @@ public class Disciplina extends Model {
 		this.dificuldadeDaDisciplina = dificuldade;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }
