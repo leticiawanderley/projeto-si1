@@ -53,6 +53,9 @@ public class GridController {
 	
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
+		if (this.aluno != null) {
+			alocandoNovoUsuario(this.aluno);
+		}
 	}
 	
 	public void alocandoNovoUsuario(Aluno aluno) {

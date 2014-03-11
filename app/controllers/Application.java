@@ -107,7 +107,7 @@ public class Application extends Controller {
 	    session().clear();
 	    flash("success", "You've been logged out");
 	    grid.setAluno(USUARIO_NAO_LOGADO);
-	    return redirect(routes.Application.index());
+	    return redirect(routes.Application.login());
 	}
 	
 	public static Result authenticate() {
