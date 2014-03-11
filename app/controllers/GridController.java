@@ -53,11 +53,11 @@ public class GridController {
 	
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
-		// TODO remover BANCO requisito
-		if (this.aluno != null) {
-			if (this.aluno.getListaDePeriodos().size() == 0) {
-				addPeriodosAoAluno();
-			}
+	}
+	
+	public void alocandoNovoUsuario(Aluno aluno) {
+		if (aluno.getListaDePeriodos().isEmpty()) {
+			addPeriodosAoAluno(aluno);
 		}
 	}
 	
@@ -71,8 +71,9 @@ public class GridController {
 
 	/**
 	 * Inicia os periodos do aluno
+	 * @param aluno 
 	 */
-	private void addPeriodosAoAluno() {
+	private void addPeriodosAoAluno(Aluno aluno) {
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSegundoPeriodo(), SEGUNDO_PERIODO));
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoTerceiroPeriodo(), TERCEIRO_PERIODO));

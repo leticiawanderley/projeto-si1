@@ -47,7 +47,7 @@ public class Application extends Controller {
     public static Result selecionarDisciplinas() {
     	return ok(views.html.disciplinasDoCurso.render(grid.getAluno(), grid.getPlanejador()));
     }
-    
+
     /**
      * Matricula o usuario na disciplina
      * @return um resultado/pagina que serah exibida no navegador
@@ -87,9 +87,13 @@ public class Application extends Controller {
 		return ok(views.html.cadastrarUsuario.render(Form.form(User.class)));
 	}
 	
+	// TODO verificar se o usuario jah existe (procurar qual deve ser a melhor solucao)
+	// TODO verificar se a senha e confirmacao de senha sao iguais
 	public static Result criarUsuario() {
 		Form<User> loginForm = Form.form(User.class).bindFromRequest();
+		// TODO loginForm.data().get("confirmacao de senha --- chave q tem na interface");
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
+    	grid.alocandoNovoUsuario(novoAluno);
     	Ebean.save(novoAluno);
     	return login();
 	}
@@ -98,6 +102,7 @@ public class Application extends Controller {
 	    return ok(views.html.login.render(Form.form(User.class)));
 	}
 	
+	// TODO certo caminhos ainda conseguem voltar para a conta do usuario (nao estah seguro)
 	public static Result logout() {
 	    session().clear();
 	    flash("success", "You've been logged out");

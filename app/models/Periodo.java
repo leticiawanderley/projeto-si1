@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import play.db.ebean.Model;
@@ -17,9 +15,11 @@ import play.db.ebean.Model;
 @Entity
 public class Periodo extends Model {
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Long id;
 	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
+	@ManyToMany
 	private List<Disciplina> disciplinas;
 	private int periodo;
 	private int dificuldadeDoPeriodo;
