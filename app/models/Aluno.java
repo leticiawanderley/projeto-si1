@@ -33,9 +33,6 @@ public class Aluno extends User {
 	 * @return a lista dos periodos do aluno
 	 */
 	public List<Periodo> getListaDePeriodos() {
-		if (listaDePeriodo == null) {
-			this.listaDePeriodo = new ArrayList<Periodo>();
-		}
 		return listaDePeriodo;
 	}
 	

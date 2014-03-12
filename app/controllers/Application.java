@@ -62,6 +62,7 @@ public class Application extends Controller {
 			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
 			grid.getAluno().update();
 		}
+    	
     	return redirect("/");
     }
 
@@ -118,10 +119,13 @@ public class Application extends Controller {
 	    	if (grid.getFinder().all().contains(new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword()))) {
 	    		for (Aluno aluno : grid.getFinder().all()) {
 	    			if (aluno.equals(new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword()))) {
-	    				 grid.setAluno(grid.getFinder().findMap().get(aluno.getId()));
+	    				grid.setAluno(grid.getFinder().findMap().get(aluno.getId()));
+	    				System.out.println(grid.getAluno().getName()); 
+	    				System.out.println(grid.getAluno().getListaDePeriodos().size());
 	    				 break;
 	    			}
 	    		}
+	    		grid.getAluno().getListaDePeriodos();
 	    		session().clear();
 		        session("email", loginForm.get().getEmail());
 		        return redirect(routes.Application.index());

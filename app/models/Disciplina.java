@@ -21,7 +21,7 @@ import play.db.ebean.Model;
 public class Disciplina extends Model {
 	
 	@Id
-	public Long id;
+	private Long id;
 	private static final long serialVersionUID = 1L;
 	//INFORMATION EXPERT - Contém as informações da disciplina: id,nomeDaDisciplina, numeroDeCreditos, listaDePreRequisitos e o periodoAlocado. 
 	private String nomeDaDisciplina;
