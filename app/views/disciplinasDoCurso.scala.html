@@ -29,10 +29,12 @@
                                                                       <a href="#">
                                                                         <form>
                                                                             <li class="list-group">
+																				<input type="checkbox" name="vehicle" value="Disciplina">
                                                                                     @disciplina.getNome()
                                                                                     <span class="badge">@disciplina.getCreditos()</span>
                                                                                  	<span class="badge">@disciplina.getDificuldade()</span>
-                                                                                   </li>
+                                                                                   <br>
+																			</li>
                                                                         </form>
                                                               </a>
                                                             </li>
@@ -46,8 +48,13 @@
 </div>
 </body>
 
- @form(routes.Application.index()) {
-                            <input type="submit" class="btn btn-info" value="Voltar para a página inicial">
-  }
+	
+	<input type="submit" class="btn btn-info" value="Adicionar disciplina">
+	
+	
+	@form(routes.Application.index()) {
+		<input type="submit" class="btn btn-info" value="Voltar para a página inicial">
+	}
+  
 
 }
