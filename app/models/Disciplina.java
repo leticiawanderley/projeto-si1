@@ -37,11 +37,11 @@ public class Disciplina extends Model {
 	 * @param nomeDaDisciplina nome da disciplina
 	 * @param creditos numero de creditos
 	 */
-	public Disciplina(String nomeDaDisciplina, int creditos) {
+	public Disciplina(String nomeDaDisciplina, int creditos, int dificuldade) {
 		this.nomeDaDisciplina = nomeDaDisciplina;
 		this.numeroDeCreditos = creditos;
 		listaDePreRequisitos = new ArrayList<Disciplina>();
-		this.dificuldadeDaDisciplina = creditos;
+		this.dificuldadeDaDisciplina = dificuldade;
 	}
 	
 	/**
@@ -50,12 +50,12 @@ public class Disciplina extends Model {
 	 * @param creditos numero de creditos
 	 * @param preRequisitos lista de pre-requisitos da disciplina
 	 */
-	public Disciplina(String nomeDaDisciplina, int creditos, Disciplina[] preRequisitos) {
+	public Disciplina(String nomeDaDisciplina, int creditos, Disciplina[] preRequisitos, int dificuldade) {
 		this.nomeDaDisciplina = nomeDaDisciplina;
 		this.numeroDeCreditos = creditos;
 		listaDePreRequisitos = new ArrayList<Disciplina>();
 		listaDePreRequisitos.addAll(Arrays.asList(preRequisitos));
-		this.setDificuldade(creditos);
+		this.setDificuldade(dificuldade);
 	}
 
 	/**

@@ -20,9 +20,7 @@
 		function drop(ev, periodo)
 		{	
 			ev.preventDefault();
-			var disciplina = ev.dataTransfer.getData("Text");
-			//ev.target.appendChild(document.getElementById(disciplina));
-			
+			var disciplina = ev.dataTransfer.getData("Text");			
 			location.href = '/matriculaNaDisciplina/'+ periodo + '/' + disciplina;
 		}
 	</script>
@@ -100,13 +98,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 0)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -149,13 +149,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,1)){
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>									    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 							    }
 							}
@@ -203,13 +205,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 2)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -257,13 +261,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 3)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -311,13 +317,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 4)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -369,13 +377,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 5)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>
+										<span class="badge">@disciplina.getDificuldade()</span>									    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 							    }
 							}
@@ -423,13 +433,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 6)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 							    }
 							}
@@ -477,13 +489,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 7)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>		
+										<span class="badge">@disciplina.getDificuldade()</span>							    								  
 									</div>
 							    }
 							}
@@ -531,13 +545,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 8)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>		
+										<span class="badge">@disciplina.getDificuldade()</span>							    								  
 									</div>
 							    }
 							}
@@ -574,13 +590,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 9)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>	
+										<span class="badge">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>								    								  
+										<span class="badge">@disciplina.getCreditos()</span>		
+										<span class="badge">@disciplina.getDificuldade()</span>							    								  
 									</div>
 							    }
 							}
