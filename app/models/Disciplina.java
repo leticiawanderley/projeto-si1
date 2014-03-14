@@ -100,12 +100,15 @@ public class Disciplina extends Model {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Disciplina other = (Disciplina) obj;
 		if (other.getNome().equals(nomeDaDisciplina) && other.getCreditos() == numeroDeCreditos) {
 			return true;
