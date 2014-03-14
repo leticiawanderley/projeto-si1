@@ -12,7 +12,7 @@ import models.Grade.DisciplinasDSC;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.AlunoNaoPossuiPreRequisitos;
+import exception.AlunoNaoPossuiPreRequisitosException;
 
 /**
  * Testes para a classe Aluno
@@ -69,7 +69,7 @@ public class AlunoTest {
 	}
 	
 	@Test
-	public void userStoriesTest() throws AlunoNaoPossuiPreRequisitos {
+	public void userStoriesTest() throws AlunoNaoPossuiPreRequisitosException {
 		Periodo primeiroPeriodo = new Periodo(sistema.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO);
 		aluno.getListaDePeriodos().add(primeiroPeriodo);
 		//Verifica se o pré-requisito da cadeira já foi pago
