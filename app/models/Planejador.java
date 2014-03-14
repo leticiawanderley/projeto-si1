@@ -3,6 +3,8 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import exception.AlunoNaoPossuiPreRequisitos;
+
 /**
  * Representa um controlador que sera responsavel de gerenciar o planejamento da grade do aluno
  *

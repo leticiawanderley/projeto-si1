@@ -12,6 +12,8 @@ import models.Grade.DisciplinasDSC;
 import org.junit.Before;
 import org.junit.Test;
 
+import exception.AlunoNaoPossuiPreRequisitos;
+
 /**
  * Testes para a classe Aluno
  *
