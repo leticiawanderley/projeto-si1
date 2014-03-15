@@ -85,12 +85,9 @@
 						</h3>
 						<p>
 						<ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(0).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(0).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(0).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(0).getDificuldadeDoPeriodo()</div>						  
 						</ul>
 
 						<div class="periodo connected" ondrop="drop(event, 1)" ondragover="allowDrop(event)">
@@ -98,15 +95,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 0)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>									    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -124,12 +121,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(1).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(1).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 14){
 							<div class="alert alert-danger alert-dismissable">
 							  
@@ -149,15 +144,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,1)){
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>									    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 							    }
 							}
@@ -175,12 +170,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(2).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(2).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -205,15 +198,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 2)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>									    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -231,12 +224,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(3).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(3).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -261,15 +252,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 3)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>									    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -287,12 +278,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(4).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(4).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -317,15 +306,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 4)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>									    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 							    }
 							}
@@ -347,12 +336,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(5).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(5).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -377,15 +364,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 5)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>
-										<span class="badge">@disciplina.getDificuldade()</span>									    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>
+										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 							    }
 							}
@@ -403,12 +390,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(6).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(6).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -433,15 +418,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 6)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 							    }
 							}
@@ -459,12 +444,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(7).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(7).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -489,15 +472,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 7)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>		
-										<span class="badge">@disciplina.getDificuldade()</span>							    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>		
+										<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
 									</div>
 							    }
 							}
@@ -515,12 +498,10 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(8).getDificuldadeDoPeriodo()</a>
-						  </li>
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(8).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 14 || aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 28){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -545,15 +526,15 @@
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 8)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>		
-										<span class="badge">@disciplina.getDificuldade()</span>							    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>		
+										<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
 									</div>
 							    }
 							}
@@ -570,13 +551,11 @@
 							10° Período
 						</h3>
 						<p>
-							<ul class="nav nav-pills nav-stacked " >
-						  <li class="active">
-						    <a href="#">
-							Total de Créditos: @aluno.getListaDePeriodos().get(9).getNumeroDeCreditosDoPeriodo()
-						    </a>
-						    <a>Dificuldade do período: @aluno.getListaDePeriodos().get(9).getDificuldadeDoPeriodo()</a>
-						  </li>
+						<ul class="nav nav-pills nav-stacked " >
+							<div class="creditos">Total de Créditos: @aluno.getListaDePeriodos().get(9).getNumeroDeCreditosDoPeriodo()</div>
+							<br>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(9).getDificuldadeDoPeriodo()</div>
+						    
 							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() < 14){
 							<div class="alert alert-info alert-dismissable">
 							  
@@ -590,15 +569,15 @@
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 9)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>	
-										<span class="badge">@disciplina.getDificuldade()</span>								    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>	
+										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
 									</div>
 								 
 								} else {
 									<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
 										@disciplina.getNome()
-										<span class="badge">@disciplina.getCreditos()</span>		
-										<span class="badge">@disciplina.getDificuldade()</span>							    								  
+										<span class="badgeC">@disciplina.getCreditos()</span>		
+										<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
 									</div>
 							    }
 							}

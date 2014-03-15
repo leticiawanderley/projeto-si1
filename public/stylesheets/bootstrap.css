@@ -5658,6 +5658,17 @@ a.thumbnail:hover {
   color: #555555;
 }
 
+.creditos {
+	color: #FFFFFF;
+	background-color: #6699FF;
+}
+
+.dificuldade {
+	color: #FFFFFF;
+	background-color: #FF9900;
+	
+}
+
 a.inner-border,
 a.inner-border img {
   -webkit-border-radius: 3px;
@@ -5729,7 +5740,7 @@ a.inner-border:hover span {
 }
 
 .label,
-.badge {
+.badgeC {
   display: inline-block;
   padding: 2px 4px;
   font-size: 11.844px;
@@ -5739,7 +5750,19 @@ a.inner-border:hover span {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   white-space: nowrap;
   vertical-align: baseline;
-  background-color: #999999;
+  background-color: #6699FF;
+}
+.badgeD {
+  display: inline-block;
+  padding: 2px 4px;
+  font-size: 11.844px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #FF9900;
 }
 
 .label {
