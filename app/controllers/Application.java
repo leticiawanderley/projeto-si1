@@ -45,7 +45,7 @@ public class Application extends Controller {
      * @return um resultado/pagina que serah exibida no navegador
      */
     public static Result selecionarDisciplinas() {
-    	return ok(views.html.disciplinasDoCurso.render(grid.getAluno(), grid.getPlanejador()));
+    	return ok(views.html.disciplinasDoCurso.render(grid.getAluno(), disciplinaForm,grid.getPlanejador()));
     }
 
     /**

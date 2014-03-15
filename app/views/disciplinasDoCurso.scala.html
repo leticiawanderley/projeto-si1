@@ -1,4 +1,4 @@
-@(aluno : models.Aluno, planejador: models.Planejador)
+@(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador)
 
 @import helper._
 
@@ -48,11 +48,11 @@
 </div>
 </body>
 
-	<p>
-	
-	<input type="submit" class="btn btn-info" value="Adicionar disciplina">
-	
-	</p>
+       
+	@inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")
+	<input type="submit" class="btn btn-success" value="Adicionar disciplina">
+  
+
 	<p>
 	@form(routes.Application.index()) {
 		<input type="submit" class="btn btn-info" value="Voltar para a página inicial">
