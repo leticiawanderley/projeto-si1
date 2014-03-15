@@ -13,6 +13,12 @@ public class Grade {
 	private static final int DOIS_CREDITOS = 2;
 	private static final int QUATRO_CREDITOS = 4;
 	private static final int SEIS_CREDITOS = 6;
+	private static final int MUITO_FACIL = 1;
+	private static final int FACIL = 2;
+	private static final int MEDIO = 3;
+	private static final int DIFICIL = 4;
+	private static final int MUITO_DIFICIL = 5;
+	
 	//INFORMATION EXPERT - Contém as informações da Grade: listaDeDisciplinas.
 	private List<Disciplina> listaDeDisciplinas;
 
@@ -22,82 +28,82 @@ public class Grade {
 	 */
 	public enum DisciplinasDSC {
 		
-		CALCULO1(new Disciplina("Cálculo Diferencial e Integral I", QUATRO_CREDITOS)),
-		VETORIAL(new Disciplina("Álgebra Vetorial e Geometria Analítica", QUATRO_CREDITOS)),
-		LPT(new Disciplina("Leitura e Produção de Textos", QUATRO_CREDITOS)),
-		P1(new Disciplina("Programação I", QUATRO_CREDITOS)),
-		LP1(new Disciplina("Laboratório de Programação I", QUATRO_CREDITOS)),
-		IC(new Disciplina("Introdução à Computação", QUATRO_CREDITOS)),	
+		CALCULO1(new Disciplina("Cálculo Diferencial e Integral I", QUATRO_CREDITOS, MEDIO)),
+		VETORIAL(new Disciplina("Álgebra Vetorial e Geometria Analítica", QUATRO_CREDITOS, FACIL)),
+		LPT(new Disciplina("Leitura e Produção de Textos", QUATRO_CREDITOS, MUITO_FACIL)),
+		P1(new Disciplina("Programação I", QUATRO_CREDITOS, MEDIO)),
+		LP1(new Disciplina("Laboratório de Programação I", QUATRO_CREDITOS, MEDIO)),
+		IC(new Disciplina("Introdução à Computação", QUATRO_CREDITOS, FACIL)),	
 		
-		CALCULO2(new Disciplina("Cálculo Diferencial e Integral II", QUATRO_CREDITOS, new Disciplina[]{CALCULO1.getDisciplina(), VETORIAL.getDisciplina()})),
-		DISCRETA(new Disciplina("Matemática Discreta", QUATRO_CREDITOS)),
-		METODOLOGIA(new Disciplina("Metodologia Científica", QUATRO_CREDITOS)),
-		GRAFOS(new Disciplina("Teoria dos Grafos", DOIS_CREDITOS, new Disciplina[]{P1.getDisciplina(), LP1.getDisciplina()})),
-		CLASSICA(new Disciplina("Fundamentos de Física Clássica", QUATRO_CREDITOS, new Disciplina[]{VETORIAL.getDisciplina(), CALCULO1.getDisciplina()})),
-		P2(new Disciplina("Programação II", QUATRO_CREDITOS, new Disciplina[]{IC.getDisciplina(), P1.getDisciplina(), LP1.getDisciplina()})),
-		LP2(new Disciplina("Laboratório de Programação II", QUATRO_CREDITOS, new Disciplina[]{IC.getDisciplina(), P1.getDisciplina(), LP1.getDisciplina()})),
+		CALCULO2(new Disciplina("Cálculo Diferencial e Integral II", QUATRO_CREDITOS, new Disciplina[]{CALCULO1.getDisciplina(), VETORIAL.getDisciplina()}, DIFICIL )),
+		DISCRETA(new Disciplina("Matemática Discreta", QUATRO_CREDITOS, MEDIO)),
+		METODOLOGIA(new Disciplina("Metodologia Científica", QUATRO_CREDITOS, FACIL)),
+		GRAFOS(new Disciplina("Teoria dos Grafos", DOIS_CREDITOS, new Disciplina[]{P1.getDisciplina(), LP1.getDisciplina()}, MEDIO)),
+		CLASSICA(new Disciplina("Fundamentos de Física Clássica", QUATRO_CREDITOS, new Disciplina[]{VETORIAL.getDisciplina(), CALCULO1.getDisciplina()}, DIFICIL)),
+		P2(new Disciplina("Programação II", QUATRO_CREDITOS, new Disciplina[]{IC.getDisciplina(), P1.getDisciplina(), LP1.getDisciplina()}, MEDIO)),
+		LP2(new Disciplina("Laboratório de Programação II", QUATRO_CREDITOS, new Disciplina[]{IC.getDisciplina(), P1.getDisciplina(), LP1.getDisciplina()}, MEDIO)),
 	
-		ALGEBRALINEAR(new Disciplina("Álgebra Linear", QUATRO_CREDITOS , new Disciplina[]{VETORIAL.getDisciplina()})),
-		PROBABILIDADE(new Disciplina("Probabilidade e Estatística", QUATRO_CREDITOS  , new Disciplina[]{CALCULO2.getDisciplina()})),
-		EDA(new Disciplina("Estruturas de Dados e Algoritmos", QUATRO_CREDITOS  , new Disciplina[]{P2.getDisciplina(),LP2.getDisciplina(),GRAFOS.getDisciplina()})),
-		MODERNA(new Disciplina("Fundamentos de Física Moderna", QUATRO_CREDITOS  , new Disciplina[]{CLASSICA.getDisciplina(),CALCULO2.getDisciplina()})),
-		GI(new Disciplina("Gerência da Informação", QUATRO_CREDITOS)),
-		LEDA(new Disciplina("Laboratório de Estruturas de Dados e Algoritmos", QUATRO_CREDITOS  , new Disciplina[]{P2.getDisciplina(),LP2.getDisciplina(),GRAFOS.getDisciplina()})),
-		TC(new Disciplina("Teoria da Computação", QUATRO_CREDITOS  , new Disciplina[]{DISCRETA.getDisciplina(),IC.getDisciplina(),GRAFOS.getDisciplina()})),
+		ALGEBRALINEAR(new Disciplina("Álgebra Linear", QUATRO_CREDITOS , new Disciplina[]{VETORIAL.getDisciplina()}, DIFICIL)),
+		PROBABILIDADE(new Disciplina("Probabilidade e Estatística", QUATRO_CREDITOS  , new Disciplina[]{CALCULO2.getDisciplina()}, DIFICIL)),
+		EDA(new Disciplina("Estruturas de Dados e Algoritmos", QUATRO_CREDITOS  , new Disciplina[]{P2.getDisciplina(),LP2.getDisciplina(),GRAFOS.getDisciplina()}, MEDIO)),
+		MODERNA(new Disciplina("Fundamentos de Física Moderna", QUATRO_CREDITOS  , new Disciplina[]{CLASSICA.getDisciplina(),CALCULO2.getDisciplina()}, DIFICIL)),
+		GI(new Disciplina("Gerência da Informação", QUATRO_CREDITOS, FACIL)),
+		LEDA(new Disciplina("Laboratório de Estruturas de Dados e Algoritmos", QUATRO_CREDITOS  , new Disciplina[]{P2.getDisciplina(),LP2.getDisciplina(),GRAFOS.getDisciplina()}, MEDIO)),
+		TC(new Disciplina("Teoria da Computação", QUATRO_CREDITOS  , new Disciplina[]{DISCRETA.getDisciplina(),IC.getDisciplina(),GRAFOS.getDisciplina()}, MEDIO)),
 		
-		METODOS(new Disciplina("Métodos Estatísticos",QUATRO_CREDITOS, new Disciplina[]{PROBABILIDADE.getDisciplina(), ALGEBRALINEAR.getDisciplina()})),
-		OAC(new Disciplina("Organização e Arquitetura de Computadores I", QUATRO_CREDITOS  , new Disciplina[]{EDA.getDisciplina(),LEDA.getDisciplina(),MODERNA.getDisciplina()})),
-		PLP(new Disciplina("Paradigmas de Linguagens de Programação", DOIS_CREDITOS  , new Disciplina[]{LEDA.getDisciplina(),EDA.getDisciplina(),TC.getDisciplina()})),
-		LOGICA(new Disciplina("Lógica Matemática", QUATRO_CREDITOS   , new Disciplina[]{TC.getDisciplina()})),
-		ES(new Disciplina("Engenharia de Software I", QUATRO_CREDITOS,new Disciplina[]{PROBABILIDADE.getDisciplina(), LP2.getDisciplina(),P2.getDisciplina()})),
-		SI1(new Disciplina("Sistemas de Informação I", QUATRO_CREDITOS , new Disciplina[]{GI.getDisciplina()})),
-		LOAC(new Disciplina("Laboratório de Organização e Arquitetura de Computadores", QUATRO_CREDITOS  , new Disciplina[]{EDA.getDisciplina(),LEDA.getDisciplina(),MODERNA.getDisciplina()})),
+		METODOS(new Disciplina("Métodos Estatísticos",QUATRO_CREDITOS, new Disciplina[]{PROBABILIDADE.getDisciplina(), ALGEBRALINEAR.getDisciplina()}, MEDIO)),
+		OAC(new Disciplina("Organização e Arquitetura de Computadores I", QUATRO_CREDITOS  , new Disciplina[]{EDA.getDisciplina(),LEDA.getDisciplina(),MODERNA.getDisciplina()}, MEDIO)),
+		PLP(new Disciplina("Paradigmas de Linguagens de Programação", DOIS_CREDITOS  , new Disciplina[]{LEDA.getDisciplina(),EDA.getDisciplina(),TC.getDisciplina()}, MEDIO)),
+		LOGICA(new Disciplina("Lógica Matemática", QUATRO_CREDITOS   , new Disciplina[]{TC.getDisciplina()}, MEDIO)),
+		ES(new Disciplina("Engenharia de Software I", QUATRO_CREDITOS,new Disciplina[]{PROBABILIDADE.getDisciplina(), LP2.getDisciplina(),P2.getDisciplina()}, MEDIO)),
+		SI1(new Disciplina("Sistemas de Informação I", QUATRO_CREDITOS , new Disciplina[]{GI.getDisciplina()}, MEDIO)),
+		LOAC(new Disciplina("Laboratório de Organização e Arquitetura de Computadores", QUATRO_CREDITOS  , new Disciplina[]{EDA.getDisciplina(),LEDA.getDisciplina(),MODERNA.getDisciplina()}, DIFICIL)),
 		
-		INFOSOC(new Disciplina("Informática e Sociedade",DOIS_CREDITOS)),
-		ATAL(new Disciplina("Análise e Técnicas de Algoritmos", QUATRO_CREDITOS  , new Disciplina[]{EDA.getDisciplina(),LEDA.getDisciplina(),CALCULO2.getDisciplina(),LOGICA.getDisciplina()})),
-		COMPILADORES(new Disciplina("Compiladores", QUATRO_CREDITOS  , new Disciplina[]{PLP.getDisciplina(),OAC.getDisciplina(),LOAC.getDisciplina()})),
-		REDES(new Disciplina("Redes de Computadores", QUATRO_CREDITOS , new Disciplina[]{OAC.getDisciplina(),LOAC.getDisciplina()})),
-		BD1(new Disciplina("Bancos de Dados I", QUATRO_CREDITOS,new Disciplina[]{SI1.getDisciplina()})),
-		SI2(new Disciplina("Sistemas de Informação II", QUATRO_CREDITOS , new Disciplina[]{SI1.getDisciplina()})),
-		LES(new Disciplina("Laboratório de Engenharia de Software", DOIS_CREDITOS, new Disciplina[]{ES.getDisciplina()})),
+		INFOSOC(new Disciplina("Informática e Sociedade",DOIS_CREDITOS, MUITO_FACIL)),
+		ATAL(new Disciplina("Análise e Técnicas de Algoritmos", QUATRO_CREDITOS  , new Disciplina[]{EDA.getDisciplina(),LEDA.getDisciplina(),CALCULO2.getDisciplina(),LOGICA.getDisciplina()}, MUITO_DIFICIL)),
+		COMPILADORES(new Disciplina("Compiladores", QUATRO_CREDITOS  , new Disciplina[]{PLP.getDisciplina(),OAC.getDisciplina(),LOAC.getDisciplina()}, MUITO_DIFICIL)),
+		REDES(new Disciplina("Redes de Computadores", QUATRO_CREDITOS , new Disciplina[]{OAC.getDisciplina(),LOAC.getDisciplina()}, MEDIO)),
+		BD1(new Disciplina("Bancos de Dados I", QUATRO_CREDITOS,new Disciplina[]{SI1.getDisciplina()}, MEDIO)),
+		SI2(new Disciplina("Sistemas de Informação II", QUATRO_CREDITOS , new Disciplina[]{SI1.getDisciplina()}, MEDIO)),
+		LES(new Disciplina("Laboratório de Engenharia de Software", DOIS_CREDITOS, new Disciplina[]{ES.getDisciplina()}, DIFICIL)),
 		
-		SO(new Disciplina("Sistemas Operacionais", QUATRO_CREDITOS, new Disciplina[]{OAC.getDisciplina(), LOAC.getDisciplina()})),
-		IRC(new Disciplina("Interconexão de Redes de Computadores", DOIS_CREDITOS, new Disciplina[]{REDES.getDisciplina()})),
-		LIRC(new Disciplina("Laboratório de Interconexão de Redes de Computadores", DOIS_CREDITOS, new Disciplina[]{REDES.getDisciplina()})),
-		IA(new Disciplina("Integência Artificial I", QUATRO_CREDITOS, new Disciplina[]{ATAL.getDisciplina(), PLP.getDisciplina(), METODOS.getDisciplina()})),
-		BD2(new Disciplina("Banco de Dados II", QUATRO_CREDITOS, new Disciplina[]{BD1.getDisciplina(), SI2.getDisciplina()})),
-		DIREITO(new Disciplina("Direito e Cidadania", QUATRO_CREDITOS )),
-		OP1(new Disciplina("Optativa 1", QUATRO_CREDITOS)),
-		OP2(new Disciplina("Optativa 2", DOIS_CREDITOS)),
+		SO(new Disciplina("Sistemas Operacionais", QUATRO_CREDITOS, new Disciplina[]{OAC.getDisciplina(), LOAC.getDisciplina()}, DIFICIL)),
+		IRC(new Disciplina("Interconexão de Redes de Computadores", DOIS_CREDITOS, new Disciplina[]{REDES.getDisciplina()}, MEDIO)),
+		LIRC(new Disciplina("Laboratório de Interconexão de Redes de Computadores", DOIS_CREDITOS, new Disciplina[]{REDES.getDisciplina()}, MEDIO)),
+		IA(new Disciplina("Integência Artificial I", QUATRO_CREDITOS, new Disciplina[]{ATAL.getDisciplina(), PLP.getDisciplina(), METODOS.getDisciplina()}, DIFICIL)),
+		BD2(new Disciplina("Banco de Dados II", QUATRO_CREDITOS, new Disciplina[]{BD1.getDisciplina(), SI2.getDisciplina()}, MEDIO)),
+		DIREITO(new Disciplina("Direito e Cidadania", QUATRO_CREDITOS, MUITO_FACIL)),
+		OP1(new Disciplina("Optativa 1", QUATRO_CREDITOS, MEDIO)),
+		OP2(new Disciplina("Optativa 2", DOIS_CREDITOS, FACIL)),
 		
-		MSN(new Disciplina("Métodos e Softwares Numéricos", QUATRO_CREDITOS, new Disciplina[]{ATAL.getDisciplina(), ALGEBRALINEAR.getDisciplina()})),
-		ADSD(new Disciplina("Avaliação de Desempenho de Sistemas Discretos", QUATRO_CREDITOS, new Disciplina[]{PROBABILIDADE.getDisciplina()})),
-		PROJETO1(new Disciplina("Projeto em Computação 1", QUATRO_CREDITOS, new Disciplina[]{METODOLOGIA.getDisciplina(), LES.getDisciplina()})),
-		OP3(new Disciplina("Optativa 3", QUATRO_CREDITOS)),
-		OP4(new Disciplina("Optativa 4", DOIS_CREDITOS)),
-		OP5(new Disciplina("Optativa 5", QUATRO_CREDITOS)),
-		OP6(new Disciplina("Optativa 6", DOIS_CREDITOS)),
+		MSN(new Disciplina("Métodos e Softwares Numéricos", QUATRO_CREDITOS, new Disciplina[]{ATAL.getDisciplina(), ALGEBRALINEAR.getDisciplina()}, FACIL)),
+		ADSD(new Disciplina("Avaliação de Desempenho de Sistemas Discretos", QUATRO_CREDITOS, new Disciplina[]{PROBABILIDADE.getDisciplina()}, DIFICIL)),
+		PROJETO1(new Disciplina("Projeto em Computação 1", QUATRO_CREDITOS, new Disciplina[]{METODOLOGIA.getDisciplina(), LES.getDisciplina()}, DIFICIL)),
+		OP3(new Disciplina("Optativa 3", QUATRO_CREDITOS, DIFICIL)),
+		OP4(new Disciplina("Optativa 4", DOIS_CREDITOS, MEDIO)),
+		OP5(new Disciplina("Optativa 5", QUATRO_CREDITOS, FACIL)),
+		OP6(new Disciplina("Optativa 6", DOIS_CREDITOS, FACIL)),
 		
-		PROJETO2(new Disciplina("Projeto em Computação 2", SEIS_CREDITOS, new Disciplina[]{PROJETO1.getDisciplina()})),
-		OP7(new Disciplina("Optativa 7", QUATRO_CREDITOS)),
-		OP8(new Disciplina("Optativa 8", DOIS_CREDITOS)),
-		OP9(new Disciplina("Optativa 9", QUATRO_CREDITOS)),
-		OP10(new Disciplina("Optativa 10",	QUATRO_CREDITOS)),
-		OP11(new Disciplina("Optativa 11", QUATRO_CREDITOS)),
+		PROJETO2(new Disciplina("Projeto em Computação 2", SEIS_CREDITOS, new Disciplina[]{PROJETO1.getDisciplina()}, DIFICIL)),
+		OP7(new Disciplina("Optativa 7", QUATRO_CREDITOS, MEDIO)),
+		OP8(new Disciplina("Optativa 8", DOIS_CREDITOS, DIFICIL)),
+		OP9(new Disciplina("Optativa 9", QUATRO_CREDITOS, FACIL)),
+		OP10(new Disciplina("Optativa 10",	QUATRO_CREDITOS, FACIL)),
+		OP11(new Disciplina("Optativa 11", QUATRO_CREDITOS, MEDIO)),
 		
 		
-		BASQUETE(new Disciplina("Basquetebol - Fem", DOIS_CREDITOS )),
-		CALC3(new Disciplina("Cálculo Diferencial e Integral 3", QUATRO_CREDITOS)),
-		CRIATIVIDADE(new Disciplina("Criatividade", QUATRO_CREDITOS )),
-		ETICA(new Disciplina("Etica", QUATRO_CREDITOS )),
-		INGLES(new Disciplina("Inglês", QUATRO_CREDITOS )),
+		BASQUETE(new Disciplina("Basquetebol - Fem", DOIS_CREDITOS, MUITO_FACIL)),
+		CALC3(new Disciplina("Cálculo Diferencial e Integral 3", QUATRO_CREDITOS, MUITO_DIFICIL)),
+		CRIATIVIDADE(new Disciplina("Criatividade", QUATRO_CREDITOS, FACIL)),
+		ETICA(new Disciplina("Etica", QUATRO_CREDITOS, MUITO_FACIL)),
+		INGLES(new Disciplina("Inglês", QUATRO_CREDITOS, FACIL)),
 		
-		DATAMINIG(new Disciplina("Tecc (DataMining)", QUATRO_CREDITOS)),
-		COMPPARALELA(new Disciplina("Tecc (Computação Paralela)", DOIS_CREDITOS)),
-		GRADESCOMP(new Disciplina("Tecc (Grades Computacionais)", DOIS_CREDITOS )),
-		PROG3(new Disciplina("Tecc (Programação 3)", QUATRO_CREDITOS)),
-		COMPQUANTICA(new Disciplina("Tecc (Computação Quântica)", QUATRO_CREDITOS )),
-		METODOSFORMAIS(new Disciplina("Tecc (Métodos Formais)", QUATRO_CREDITOS  ));
+		DATAMINIG(new Disciplina("Tecc (DataMining)", QUATRO_CREDITOS, MEDIO)),
+		COMPPARALELA(new Disciplina("Tecc (Computação Paralela)", DOIS_CREDITOS, DIFICIL)),
+		GRADESCOMP(new Disciplina("Tecc (Grades Computacionais)", DOIS_CREDITOS, MEDIO)),
+		PROG3(new Disciplina("Tecc (Programação 3)", QUATRO_CREDITOS, MEDIO)),
+		COMPQUANTICA(new Disciplina("Tecc (Computação Quântica)", QUATRO_CREDITOS, MUITO_DIFICIL)),
+		METODOSFORMAIS(new Disciplina("Tecc (Métodos Formais)", QUATRO_CREDITOS, MEDIO));
 		
 		private Disciplina disciplina;
 

@@ -116,12 +116,10 @@ public class Application extends Controller {
 	    if (loginForm.hasErrors()) {
 	        return badRequest(views.html.login.render(loginForm));
 	    } else {
-	    	if (grid.getFinder().all().contains(new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword()))) {
+	    	if (grid.getFinder().all().contains(new Aluno("", loginForm.get().getEmail(), loginForm.get().getPassword()))) {
 	    		for (Aluno aluno : grid.getFinder().all()) {
-	    			if (aluno.equals(new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword()))) {
+	    			if (aluno.equals(new Aluno("", loginForm.get().getEmail(), loginForm.get().getPassword()))) {
 	    				grid.setAluno(grid.getFinder().findMap().get(aluno.getId()));
-	    				System.out.println(grid.getAluno().getName()); 
-	    				System.out.println(grid.getAluno().getListaDePeriodos().size());
 	    				 break;
 	    			}
 	    		}

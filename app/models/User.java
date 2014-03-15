@@ -100,11 +100,6 @@ public class User extends Model {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;

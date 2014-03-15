@@ -3,7 +3,9 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+import exception.AlunoNaoPossuiPreRequisitosException;
+
+/**	
  * Representa um controlador que sera responsavel de gerenciar o planejamento da grade do aluno
  *
  */
@@ -39,7 +41,7 @@ public class Planejador {
 	 * Adiciona mais uma cadeira ao aluno
 	 * @param aluno aluno que estah no sistema
 	 * @param disciplina nova disciplina do aluno
-	 * @throws AlunoNaoPossuiPreRequisitos Excecao lancada se o aluno nao tiver os pre-requisitos da disciplina
+	 * @throws AlunoNaoPossuiPreRequisitosException Excecao lancada se o aluno nao tiver os pre-requisitos da disciplina
 	 */
 	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo)/* throws AlunoNaoPossuiPreRequisitos */{
 		/*if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
