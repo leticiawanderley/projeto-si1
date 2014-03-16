@@ -17,7 +17,7 @@ public class Application extends Controller {
 	
 	private static final String CADEIRA_NAO_EXISTENTE = "O nome da disciplina está incorreta ou não existe";
 			
-	private static GridController grid = new GridController();
+	private static GridSystem grid = new GridSystem();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
 	private static Aluno USUARIO_NAO_LOGADO;
 	

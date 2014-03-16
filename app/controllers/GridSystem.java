@@ -12,7 +12,7 @@ import play.db.ebean.Model.Finder;
  * Classe que ira conter os objetos para utilizar no sistema pelo usuario
  *
  */
-public class GridController {
+public class GridSystem {
 
 	private static final int PRIMEIRO_PERIODO = 1;
 	private static final int SEGUNDO_PERIODO = 2;
@@ -35,7 +35,7 @@ public class GridController {
 	 * 
 	 * Construtor
 	 */
-	public GridController() {
+	public GridSystem() {
 		this.planejador = new Planejador();
 	}
 	
