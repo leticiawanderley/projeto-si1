@@ -16,8 +16,10 @@ public class Aluno extends User {
 
 	// INFORMATION EXPERT - contém as informacoes do aluno:nomeDoAluno,listaDePeriodos .
 	private static final long serialVersionUID = 7507028957989504099L;
+	private static final int PRIMEIRO_PERIODO = 0;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
+	private int periodoAtual;
 	
 	/**
 	 * Construtor da classe	
@@ -26,6 +28,7 @@ public class Aluno extends User {
 	public Aluno(String name, String email, String password) {
 		super(name, email, password);
 		this.listaDePeriodo = new ArrayList<Periodo>();
+		this.setPeriodoAtual(PRIMEIRO_PERIODO);
 	}
 	
 	/**
@@ -34,6 +37,22 @@ public class Aluno extends User {
 	 */
 	public List<Periodo> getListaDePeriodos() {
 		return listaDePeriodo;
+	}
+
+	/**
+	 * 
+	 * @return o periodo em que o aluno estah
+	 */
+	public int getPeriodoAtual() {
+		return periodoAtual;
+	}
+
+	/**
+	 * 
+	 * @param periodoAtual o periodo em que o aluno estah atualmente
+	 */
+	public void setPeriodoAtual(int periodoAtual) {
+		this.periodoAtual = periodoAtual;
 	}
 	
 }
