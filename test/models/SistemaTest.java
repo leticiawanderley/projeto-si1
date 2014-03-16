@@ -15,12 +15,11 @@ public class SistemaTest {
 		
 		planejador.removeDisciplina(aluno, DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
 		
-		/**
-		 * Remocao recursiva das disciplinas que eram dependentes de Algebra Linear
-		 */
+		/** Remocao recursiva das disciplinas que eram dependentes de Algebra Linear */
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.METODOS.getDisciplina()));
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.IA.getDisciplina()));
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.MSN.getDisciplina()));
+		
 		
 	}
 

@@ -206,5 +206,11 @@ public class Planejador {
 	public boolean existeCadeira(String nomeDaCadeira) {
 		return getDisciplina(nomeDaCadeira) != null;
 	}
+
+	public void alteraPeriodoDaDisciplina(Aluno aluno,
+			Disciplina disciplinaRealocada, int periodo) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
