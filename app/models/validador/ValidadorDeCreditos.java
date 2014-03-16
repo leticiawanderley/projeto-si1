@@ -1,14 +1,12 @@
 package models.validador;
 
-import models.Disciplina;
-import models.Periodo;
 
 /**
  *  PADRAO STRATEGY
  *  
  *  Interface que defini a classificacao do periodo.
  *  
- *  Regras:
+ *  Regras que se aplicam aos periodos do aluno:
  *  		Se periodo atual eh p e existem n's periodos, entao p':
  *  
  *  		=> p' < p: tem minimo, mas nao maximo;
@@ -20,6 +18,12 @@ public abstract class ValidadorDeCreditos {
 	protected static final int MINIMO_DE_CREDITOS = 12;
 	protected static final int MAXIMO_DE_CREDITOS = 28;
 	
-	public abstract boolean podeAdicionar(Disciplina disciplina, Periodo periodo);
+	protected int numeroDeCreditos;
+	
+	public ValidadorDeCreditos(int numeroDeCreditos) {
+		this.numeroDeCreditos = numeroDeCreditos;
+	}
+	
+	public abstract boolean permiteNumeroDeCreditos();
 
 }

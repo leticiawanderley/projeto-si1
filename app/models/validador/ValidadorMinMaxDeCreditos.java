@@ -1,14 +1,15 @@
 package models.validador;
 
-import models.Disciplina;
-import models.Periodo;
 
 public class ValidadorMinMaxDeCreditos extends ValidadorDeCreditos {
 	
+	public ValidadorMinMaxDeCreditos(int numeroDeCreditos) {
+		super(numeroDeCreditos);
+	}
+
 	@Override
-	public boolean podeAdicionar(Disciplina disciplina, Periodo periodo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean permiteNumeroDeCreditos() {
+		return numeroDeCreditos >= MINIMO_DE_CREDITOS && numeroDeCreditos <= MAXIMO_DE_CREDITOS;
 	}
 
 }
