@@ -1,4 +1,4 @@
-@(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador)
+@(aluno : models.Aluno ,disciplinaForm: Form[models.Disciplina], planejador: models.Planejador)
 
 @import helper._
 
@@ -29,7 +29,7 @@
                                                                       <a href="#">
                                                                         <form>
                                                                             <li class="list-group">
-																				<input type="checkbox" name="vehicle" value="Disciplina">
+																				<input type="checkbox" name="vehicle" value= @disciplina.getNome()>
                                                                                     @disciplina.getNome()
                                                                                     <span class="badge">@disciplina.getCreditos()</span>
                                                                                  	<span class="badge">@disciplina.getDificuldade()</span>
@@ -46,11 +46,29 @@
                                 </div>
                         </div>
 </div>
+
+    <script>
+	function valida(){
+		
+	var aChk = document.getElementsByName("vehicle"); 
+	    var num=0;
+	    for (var i=0;i<aChk.length;i++){ 
+	        if (aChk[i].checked == true){ 
+				num++;
+	            alert(num + aChk[i].value + " marcado.");
+				routes.Application.matriculaNaDisciplina(9, aChk[i].value);
+				alert(planejador.jaEstaMatriculado(aluno, aChk[i].value) + "!!!!!!!!!!!!!!")
+	        } 
+	    }
+	}
+	</script> 
 </body>
 
        
+  
+	
 	@inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")
-	<input type="submit" class="btn btn-success" value="Adicionar disciplina">
+	<input type="submit" class="btn btn-success" value="Adicionar disciplina" onClick = "return valida()">
   
 
 	<p>
