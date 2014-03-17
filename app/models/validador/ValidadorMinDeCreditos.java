@@ -2,13 +2,9 @@ package models.validador;
 
 
 public class ValidadorMinDeCreditos extends ValidadorDeCreditos {
-	
-	public ValidadorMinDeCreditos(int numeroDeCreditos) {
-		super(numeroDeCreditos);
-	}
 
 	@Override
-	public boolean permiteNumeroDeCreditos() {
+	public boolean permiteNumeroDeCreditos(int numeroDeCreditos) {
 		return numeroDeCreditos >= MINIMO_DE_CREDITOS;
 	}
 

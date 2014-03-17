@@ -18,12 +18,6 @@ public abstract class ValidadorDeCreditos {
 	protected static final int MINIMO_DE_CREDITOS = 12;
 	protected static final int MAXIMO_DE_CREDITOS = 28;
 	
-	protected int numeroDeCreditos;
-	
-	public ValidadorDeCreditos(int numeroDeCreditos) {
-		this.numeroDeCreditos = numeroDeCreditos;
-	}
-	
-	public abstract boolean permiteNumeroDeCreditos();
+	public abstract boolean permiteNumeroDeCreditos(int numeroDeCreditos);
 
 }

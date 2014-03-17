@@ -2,13 +2,9 @@ package models.validador;
 
 
 public class ValidadorMaxDeCreditos extends ValidadorDeCreditos {
-	
-	public ValidadorMaxDeCreditos(int numeroDeCreditos) {
-		super(numeroDeCreditos);
-	}
 
 	@Override
-	public boolean permiteNumeroDeCreditos() {
+	public boolean permiteNumeroDeCreditos(int numeroDeCreditos) {
 		return numeroDeCreditos <= MAXIMO_DE_CREDITOS;
 	}
 
