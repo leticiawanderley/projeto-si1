@@ -47,9 +47,9 @@ public class Planejador {
 		if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
 			throw new AlunoNaoPossuiPreRequisitosException();
 		}
-		if (!aluno.getListaDePeriodos().get(periodo).getValidadorDoPeriodo().permiteNumeroDeCreditos(disciplina.getCreditos(), this)) {
+	/*	if (!aluno.getListaDePeriodos().get(periodo).getValidadorDoPeriodo().permiteNumeroDeCreditos(disciplina.getCreditos(), this)) {
 			
-		}
+		}*/
 		
 		
 		aluno.getListaDePeriodos().get(periodo).getDisciplinas().add(disciplina);

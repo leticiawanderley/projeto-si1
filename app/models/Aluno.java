@@ -64,7 +64,7 @@ public class Aluno extends User {
 		for (int i = periodoAtual; i < listaDePeriodo.size(); i++) {
 			
 		}
-		listaDePeriodo.get(ULTIMO_PERIODO).setValidadorDoPeriodo(new ValidadorMinDeCreditos(numeroDeCreditos));
+		//listaDePeriodo.get(ULTIMO_PERIODO).setValidadorDoPeriodo(new ValidadorMinDeCreditos(numeroDeCreditos));
 		// o ultimo nao terah maximo
 	}
 	
