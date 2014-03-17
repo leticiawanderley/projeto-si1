@@ -18,6 +18,11 @@ public abstract class ValidadorDeCreditos {
 	protected static final int MINIMO_DE_CREDITOS = 12;
 	protected static final int MAXIMO_DE_CREDITOS = 28;
 	
+	/**
+	 * 
+	 * @param numeroDeCreditos numero de creditos do periodo
+	 * @return o numero de creditos eh permitido
+	 */
 	public abstract boolean permiteNumeroDeCreditos(int numeroDeCreditos);
 
 }

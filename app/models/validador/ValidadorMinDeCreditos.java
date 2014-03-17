@@ -1,6 +1,9 @@
 package models.validador;
 
-
+/**
+ *  Validador para periodo que possui minimo de creditos
+ *
+ */
 public class ValidadorMinDeCreditos extends ValidadorDeCreditos {
 
 	@Override
