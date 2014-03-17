@@ -38,7 +38,7 @@ public class Periodo extends Model {
 		this.periodo = periodo;
 		this.disciplinas = disciplinas;
 		dificuldadeDoPeriodo(disciplinas, periodo);
-		this.validadorDoPeriodo = new ValidadorMinMaxDeCreditos(getNumeroDeCreditosDoPeriodo());
+		this.validadorDoPeriodo = new ValidadorMinMaxDeCreditos();
 	}
 	
 	/**
