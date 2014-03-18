@@ -62,13 +62,11 @@ public class Application extends Controller {
 			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
 		} else {
 			Disciplina displicaRealocada =  grid.getPlanejador().getDisciplina(disciplina);
-			
 			//grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getAluno(), displicaRealocada, periodo - 1);
 			grid.getPlanejador().removeDisciplina(grid.getAluno(), displicaRealocada);
 			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
 			grid.getAluno().update();
 		}
-    	
     	return redirect("/");
     }
 
