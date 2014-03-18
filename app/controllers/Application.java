@@ -99,11 +99,13 @@ public class Application extends Controller {
 		// TODO loginForm.data().get("confirmacao de senha --- chave q tem na interface");
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
     	grid.alocandoNovoUsuario(novoAluno);
+    	System.out.println("Salvou?");
     	Ebean.save(novoAluno);
+    	System.out.println("Salvou");
     	return login();
 	}
 	
-	
+	/*
 	public static Result populaUsuarios() throws IOException {
 		URL url = new URL("http://csplanner.herokuapp.com/assets/alunos.txt");
 		Scanner s = new Scanner(url.openStream());
@@ -113,9 +115,8 @@ public class Application extends Controller {
         	grid.alocandoNovoUsuario(novoAluno);
         	Ebean.save(novoAluno);
         }
-    	
     	return ok();
-	}
+	}*/
 	
 	public static Result login() {
 	    return ok(views.html.login.render(Form.form(User.class)));
