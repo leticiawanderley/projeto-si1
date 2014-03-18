@@ -63,9 +63,9 @@ public class Application extends Controller {
 		} else {
 			Disciplina displicaRealocada =  grid.getPlanejador().getDisciplina(disciplina);
 			
-			grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getAluno(), displicaRealocada, periodo - 1);
+			//grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getAluno(), displicaRealocada, periodo - 1);
 			grid.getPlanejador().removeDisciplina(grid.getAluno(), displicaRealocada);
-			//grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
+			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
 			grid.getAluno().update();
 		}
     	

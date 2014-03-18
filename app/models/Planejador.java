@@ -43,10 +43,10 @@ public class Planejador {
 	 * @param disciplina nova disciplina do aluno
 	 * @throws AlunoNaoPossuiPreRequisitosException Excecao lancada se o aluno nao tiver os pre-requisitos da disciplina
 	 */
-	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo) throws AlunoNaoPossuiPreRequisitosException {
-		if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
+	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo)/* throws AlunoNaoPossuiPreRequisitosException*/ {
+	/*	if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
 			throw new AlunoNaoPossuiPreRequisitosException();
-		}
+		}*/
 	/*	if (!aluno.getListaDePeriodos().get(periodo).getValidadorDoPeriodo().permiteNumeroDeCreditos(disciplina.getCreditos(), this)) {
 			
 		}*/
