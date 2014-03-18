@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.Scanner;
+
 import com.avaje.ebean.Ebean;
 
 import models.Aluno;
@@ -99,6 +103,20 @@ public class Application extends Controller {
     	grid.alocandoNovoUsuario(novoAluno);
     	Ebean.save(novoAluno);
     	return login();
+	}
+	
+	
+	public static Result populaUsuarios() throws IOException {
+		URL url = new URL("http://csplanner.herokuapp.com/assets/alunos.txt");
+		Scanner s = new Scanner(url.openStream());
+		while (s.hasNextLine()) {
+            String[] line = s.nextLine().split(":");
+            Aluno novoAluno = new Aluno(line[0], line[1], line[2]);
+        	grid.alocandoNovoUsuario(novoAluno);
+        	Ebean.save(novoAluno);
+        }
+    	
+    	return ok();
 	}
 	
 	public static Result login() {
