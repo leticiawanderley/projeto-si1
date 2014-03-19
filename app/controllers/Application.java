@@ -10,6 +10,7 @@ import models.Aluno;
 import models.Disciplina;
 import models.User;
 import play.data.Form;
+import play.db.ebean.EbeanPlugin;
 import play.mvc.Controller;
 import play.mvc.Result;
 

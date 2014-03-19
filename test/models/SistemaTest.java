@@ -6,6 +6,8 @@ import models.Grade.DisciplinasDSC;
 
 import org.junit.Test;
 
+import controllers.GridSystem;
+
 public class SistemaTest {
 	
 	private static final int MENOR_DO_QUE_MINIMO_DE_CREDITOS = 8;
@@ -22,7 +24,10 @@ public class SistemaTest {
 	@Test 
 	public void UsuarioTeste() {
 		Planejador planejador = new Planejador();
+		GridSystem grid = new GridSystem();
+		
 		Aluno aluno = new Aluno("Maysa M.", "maysa.macedo95@gmail.com", "fafamaysa");
+		grid.alocandoNovoUsuario(aluno);
 		
 		planejador.removeDisciplina(aluno, DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
 		
