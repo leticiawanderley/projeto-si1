@@ -75,7 +75,9 @@
 			</div>
 
 <div class="container-fluid">
-
+		<table width="100%">
+		<tr>
+		<td width="80%">
 		<div class="row">
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
@@ -588,7 +590,26 @@
 				</div>
 			</div>
 		</div>
-
+	</td>
+	<td width="20%">
+		<div class="desalocadas" width="100%" align="center">
+			<h3>
+				Disciplinas não alocadas
+			</h3>
+			 @for(disciplina <- planejador.getGrade().getDisciplinasDoCurso()) {
+                  @if(!planejador.getTodasDisciplinasDoAluno(aluno).contains(disciplina)) {
+						
+						<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+							@disciplina.getNome()
+							<span class="badgeC">@disciplina.getCreditos()</span>		
+							<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
+							</div>
+				  }
+			}
+		</div>
+	</td>
+	</tr>
+	</table>
 </div>
 </body>
 
