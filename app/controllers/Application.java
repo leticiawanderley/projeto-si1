@@ -96,18 +96,15 @@ public class Application extends Controller {
 	// TODO verificar se o usuario jah existe (procurar qual deve ser a melhor solucao)
 	// TODO verificar se a senha e confirmacao de senha sao iguais
 	public static Result criarUsuario() {
-		System.out.println("OPAA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Form<User> loginForm = Form.form(User.class).bindFromRequest();
 		// TODO loginForm.data().get("confirmacao de senha --- chave q tem na interface");
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
     	grid.alocandoNovoUsuario(novoAluno);
-    	System.out.println("Salvou?");
     	novoAluno.save();
-    	System.out.println("Salvou");
     	return login();
 	}
 	
-	/*
+	
 	public static Result populaUsuarios() throws IOException {
 		URL url = new URL("http://csplanner.herokuapp.com/assets/alunos.txt");
 		Scanner s = new Scanner(url.openStream());
@@ -118,7 +115,7 @@ public class Application extends Controller {
         	Ebean.save(novoAluno);
         }
     	return ok();
-	}*/
+	}
 	
 	public static Result login() {
 	    return ok(views.html.login.render(Form.form(User.class)));
