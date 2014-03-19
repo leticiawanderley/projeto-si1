@@ -6,6 +6,18 @@
 
 <head>
         <h1><small><div class="well">Ciência da Computação - Grade do Curso</div></h1></small>
+        <script>
+        function valida(){
+			var periodoAlocado = document.getElementById("periodoAlocado").value;  
+			var form = document.forms['teste'];
+			var checkboxes = form.elements;
+			for (i=0; i < checkboxes.length; i++){
+				if (checkboxes[i].type.toLowerCase() == 'checkbox' && checkboxes[i].checked){                             
+					window.location.replace = '/matriculaNaDisciplina/'+ periodoAlocado + '/' + checkboxes[i].id;   
+				}
+			}
+		}
+        </script>
 </head>
 
 <body>
@@ -21,57 +33,36 @@
                                                 <h6>(Você verá as disciplinas que você ainda pode se matricular)</h6>
                                                 <h4>Nome da Disciplina | Número de Créditos | Dificuldade da Disciplina</h4>
                                                 <p>
-                                                
+												<form id="teste">
                                                 @for(disciplina <- planejador.getGrade().getDisciplinasDoCurso()) {
                                                         @if(!planejador.getTodasDisciplinasDoAluno(aluno).contains(disciplina)) {
                                                                  <ul class="nav nav nav-stacked">
                                                                     <li>
-                                                                      <a href="#">
-                                                                        <form>
                                                                             <li class="list-group">
-																				<input type="checkbox" name="vehicle" value= @disciplina.getNome()>
+																				<input type="checkbox" id=@disciplina.getNome() name=@disciplina.getNome() value=@disciplina.getNome()>
                                                                                     @disciplina.getNome()
-                                                                                    <span class="badge">@disciplina.getCreditos()</span>
-                                                                                 	<span class="badge">@disciplina.getDificuldade()</span>
+                                                                                    <span class="badgeC">@disciplina.getCreditos()</span>
+                                                                                 	<span class="badgeD">@disciplina.getDificuldade()</span>
                                                                                    <br>
 																			</li>
-                                                                        </form>
-                                                              </a>
                                                             </li>
                                                           </ul>
                                                         }
                                                 }
+                                                </form>
                                                 </p>
                                         </div>
                                 </div>
                         </div>
 </div>
 
-    <script>
-        function valida(){
-        periodoAlocado = document.getElementById("periodoAlocado").value       
-        var aChk = document.getElementsByName("vehicle");
-            
-            for (var i=0;i<aChk.length;i++){
-                if (aChk[i].checked == true){                                
-                                								
-                                var xmlHttp = null;
-                                xmlHttp = new XMLHttpRequest();
-                                xmlHttp.open( "GET", "/matriculaNaDisciplina/"+periodoAlocado+"/"+aChk[i].value, false );
-                                xmlHttp.send( null );
-                               
-                                
-                }
-            }
-        }
-        </script>
 </body>
 
        
   
-	<input name="periodoAlocado" type="text" id="periodoAlocado" />
+	<input name="periodoAlocado" type="text" id="periodoAlocado">
 	@form(routes.Application.index()) {
-		<input type="submit" class="btn btn-success" value="Adicionar disciplina" onClick = "return valida()">
+		<input type="submit" class="btn btn-success" value="Adicionar disciplina" onClick="valida();">
   	}
 
 	<p>
