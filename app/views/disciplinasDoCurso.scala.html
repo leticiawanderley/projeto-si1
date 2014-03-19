@@ -70,9 +70,9 @@
        
   
 	<input name="periodoAlocado" type="text" id="periodoAlocado" />
-	
-	<input type="submit" class="btn btn-success" value="Adicionar disciplina" onClick = "return valida()">
-  
+	@form(routes.Application.index()) {
+		<input type="submit" class="btn btn-success" value="Adicionar disciplina" onClick = "return valida()">
+  	}
 
 	<p>
 	@form(routes.Application.index()) {
