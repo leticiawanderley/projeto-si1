@@ -14,7 +14,7 @@
 		
 		function drag(ev)
 		{
-			ev.dataTransfer.setData("Text",ev.target.id);
+			ev.dataTransfer.setData("Text", ev.target.id);
 		}
 		
 		function drop(ev, periodo)
@@ -23,6 +23,29 @@
 			var disciplina = ev.dataTransfer.getData("Text");			
 			location.href = '/matriculaNaDisciplina/'+ periodo + '/' + disciplina;
 		}
+
+		function drop(ev, periodo)
+		{	
+			ev.preventDefault();
+			var disciplina = ev.dataTransfer.getData("Text");			
+			location.href = '/matriculaNaDisciplina/'+ periodo + '/' + disciplina;
+		}
+
+		function dropRemove(ev)
+		{	
+			ev.preventDefault();
+			var disciplina = ev.dataTransfer.getData("Text");	
+			var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
+			"\nas disciplinas dela dependentes.");
+			if (transfere) {
+				location.href = '/removerDisciplina/' + disciplina;
+			}
+			else {
+				location.href = '/'
+			}		
+		}
+
+		
 	</script>
 	<h1><small><div class="well"><a>CSPlanner - Grade do Curso </a></div></h1></small>
 	<p>
@@ -46,36 +69,11 @@
    	</div>
 	</div>
    		 
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>																																																 
-						Remover disciplina																																												 
- 					     @form(routes.Application.removeDisciplina()) {																																					 
-       						 @inputText(disciplinaForm("nomeDaDisciplina"), '_label -> "Nome da disciplina")																											 
-      						 <input type="submit" class="btn btn-danger" value="Remover disciplina" onclick="return confirm('Tem certeza mesmo que deseja remover? As cadeiras dependentes também serão removidas.');">  
- 					     }																																																 
-					</h3>		
-																																																			
-					<p>
-					<div class="btn-group">
-					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="#">2º Período</a></li>
-					    <li><a href="#">3º Período</a></li>
-					    <li><a href="#">4º Período</a></li>
-					    <li><a href="#">5º Período</a></li>
-					    <li><a href="#">6º Período</a></li>
-					    <li><a href="#">7º Período</a></li>
-					    <li><a href="#">8º Período</a></li>
-					    <li><a href="#">9º Período</a></li>
-					    <li><a href="#">10º Período</a></li>
-					  </ul>
-					</div>
-					</p>
-				</div>
-			</div>
-
+			
 <div class="container-fluid">
-
+		<table width="100%">
+		<tr>
+		<td width="85%" valign="top">
 		<div class="row">
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
@@ -588,7 +586,32 @@
 				</div>
 			</div>
 		</div>
-
+	</td>
+	<td width="20%" valign="top">
+		<div class="desalocadas" width="100%" align="center" ondrop="dropRemove(event)" ondragover="allowDrop(event)">
+			<h3>
+				Disciplinas não alocadas
+			</h3>
+			<ul class="nav nav-pills nav-stacked ">
+				<div class="alert alert-info alert-dismissable">
+					Para desalocar disciplinas arraste-as aqui.
+					Para aloca-las arraste para o período escolhido.
+				</div>
+			</ul>
+			 @for(disciplina <- planejador.getGrade().getDisciplinasDoCurso()) {
+                  @if(!planejador.getTodasDisciplinasDoAluno(aluno).contains(disciplina)) {
+						
+						<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+							@disciplina.getNome()
+							<span class="badgeC">@disciplina.getCreditos()</span>		
+							<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
+							</div>
+				  }
+			}
+		</div>
+	</td>
+	</tr>
+	</table>
 </div>
 </body>
 

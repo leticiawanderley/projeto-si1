@@ -72,15 +72,15 @@ public class Application extends Controller {
      * Remove uma disciplina do usuario
      * @return um resultado/pagina que serah exibida no navegador
      */
-	public static Result removeDisciplina() {
-    	Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
-    	String nomeDaDisciplina = filledForm.data().get("nomeDaDisciplina");
-		Disciplina tmp = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
+	public static Result removeDisciplina(String nomeDaDisciplina) {
+    	//Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
+    	//String nomeDaDisciplina = filledForm.data().get("nomeDaDisciplina");
+		Disciplina disciplina = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
 		if (!grid.getPlanejador().existeCadeira(nomeDaDisciplina)) {
     		flash("sucess", CADEIRA_NAO_EXISTENTE);
     		return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
     	}
-		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(grid.getAluno(), tmp);
+		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(grid.getAluno(), disciplina);
 		grid.getAluno().update();
 		return index();
     }

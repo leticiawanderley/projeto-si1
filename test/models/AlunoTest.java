@@ -193,7 +193,7 @@ public class AlunoTest {
 		assertFalse(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.SI2.getDisciplina()));
 		
 		sistema.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.CALCULO1.getDisciplina());
-		assertTrue(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.CALCULO1.getDisciplina()));
+		assertFalse(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.CALCULO1.getDisciplina()));
 	}
 	
 	

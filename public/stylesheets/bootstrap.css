@@ -3042,6 +3042,7 @@ div.periodo {
   list-style-type: none;
   list-style-position: inside;
 }
+
 div.periodo {
   border-color: #f8e0b1;
 }
@@ -3057,6 +3058,29 @@ div.periodo {
 .periodo div {
   background-color: #fcf8e3;
   border: 1px solid #fbeed5;
+  color: #c09853;
+}
+
+.desalocadas {
+	width: 290px; 
+	height: 1350px; 
+	background-color:  #fcf8e3; 
+	border: 1px solid #fbeed5; 
+	border-radius: 4px;
+}
+
+.desalocadas div {
+  margin: 5px;
+  padding: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.desalocadas div {
+  background-color: #ffffff;
+  border: 1px solid #f8e0b1;
   color: #c09853;
 }
 
