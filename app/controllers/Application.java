@@ -101,7 +101,6 @@ public class Application extends Controller {
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
     	grid.alocandoNovoUsuario(novoAluno);
     	System.out.println("Salvou?");
-    	
     	novoAluno.save();
     	System.out.println("Salvou");
     	return login();
