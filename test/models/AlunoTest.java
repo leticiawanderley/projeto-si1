@@ -171,7 +171,7 @@ public class AlunoTest {
 		assertFalse(aluno.getListaDePeriodos().get(PRIMEIRO_PERIODO).getDisciplinas().contains(DisciplinasDSC.BD1.getDisciplina()));
 	
 		// TESTE REFERENTE A US4
-		sistema.removeDisciplina(aluno, DisciplinasDSC.LEDA.getDisciplina());
+		sistema.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.LEDA.getDisciplina());
 		
 		assertTrue(sistema.verificaPreRequisitosPago(aluno,DisciplinasDSC.DIREITO.getDisciplina()));
 		sistema.addCadeiraAoAluno(aluno, DisciplinasDSC.DIREITO.getDisciplina(),TERCEIRO_PERIODO);
@@ -187,13 +187,13 @@ public class AlunoTest {
 			//assertTrue(e.getMessage().equals("O aluno nao possui os pre-requisitos para esta disciplina"));
 		}
 		
-		sistema.removeDisciplina(aluno, DisciplinasDSC.GI.getDisciplina());
+		sistema.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.GI.getDisciplina());
 		assertFalse(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.SI1.getDisciplina()));
 		//assertFalse(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.BD1.getDisciplina()));
 		assertFalse(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.SI2.getDisciplina()));
 		
-		sistema.removeDisciplina(aluno, DisciplinasDSC.CALCULO1.getDisciplina());
-		assertTrue(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.CALCULO1.getDisciplina()));
+		sistema.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.CALCULO1.getDisciplina());
+		assertFalse(sistema.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.CALCULO1.getDisciplina()));
 	}
 	
 	
