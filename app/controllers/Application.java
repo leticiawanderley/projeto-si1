@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
 
-import com.avaje.ebean.Ebean;
-
 import models.Aluno;
 import models.Disciplina;
 import models.User;
 import play.data.Form;
-import play.db.ebean.EbeanPlugin;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+
+import com.avaje.ebean.Ebean;
 
 /**
  * Classe que controla as requisições do sistema web
@@ -30,6 +30,7 @@ public class Application extends Controller {
 	 * Pagina inicial da alocacao das disciplinas
 	 * @return um resultado/pagina que serah exibida no navegador
 	 */
+	@Security.Authenticated(Secured.class)
     public static Result index() {
     	if (grid.getAluno() ==  USUARIO_NAO_LOGADO) {
     		return redirect(routes.Application.login());
@@ -62,11 +63,7 @@ public class Application extends Controller {
     	if (filledForm.hasErrors()) {
 			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
 		} else {
-			Disciplina displicaRealocada =  grid.getPlanejador().getDisciplina(disciplina);
-			//grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getAluno(), displicaRealocada, periodo - 1);
-			grid.getPlanejador().removeDisciplina(grid.getAluno(), displicaRealocada);
-			grid.getPlanejador().addCadeiraAoAluno(grid.getAluno(), displicaRealocada, periodo - 1);
-			grid.getAluno().update();
+			grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getAluno(), grid.getPlanejador().getDisciplina(disciplina), periodo);
 		}
     	return redirect("/");
     }
@@ -88,28 +85,28 @@ public class Application extends Controller {
 		return index();
     }
 	
-	
 	public static Result cadastrarNovoUsuario() {
 		return ok(views.html.cadastrarUsuario.render(Form.form(User.class)));
 	}
 	
 	// TODO verificar se o usuario jah existe (procurar qual deve ser a melhor solucao)
-	// TODO verificar se a senha e confirmacao de senha sao iguais
 	public static Result criarUsuario() {
 		Form<User> loginForm = Form.form(User.class).bindFromRequest();
-		// TODO loginForm.data().get("confirmacao de senha --- chave q tem na interface");
+		if (!loginForm.get().getPassword().equals(loginForm.data().get("confirmPassword"))) {
+			flash("success", "Senha e confirmação de senha estão incompativeis");
+			return cadastrarNovoUsuario();
+		}
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
     	grid.alocandoNovoUsuario(novoAluno);
     	novoAluno.save();
     	return login();
 	}
 	
-	
 	public static Result populaUsuarios() throws IOException {
 		URL url = new URL("http://csplanner.herokuapp.com/assets/alunos.txt");
-		Scanner s = new Scanner(url.openStream());
-		while (s.hasNextLine()) {
-            String[] line = s.nextLine().split(":");
+		Scanner scanner = new Scanner(url.openStream());
+		while (scanner.hasNextLine()) {
+            String[] line = scanner.nextLine().split(":");
             Aluno novoAluno = new Aluno(line[0], line[1], line[2]);
         	grid.alocandoNovoUsuario(novoAluno);
         	Ebean.save(novoAluno);
@@ -148,7 +145,6 @@ public class Application extends Controller {
 	    	} else {
 	    		return badRequest(views.html.login.render(Form.form(User.class)));
 	    	}
-	        
 	    }
 	}
     
