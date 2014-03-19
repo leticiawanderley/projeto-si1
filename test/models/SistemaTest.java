@@ -29,9 +29,10 @@ public class SistemaTest {
 		Aluno aluno = new Aluno("Maysa M.", "maysa.macedo95@gmail.com", "fafamaysa");
 		grid.alocandoNovoUsuario(aluno);
 		
-		planejador.removeDisciplina(aluno, DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
+		planejador.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
 		
 		/** Remocao recursiva das disciplinas que eram dependentes de Algebra Linear */
+		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.ALGEBRALINEAR.getDisciplina()));
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.METODOS.getDisciplina()));
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.IA.getDisciplina()));
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.MSN.getDisciplina()));
@@ -39,16 +40,14 @@ public class SistemaTest {
 		// TODO Ainda arrumarei os testes para passarem =P
 		aluno.setPeriodoAtual(PERIODO_ATUAL);
 		
-		/** Periodos anteriores ao atual possuem minimo, mas nao maximo*/
 		for (int i = 0; i < PERIODO_ATUAL; i++) {
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		/** Periodo atual e apos ele possuem minimo e maximo de creditos*/
 		for (int i = PERIODO_ATUAL; i < ULTIMO_PERIODO; i++) {
 			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
@@ -57,26 +56,23 @@ public class SistemaTest {
 			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		/** Ultimo periodo nao possui maximo */
 		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		
 		// TODO
 		aluno.setPeriodoAtual(PERIODO_ALTERADO );
 		
-		/** Periodos anteriores ao atual possuem minimo, mas nao maximo*/
 		for (int i = 0; i < PERIODO_ALTERADO; i++) {
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		/** Periodo atual e apos ele possuem minimo e maximo de creditos*/
 		for (int i = PERIODO_ALTERADO; i < ULTIMO_PERIODO; i++) {
 			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
@@ -85,26 +81,23 @@ public class SistemaTest {
 			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		/** Ultimo periodo nao possui maximo */
 		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		
 		// TODO
-		aluno.setPeriodoAtual(OUTRO_PERIODO_ALTERADO  );
+		aluno.setPeriodoAtual(OUTRO_PERIODO_ALTERADO);
 		
-		/** Periodos anteriores ao atual possuem minimo, mas nao maximo*/
 		for (int i = 0; i < OUTRO_PERIODO_ALTERADO; i++) {
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		/** Periodo atual e apos ele possuem minimo e maximo de creditos*/
 		for (int i = OUTRO_PERIODO_ALTERADO; i < ULTIMO_PERIODO; i++) {
 			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
@@ -113,12 +106,11 @@ public class SistemaTest {
 			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		/** Ultimo periodo nao possui maximo */
 		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
 		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 	}
 
 }
