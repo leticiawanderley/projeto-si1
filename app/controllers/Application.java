@@ -80,7 +80,7 @@ public class Application extends Controller {
     		flash("sucess", CADEIRA_NAO_EXISTENTE);
     		return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
     	}
-		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(grid.getAluno(), tmp);
+		grid.getPlanejador().removeDisciplina(grid.getAluno(), tmp);
 		grid.getAluno().update();
 		return index();
     }

@@ -126,7 +126,7 @@ public class Planejador {
 	 * @param aluno aluno que estah no sistema
 	 * @param disciplina disciplina que sera removida da grade do aluno, juntamente com seus pre-requisitos
 	 */
-	public void removeDisciplinaESeusPreRequisitos(Aluno aluno, Disciplina disciplina) {
+	public void removeDisciplina(Aluno aluno, Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = getDisciplinasDependentes(aluno, disciplina);
 		if (!grade.getDisciplinasDoPrimeiroPeriodo().contains(disciplina)) {
 			for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
@@ -137,20 +137,10 @@ public class Planejador {
 				}
 			}
 			for (int i = 0; i < disciplinasDependentes.size(); i++) {
-				removeDisciplinaESeusPreRequisitos(aluno, disciplinasDependentes.get(i));
+				removeDisciplina(aluno, disciplinasDependentes.get(i));
 			}
 		}
 		
-	}
-	
-	public void removeDisciplina(Aluno aluno, Disciplina disciplina) {
-		for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
-			for (int j = 0; j < aluno.getListaDePeriodos().get(i).getDisciplinas().size(); j++) {
-				if (aluno.getListaDePeriodos().get(i).getDisciplinas().get(j).equals(disciplina)) {
-					aluno.getListaDePeriodos().get(i).getDisciplinas().remove(disciplina);
-				}
-			}
-		}
 	}
 	
 	/**

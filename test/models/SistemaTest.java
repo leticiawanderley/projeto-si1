@@ -29,7 +29,7 @@ public class SistemaTest {
 		Aluno aluno = new Aluno("Maysa M.", "maysa.macedo95@gmail.com", "fafamaysa");
 		grid.alocandoNovoUsuario(aluno);
 		
-		planejador.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
+		planejador.removeDisciplina(aluno, DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
 		
 		/** Remocao recursiva das disciplinas que eram dependentes de Algebra Linear */
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.ALGEBRALINEAR.getDisciplina()));
