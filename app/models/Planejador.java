@@ -212,10 +212,10 @@ public class Planejador {
 		return getDisciplina(nomeDaCadeira) != null;
 	}
 
-	public void alteraPeriodoDaDisciplina(Aluno aluno,
-			Disciplina disciplinaRealocada, int periodo) {
-		// TODO Auto-generated method stub
-		
+	public void alteraPeriodoDaDisciplina(Aluno aluno, Disciplina disciplinaRealocada, int periodo) {
+		removeDisciplina(aluno, disciplinaRealocada);
+		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
+		aluno.update();
 	}
 	
 }
