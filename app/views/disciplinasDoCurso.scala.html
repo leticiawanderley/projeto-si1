@@ -48,26 +48,29 @@
 </div>
 
     <script>
-	function valida(){
-		
-	var aChk = document.getElementsByName("vehicle"); 
-	    var num=0;
-	    for (var i=0;i<aChk.length;i++){ 
-	        if (aChk[i].checked == true){ 
-				num++;
-	            alert(num + aChk[i].value + " marcado.");
-				routes.Application.matriculaNaDisciplina(9, aChk[i].value);
-				alert(planejador.jaEstaMatriculado(aluno, aChk[i].value) + "!!!!!!!!!!!!!!")
-	        } 
-	    }
-	}
-	</script> 
+        function valida(){
+        periodoAlocado = document.getElementById("periodoAlocado").value       
+        var aChk = document.getElementsByName("vehicle");
+            
+            for (var i=0;i<aChk.length;i++){
+                if (aChk[i].checked == true){                                
+                                								
+                                var xmlHttp = null;
+                                xmlHttp = new XMLHttpRequest();
+                                xmlHttp.open( "GET", "/matriculaNaDisciplina/"+periodoAlocado+"/"+aChk[i].value, false );
+                                xmlHttp.send( null );
+                               
+                                
+                }
+            }
+        }
+        </script>
 </body>
 
        
   
+	<input name="periodoAlocado" type="text" id="periodoAlocado" />
 	
-	@inputText(disciplinaForm("periodoAlocado"), '_label -> "Período")
 	<input type="submit" class="btn btn-success" value="Adicionar disciplina" onClick = "return valida()">
   
 
