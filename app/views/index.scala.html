@@ -61,11 +61,11 @@
 		  @form(routes.Application.verGrade()) {
     			<input type="submit" class="btn btn-info" value="Ver grade do curso">
    		 }	
-   		 
-   		 @form(routes.Application.selecionarDisciplinas()) {
-   		 	<input type="submit" class="btn btn-info" value="Disciplinas do Curso">
-   		 }
-	
+   	@************************************************************************************	 
+   	*	 @form(routes.Application.selecionarDisciplinas()) {							*
+   	*	 	<input type="submit" class="btn btn-info" value="Disciplinas do Curso">		*
+   	*	 }																				*
+	************************************************************************************@
    	</div>
 	</div>
    		 
@@ -592,11 +592,11 @@
 			<h3>
 				Disciplinas não alocadas
 			</h3>
-			<ul class="nav nav-pills nav-stacked ">
-				<div class="alert alert-info alert-dismissable">
-					Para desalocar disciplinas arraste-as aqui.
-					Para aloca-las arraste para o período escolhido.
-				</div>
+			<ul class="info-ul">
+			<li class="info">
+				Para desalocar disciplinas arraste-as aqui.
+				Para aloca-las arraste para o período escolhido.
+			</li>
 			</ul>
 			 @for(disciplina <- planejador.getGrade().getDisciplinasDoCurso()) {
                   @if(!planejador.getTodasDisciplinasDoAluno(aluno).contains(disciplina)) {
