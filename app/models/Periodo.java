@@ -97,6 +97,10 @@ public class Periodo extends Model {
 			dificuldadeDoPeriodo += disciplina.getDificuldade();
 		}
 	}
+	
+	public boolean numeroDeCreditosValido() {
+		return getValidadorDoPeriodo().permiteNumeroDeCreditos(getNumeroDeCreditosDoPeriodo());
+	}
 
 	public Long getId() {
 		return id;

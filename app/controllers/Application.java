@@ -73,8 +73,6 @@ public class Application extends Controller {
      * @return um resultado/pagina que serah exibida no navegador
      */
 	public static Result removeDisciplina(String nomeDaDisciplina) {
-    	//Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
-    	//String nomeDaDisciplina = filledForm.data().get("nomeDaDisciplina");
 		Disciplina disciplina = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
 		if (!grid.getPlanejador().existeCadeira(nomeDaDisciplina)) {
     		flash("sucess", CADEIRA_NAO_EXISTENTE);

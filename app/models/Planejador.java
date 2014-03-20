@@ -178,6 +178,9 @@ public class Planejador {
 	public void alteraPeriodoDaDisciplina(Aluno aluno, Disciplina disciplinaRealocada, int periodo) throws NumeroDeCreditosNaoPermitidoException {
 		removeDisciplina(aluno, disciplinaRealocada);
 		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
+		if (! aluno.getListaDePeriodos().get(periodo - 1).numeroDeCreditosValido()) {
+			throw new NumeroDeCreditosNaoPermitidoException();
+		}
 		aluno.update();
 	}
 	
