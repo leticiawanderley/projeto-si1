@@ -3092,9 +3092,9 @@ div.periodo {
 .info { 
 	list-style: none;
 	padding:3px 5px;
-	background-color: #99FF99; 
-	border: 1px solid #33CC66;
-	color: #ffffff; 
+	background-color: #d9edf7;
+	border: 1px solid #bce8f1;
+	color: #3a87ad;
 	border-radius: 4px;
 	margin: 5px;
     -webkit-border-radius: 4px;
