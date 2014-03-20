@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import models.validador.ValidadorMaxDeCreditos;
 import models.validador.ValidadorMinDeCreditos;
@@ -23,7 +23,7 @@ public class Aluno extends User {
 	private static final long serialVersionUID = 7507028957989504099L;
 	private static final int PRIMEIRO_PERIODO = 0;
 	private static final int ULTIMO_PERIODO = 9;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
 	private int periodoAtual;
 	
