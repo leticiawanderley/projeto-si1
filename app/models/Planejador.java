@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exception.AlunoNaoPossuiPreRequisitosException;
+import exception.NumeroDeCreditosNaoPermitidoException;
 
 /**	
  * Representa um controlador que sera responsavel de gerenciar o planejamento da grade do aluno
@@ -43,15 +44,8 @@ public class Planejador {
 	 * @param disciplina nova disciplina do aluno
 	 * @throws AlunoNaoPossuiPreRequisitosException Excecao lancada se o aluno nao tiver os pre-requisitos da disciplina
 	 */
-	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo)/* throws AlunoNaoPossuiPreRequisitosException*/ {
-	/*	if (!verificaPreRequisitosPago(aluno, disciplina) || verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, periodo - 1)) {
-			throw new AlunoNaoPossuiPreRequisitosException();
-		}*/
-	/*	if (!aluno.getListaDePeriodos().get(periodo).getValidadorDoPeriodo().permiteNumeroDeCreditos(disciplina.getCreditos(), this)) {
-			
-		}*/
-		
-		
+	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina, int periodo) throws NumeroDeCreditosNaoPermitidoException {
+		//if (aluno.getListaDePeriodos().get(periodo).getValidadorDoPeriodo().permiteNumeroDeCreditos())
 		aluno.getListaDePeriodos().get(periodo).getDisciplinas().add(disciplina);
 	}
 	
@@ -126,7 +120,7 @@ public class Planejador {
 	 * @param aluno aluno que estah no sistema
 	 * @param disciplina disciplina que sera removida da grade do aluno, juntamente com seus pre-requisitos
 	 */
-	public void removeDisciplinaESeusPreRequisitos(Aluno aluno, Disciplina disciplina) {
+	public void removeDisciplinaESeusPreRequisitos(Aluno aluno, Disciplina disciplina) throws NumeroDeCreditosNaoPermitidoException {
 		List<Disciplina> disciplinasDependentes = getDisciplinasDependentes(aluno, disciplina);
 			for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
 				for (int j = 0; j < aluno.getListaDePeriodos().get(i).getDisciplinas().size(); j++) {
@@ -160,16 +154,6 @@ public class Planejador {
 
 	/**
 	 * 
-	 * @param aluno aluno que estah no sistema
- 	 * @param periodo periodo que o aluno estah se referindo
-	 * @return disciplinas do periodo que o aluno possui alocado
-	 */
-	public List<Disciplina> getDisciplinasDoPeriodo(Aluno aluno, int periodo) {
-		return aluno.getListaDePeriodos().get(periodo).getDisciplinas();
-	}
-	
-	/**
-	 * 
 	 * @param nomeDaDisciplina nome da disciplina
 	 * @return a disciplina com o nome do parametro
 	 */
@@ -184,16 +168,6 @@ public class Planejador {
 	
 	/**
 	 * 
-	 * @param aluno aluno que estah no sistema
-	 * @param disciplina disciplina que o aluno quer saber se estah matriculado
-	 * @return Se o aluno esta matriculado na disciplina ou não
-	 */
-	public boolean jaEstaMatriculado(Aluno aluno, Disciplina disciplina) {
-		return getTodasDisciplinasDoAluno(aluno).contains(disciplina);
-	}
-	
-	/**
-	 * 
 	 * @param nomeDaCadeira no da cadeira
 	 * @return Se o nome dado é de uma cadeira existente no sistema
 	 */
@@ -201,7 +175,7 @@ public class Planejador {
 		return getDisciplina(nomeDaCadeira) != null;
 	}
 
-	public void alteraPeriodoDaDisciplina(Aluno aluno, Disciplina disciplinaRealocada, int periodo) {
+	public void alteraPeriodoDaDisciplina(Aluno aluno, Disciplina disciplinaRealocada, int periodo) throws NumeroDeCreditosNaoPermitidoException {
 		removeDisciplina(aluno, disciplinaRealocada);
 		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
 		aluno.update();
