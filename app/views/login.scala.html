@@ -14,7 +14,6 @@
     
     	@helper.form(routes.Application.authenticate) {
     		<img src="@routes.Assets.at("images/slogan.png")" width="200" height="160" />
-		   <h1>Sign in</h1>
 		   @if(form.hasGlobalErrors) {
   			  <p class="error">
        			 @form.globalError.message
@@ -29,18 +28,18 @@
 		       <input type="email" name="email" placeholder="e-mail" value="@form("email").value">
 		   </p>
 		   <p>
-		       <input type="password" name="password" placeholder="Password">
+		       <input type="password" name="password" placeholder="Senha">
 		   </p>
 		   <p>
-		       <button type="submit">Login</button>
+		       <button type="submit">Entrar</button>
 		   </p>
 		 
 		}
 		
 		  <p>
 		   		@helper.form(routes.Application.cadastrarNovoUsuario()) {
-		   			<h1>Crie uma nova conta</h1>
-		       		<button type="submit">Sign Up</button>
+		   			<h1>Criar uma nova conta</h1>
+		       		<button type="submit">Cadastrar</button>
 		        }
 		   </p>
     </body>
