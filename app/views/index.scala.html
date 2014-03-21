@@ -44,6 +44,12 @@
 				location.href = '/'
 			}		
 		}
+
+		function selecionaPeriodo(value) 
+		{
+			location.href = '/selecionarPeriodo/' + value; 
+		}
+		
 	</script>
 	<h1><small><div class="well"><a>CSPlanner</a></div></h1></small>
 	<p>
@@ -61,13 +67,29 @@
     </p>
 </head>
 <body>
-	<div class="thumbnail">
-	<div class="btn-group">
-		  @form(routes.Application.verGrade()) {
-    			<input type="submit" class="btn btn-info" value="Ver grade do curso">
-   		 }	
-   	</div>
-	</div>
+	<table>
+		<tr><div class="thumbnail">
+			<div class="btn-group">
+				@form(routes.Application.verGrade()) {
+    				<input type="submit" class="btn btn-info" value="Ver grade do curso">
+   				}
+   			</div>
+		</div></tr>
+		<tr><div>
+			<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
+				<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="2" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="3" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="4" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="5" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="6" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="7" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="8" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="9" onclick="selecionaPeriodo(this.value)">
+				<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value)">
+			<br><br>				
+		</div></tr>
+	</table>
    		 
 			
 <div class="container-fluid">

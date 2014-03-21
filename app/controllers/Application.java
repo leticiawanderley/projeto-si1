@@ -112,6 +112,11 @@ public class Application extends Controller {
     	return ok();
 	}
 	
+	public static Result setarPeriodoAtual(int periodoAtual) {
+		grid.getAluno().setPeriodoAtual(periodoAtual);
+		return redirect("/");
+	}
+	
 	public static Result login() {
 	    return ok(views.html.login.render(Form.form(User.class)));
 	}

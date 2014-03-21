@@ -24,4 +24,4 @@ GET		/matriculaNaDisciplina/:periodo/:disciplina		controllers.Application.matric
 GET 	/removerDisciplina/:disciplina			controllers.Application.removeDisciplina(disciplina: String)
 
 GET 	/popula						controllers.Application.populaUsuarios()
-
+GET     /selecionarPeriodo/:periodoAtual 			controllers.Application.setarPeriodoAtual(periodoAtual: Integer)
