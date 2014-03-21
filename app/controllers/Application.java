@@ -85,6 +85,10 @@ public class Application extends Controller {
 	
 	public static Result criarUsuario() {
 		Form<User> loginForm = Form.form(User.class).bindFromRequest();
+		if (loginForm.get().getPassword().equals("")) {
+			flash("success", "A senha não pode ser vazia");
+			return cadastrarNovoUsuario();
+		}
 		if (!loginForm.get().getPassword().equals(loginForm.data().get("confirmPassword"))) {
 			flash("success", "Senha e confirmação de senha estão incompativeis");
 			return cadastrarNovoUsuario();
