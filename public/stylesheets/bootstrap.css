@@ -3084,6 +3084,18 @@ div.periodo {
   color: #c09853;
 }
 
+.atual {
+	background-color: #E0F8F7;
+}
+
+.futuro {
+	background-color: #F8E0E6;
+}
+
+.passado {
+	background-color: #E3F6CE;
+}
+
 .info-ul {
 	display: table-cell; 
 	vertical-align: middle;	
