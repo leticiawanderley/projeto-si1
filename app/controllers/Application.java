@@ -1,9 +1,5 @@
 package controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Scanner;
-
 import models.Aluno;
 import models.Disciplina;
 import models.User;
@@ -12,8 +8,6 @@ import play.db.ebean.Model.Finder;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-
-import com.avaje.ebean.Ebean;
 
 /**
  * Classe que controla as requisições do sistema web
@@ -80,12 +74,8 @@ public class Application extends Controller {
      */
 	public static Result removeDisciplina(String nomeDaDisciplina) {
 		Disciplina disciplina = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
-		if (!grid.getPlanejador().existeCadeira(nomeDaDisciplina)) {
-    		flash("sucess", CADEIRA_NAO_EXISTENTE);
-    		return badRequest(views.html.index.render(usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
-    	}
 		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(usuariosLogados.byId(session("email")), disciplina);
-		((Aluno)usuariosLogados.byId(session("email"))).update();
+		usuariosLogados.byId(session("email")).update();
 		return index();
     }
 	
