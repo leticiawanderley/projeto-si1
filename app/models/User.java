@@ -3,6 +3,8 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import play.db.ebean.Model;
 
 /**
@@ -29,7 +31,8 @@ public class User extends Model {
 		super();
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt()); 
+		this.save();
 	}
 	
     public static User authenticate(String email, String password) {
