@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import models.validador.ValidadorMaxDeCreditos;
-import models.validador.ValidadorMinDeCreditos;
-import models.validador.ValidadorMinMaxDeCreditos;
+import models.validador.ValidacaoCreditos;
 
 /**
  * Classe que representa um aluno
@@ -61,12 +59,12 @@ public class Aluno extends User {
 	public void setPeriodoAtual(int periodoAtual) {
 		this.periodoAtual = periodoAtual;
 		for (int i = 0; i < periodoAtual; i++) {
-			listaDePeriodo.get(i).setValidadorDoPeriodo(new ValidadorMaxDeCreditos());
+			listaDePeriodo.get(i).setValidadorDoPeriodo(ValidacaoCreditos.MAX);
 		}
 		for (int i = periodoAtual; i < listaDePeriodo.size(); i++) {
-			listaDePeriodo.get(i).setValidadorDoPeriodo(new ValidadorMinMaxDeCreditos());
+			listaDePeriodo.get(i).setValidadorDoPeriodo(ValidacaoCreditos.MINMAX);
 		}
-		listaDePeriodo.get(ULTIMO_PERIODO).setValidadorDoPeriodo(new ValidadorMinDeCreditos());
+		listaDePeriodo.get(ULTIMO_PERIODO).setValidadorDoPeriodo(ValidacaoCreditos.MIN);
 	}
 	
 }
