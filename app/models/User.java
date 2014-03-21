@@ -13,11 +13,11 @@ import play.db.ebean.Model;
 public class User extends Model {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	private Long id;
 	private String name;
+	@Id
     private String email;
     private String password;
+    public static Finder<String,User> find = new Finder<String,User>(String.class, User.class); 
     
     /**
      * Construtor de classe 
@@ -31,6 +31,10 @@ public class User extends Model {
 		this.email = email;
 		this.password = password;
 	}
+	
+    public static User authenticate(String email, String password) {
+        return find.where().eq("email", email).eq("password", password).findUnique();
+    }
 	
 	/**
 	 * 
@@ -78,14 +82,6 @@ public class User extends Model {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	/**
-	 * 
-	 * @return o id do usuario
-	 */
-	public Long getId() {
-		return this.id;
 	}
 	
 	@Override

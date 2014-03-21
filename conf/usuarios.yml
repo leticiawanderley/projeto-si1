@@ -1,0 +1,155 @@
+
+# Users
+
+- &bob !!models.User
+    email:      bob@example.com
+    name:       Bob
+    password:   fafa=
+
+- &jane !!models.User
+    email:      jane@example.com
+    name:       Jane
+    password:   12mo
+
+- &jeff !!models.User
+    email:      jeff@example.com
+    name:       Jeff
+    password:   12345
+    
+- &juliana !!models.User
+    email:      juliana@example.com
+    name:       Juliana
+    password:   juju.
+    
+- &maysa !!models.User
+    email:      maysa@example.com
+    name:       Maysa
+    password:   ma
+    
+- &julio !!models.User
+    email:      julio@example.com
+    name:       Julio
+    password:   ju
+    
+- &fellype !!models.User
+    email:      fellype@example.com
+    name:       Fellype
+    password:   secret
+    
+- &leticia !!models.User
+    email:      leticia@example.com
+    name:       Leticia
+    password:   secret
+    
+- &mariana !!models.User
+    email:      mariana@example.com
+    name:       Mariana
+    password:   secret
+    
+- &joao !!models.User
+    email:      joao@example.com
+    name:       Joao
+    password:   secret
+    
+- &ana !!models.User
+    email:      ana@example.com
+    name:       Ana
+    password:   secret
+    
+- &zezo !!models.User
+    email:      zezo@example.com
+    name:       Zezo
+    password:   secret
+    
+- &cristiano !!models.User
+    email:      cristiano@example.com
+    name:       Cristiano
+    password:   secret
+    
+- &fatima !!models.User
+    email:      fatima@example.com
+    name:       Fatima
+    password:   secret
+    
+- &ramon !!models.User
+    email:      ramon@example.com
+    name:       Ramon
+    password:   secret
+    
+- &martha !!models.User
+    email:      martha@example.com
+    name:       Martha
+    password:   mms
+    
+- &felipe !!models.User
+    email:      felipe@example.com
+    name:       Felipe
+    password:   fe
+    
+- &otavio !!models.User
+    email:      otavio@example.com
+    name:       Otavio
+    password:   tavim
+    
+- &pedro !!models.User
+    email:      pedro@example.com
+    name:       Pedro
+    password:   ped
+    
+- &lucas !!models.User
+    email:      lucas@example.com
+    name:       Lucas
+    password:   secret
+    
+- &antonio !!models.User
+    email:      antonio@example.com
+    name:       Antonio
+    password:   secret
+    
+- &marcia !!models.User
+    email:      marcia@example.com
+    name:       Marcia
+    password:   secret
+    
+- &rachel !!models.User
+    email:      rachel@example.com
+    name:       Rachel
+    password:   secret
+    
+- &sophie !!models.User
+    email:      sophie@example.com
+    name:       Sophie
+    password:   secret
+    
+- &matheus !!models.User
+    email:      matheus@example.com
+    name:       Matheus
+    password:   secret
+    
+- &frederico !!models.User
+    email:      frederico@example.com
+    name:       Frederico
+    password:   secret
+    
+- &paz !!models.User
+    email:      paz@example.com
+    name:       Paz
+    password:   amor
+    
+- &laura !!models.User
+    email:      laura@example.com
+    name:       Laura
+    password:   secret
+    
+- &vinicius !!models.User
+    email:      vinicius@example.com
+    name:       Vinicius
+    password:   secret
+    
+- &victor !!models.User
+    email:      victor@example.com
+    name:       Victor
+    password:   vitinho
+    
+        
+    
