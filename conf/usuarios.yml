@@ -134,7 +134,7 @@
 - &paz !!models.User
     email:      paz@example.com
     name:       Paz
-    password:   secret
+    password:   amor
     
 - &laura !!models.User
     email:      laura@example.com
