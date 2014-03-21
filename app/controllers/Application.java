@@ -106,6 +106,7 @@ public class Application extends Controller {
 	
 	public static Result logout() {
 	    session().clear();
+	    session("email", "usuarioLogout");
 	    flash("success", "You've been logged out");
 	    return redirect(routes.Application.login());
 	}

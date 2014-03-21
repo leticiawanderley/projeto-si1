@@ -55,7 +55,7 @@ public class Aluno extends User {
 
 	/**
 	 * 
-	 * @param periodoAtual o periodo em que o aluno estah atualmente
+	 * @param periodoAtual o periodo em qNoue o aluno estah atualmente
 	 */
 	public void setPeriodoAtual(int periodoAtual) {
 		this.periodoAtual = periodoAtual;
