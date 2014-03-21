@@ -56,9 +56,7 @@ public class Planejador {
 	 *             disciplina
 	 */
 	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina,
-			int periodo) /* throws NumeroDeCreditosNaoPermitidoException */{
-		// if
-		// (aluno.getListaDePeriodos().get(periodo).getValidadorDoPeriodo().permiteNumeroDeCreditos())
+			int periodo) {
 		aluno.getListaDePeriodos().get(periodo).getDisciplinas()
 				.add(disciplina);
 	}
@@ -177,10 +175,7 @@ public class Planejador {
 	 *            seus pre-requisitos
 	 */
 	public void removeDisciplinaESeusPreRequisitos(Aluno aluno,
-			Disciplina disciplina) /*
-									 * throws
-									 * NumeroDeCreditosNaoPermitidoException
-									 */{
+			Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = getDisciplinasDependentes(
 				aluno, disciplina);
 		for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
@@ -248,11 +243,6 @@ public class Planejador {
 			Disciplina disciplinaRealocada, int periodo) {
 		removeDisciplina(aluno, disciplinaRealocada);
 		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
-		/*
-		 * if (! aluno.getListaDePeriodos().get(periodo -
-		 * 1).numeroDeCreditosValido()) { throw new
-		 * NumeroDeCreditosNaoPermitidoException(); }
-		 */
 		aluno.update();
 	}
 

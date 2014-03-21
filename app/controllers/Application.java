@@ -73,10 +73,10 @@ public class Application extends Controller {
      * @return um resultado/pagina que serah exibida no navegador
      */
 	public static Result removeDisciplina(String nomeDaDisciplina) {
-		Disciplina disciplina = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
-		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(usuariosLogados.byId(session("email")), disciplina);
-		usuariosLogados.byId(session("email")).update();
-		return index();
+		Aluno aluno = usuariosLogados.byId(session("email"));
+		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(aluno, grid.getPlanejador().getDisciplina(nomeDaDisciplina));
+		aluno.update();
+		return redirect("/");
     }
 	
 	public static Result cadastrarNovoUsuario() {
@@ -132,10 +132,10 @@ public class Application extends Controller {
 	}
 	
 	public static Result setarPeriodoAtual(int periodoAtual) {
-		System.out.println("olha o periodo atual" + periodoAtual);
-		usuariosLogados.byId(session("email")).setPeriodoAtual(periodoAtual);
-		usuariosLogados.byId(session("email")).update();
-		return index();
+		Aluno aluno = usuariosLogados.byId(session("email"));
+		aluno.setPeriodoAtual(periodoAtual);
+		aluno.update();
+		return redirect("/");
 	}
 
     

@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import models.validador.ValidacaoCreditos;
-import models.validador.ValidadorDeCreditos;
 import play.db.ebean.Model;
 
 /**
