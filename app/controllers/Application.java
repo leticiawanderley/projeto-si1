@@ -8,6 +8,7 @@ import models.Aluno;
 import models.Disciplina;
 import models.User;
 import play.data.Form;
+import play.db.ebean.Model.Finder;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -24,7 +25,8 @@ public class Application extends Controller {
 			
 	private static GridSystem grid = new GridSystem();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
-	private static Aluno USUARIO_NAO_LOGADO;
+	private static Finder<String, User> usuariosLogados = new Finder<String, User>(String.class, User.class);
+ 	private static Aluno USUARIO_NAO_LOGADO;
 	
 	/**
 	 * Pagina inicial da alocacao das disciplinas
@@ -32,10 +34,15 @@ public class Application extends Controller {
 	 */
 	@Security.Authenticated(Secured.class)
     public static Result index() {
-    	if (grid.getAluno() ==  USUARIO_NAO_LOGADO) {
+		if (session("email") == null) {
+			return redirect(routes.Application.login());
+		}
+		
+    	if (usuariosLogados.ref(session("email")) ==  USUARIO_NAO_LOGADO) {
     		return redirect(routes.Application.login());
     	}
-        return ok(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
+    	
+        return ok(views.html.index.render((Aluno) usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
     }
     
     /**
@@ -51,7 +58,7 @@ public class Application extends Controller {
      * @return um resultado/pagina que serah exibida no navegador
      */
     public static Result selecionarDisciplinas() {
-    	return ok(views.html.disciplinasDoCurso.render(grid.getAluno(), disciplinaForm,grid.getPlanejador()));
+    	return ok(views.html.disciplinasDoCurso.render((Aluno) usuariosLogados.byId(session("email")), disciplinaForm,grid.getPlanejador()));
     }
 
     /**
@@ -61,9 +68,9 @@ public class Application extends Controller {
     public static Result matriculaNaDisciplina(int periodo, String disciplina) {
     	Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
     	if (filledForm.hasErrors()) {
-			return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
+			return badRequest(views.html.index.render((Aluno) usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
 		} else {
-			grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getAluno(), grid.getPlanejador().getDisciplina(disciplina), periodo);
+			grid.getPlanejador().alteraPeriodoDaDisciplina((Aluno) usuariosLogados.byId(session("email")), grid.getPlanejador().getDisciplina(disciplina), periodo);
 		}
     	return redirect("/");
     }
@@ -76,10 +83,10 @@ public class Application extends Controller {
 		Disciplina disciplina = grid.getPlanejador().getDisciplina(nomeDaDisciplina);
 		if (!grid.getPlanejador().existeCadeira(nomeDaDisciplina)) {
     		flash("sucess", CADEIRA_NAO_EXISTENTE);
-    		return badRequest(views.html.index.render(grid.getAluno(), disciplinaForm, grid.getPlanejador()));
+    		return badRequest(views.html.index.render((Aluno) usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
     	}
-		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(grid.getAluno(), disciplina);
-		grid.getAluno().update();
+		grid.getPlanejador().removeDisciplinaESeusPreRequisitos((Aluno) usuariosLogados.byId(session("email")), disciplina);
+		((Aluno)usuariosLogados.byId(session("email"))).update();
 		return index();
     }
 	
@@ -120,7 +127,7 @@ public class Application extends Controller {
 	public static Result logout() {
 	    session().clear();
 	    flash("success", "You've been logged out");
-	    grid.setAluno(USUARIO_NAO_LOGADO);
+	    session().clear();
 	    return redirect(routes.Application.login());
 	}
 	
@@ -132,18 +139,13 @@ public class Application extends Controller {
 	    	if (grid.getFinder().all().contains(new Aluno("", loginForm.get().getEmail(), loginForm.get().getPassword()))) {
 	    		for (Aluno aluno : grid.getFinder().all()) {
 	    			if (aluno.equals(new Aluno("", loginForm.get().getEmail(), loginForm.get().getPassword()))) {
-	    				grid.setAluno(grid.getFinder().findMap().get(aluno.getId()));
-	    				 break;
+	    		        session("email", aluno.getEmail());
+	    		        return redirect(routes.Application.index());
 	    			}
 	    		}
-	    		grid.getAluno().getListaDePeriodos();
-	    		session().clear();
-		        session("email", loginForm.get().getEmail());
-		        return redirect(routes.Application.index());
-	    	} else {
-	    		return badRequest(views.html.login.render(Form.form(User.class)));
 	    	}
 	    }
+	    return badRequest(views.html.login.render(Form.form(User.class)));
 	}
     
 }

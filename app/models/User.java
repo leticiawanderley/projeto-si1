@@ -13,9 +13,8 @@ import play.db.ebean.Model;
 public class User extends Model {
 
 	private static final long serialVersionUID = 1L;
-	@Id
-	private Long id;
 	private String name;
+	@Id
     private String email;
     private String password;
     
@@ -78,14 +77,6 @@ public class User extends Model {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	/**
-	 * 
-	 * @return o id do usuario
-	 */
-	public Long getId() {
-		return this.id;
 	}
 	
 	@Override

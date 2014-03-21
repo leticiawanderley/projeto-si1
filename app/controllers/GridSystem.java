@@ -27,7 +27,6 @@ public class GridSystem {
 	private static final int NONO_PERIODO = 9;
 	private static final int DECIMO_PERIODO = 10;
 	
-	private Aluno aluno;
 	private Planejador planejador;
 	private Finder<Long, Aluno> finder = new Finder<Long, Aluno>(Long.class, Aluno.class);
 	
@@ -43,23 +42,9 @@ public class GridSystem {
 		return finder;
 	}
 
-	/**
-	 * 
-	 * @return Aluno do sistema
-	 */
-	public Aluno getAluno() {
-		return aluno;
-	}
-	
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-		if (this.aluno != null) {
-			alocandoNovoUsuario(this.aluno);
-		}
-	}
-	
 	public void alocandoNovoUsuario(Aluno aluno) {
 		if (aluno.getListaDePeriodos().isEmpty()) {
+			System.out.println("! ! ! ! !");
 			addPeriodosAoAluno(aluno);
 		}
 	}
