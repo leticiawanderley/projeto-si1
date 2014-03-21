@@ -24,6 +24,8 @@ create table periodo (
   aluno_email               varchar(255) not null,
   periodo                   integer,
   dificuldade_do_periodo    integer,
+  validador_do_periodo      integer,
+  constraint ck_periodo_validador_do_periodo check (validador_do_periodo in (0,1,2)),
   constraint pk_periodo primary key (id))
 ;
 

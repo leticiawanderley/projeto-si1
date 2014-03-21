@@ -130,5 +130,13 @@ public class Application extends Controller {
 	    }
 	    return badRequest(views.html.login.render(Form.form(User.class)));
 	}
+	
+	public static Result setarPeriodoAtual(int periodoAtual) {
+		System.out.println("olha o periodo atual" + periodoAtual);
+		usuariosLogados.byId(session("email")).setPeriodoAtual(periodoAtual);
+		usuariosLogados.byId(session("email")).update();
+		return index();
+	}
+
     
 }

@@ -161,9 +161,7 @@ public class Grade {
 		listaDeDisciplinas.addAll(getDisciplinasDoSetimoPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoOitavoPeriodo());
 		listaDeDisciplinas.addAll(disciplinasOptativas);
-		listaDeDisciplinas.addAll(disciplinasTECC);
-		listaDeDisciplinas.add(DisciplinasDSC.DIREITO.getDisciplina());
-		
+		listaDeDisciplinas.addAll(disciplinasTECC);		
 	}
 
 	/**

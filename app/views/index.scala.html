@@ -1,6 +1,7 @@
 @(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador)
 
 @import helper._
+@import play.api.libs.json.Json
 
 @main("CSPlanner") {
 
@@ -44,24 +45,64 @@
 				location.href = '/'
 			}		
 		}
+
+		function selecionaPeriodo(value) 
+		{	
+			location.href = '/selecionarPeriodo/' + value; 
+		}
+
+		function colorPeriodos() {
+			var value = @aluno.getPeriodoAtual();
+			var periodos = @aluno.getListaDePeriodos().size();
+			for (var i = 0; i < value; i++) {
+				document.getElementById(i.toString()).classList.add('passado');
+			}
+			document.getElementById(value).classList.add('atual');
+			for (var j = value + 1; j < periodos; j++) {
+				document.getElementById(j.toString()).classList.add('futuro');
+			}
+		}
+		
 	</script>
 	<h1><small><div class="well"><a>CSPlanner</a></div></h1></small>
 	<p>
         <dd>
-            <div align="right">
-            <a href="@routes.Application.logout()">Sair</a> 
-            </div>
+        	<table width="100%">
+        		<tr>
+        			<td width="85%">
+        			</td>
+        			<td width="5%">
+        				<a href="@routes.Application.logout()">Sair</a>
+        			</td>
+        		</tr>
+        	</table>
         </dd>
     </p>
 </head>
-<body>
-	<div class="thumbnail">
-	<div class="btn-group">
-		  @form(routes.Application.verGrade()) {
-    			<input type="submit" class="btn btn-info" value="Ver grade do curso">
-   		 }	
-   	</div>
-	</div>
+<body onload="colorPeriodos()" >
+	<table>
+		<tr><div class="thumbnail">
+			<div class="btn-group">
+				@form(routes.Application.verGrade()) {
+    				<input type="submit" class="btn btn-info" value="Ver grade do curso">
+   				}
+   			</div>
+		</div></tr>
+		<tr><div>
+			<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
+				<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="2" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="3" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="4" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="5" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="6" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="7" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="8" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="9" onclick="selecionaPeriodo(this.value-1)">
+				<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value-1)">
+			<br><br>				
+		</div></tr>
+	</table>
    		 
 			
 <div class="container-fluid">
@@ -71,7 +112,7 @@
 		<div class="row">
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="0" class="caption" >
 						<h3>
 							1° Período
 						</h3>
@@ -107,7 +148,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="1" class="caption">
 						<h3>
 							2° Período
 						</h3>
@@ -117,16 +158,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(1).getDificuldadeDoPeriodo()</div>
 						    
-							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 14){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(1).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 28){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(1).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -156,7 +191,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="2" class="caption">
 						<h3>
 							3° Período
 						</h3>
@@ -172,16 +207,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(2).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(2).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -210,7 +239,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="3" class="caption">
 						<h3>
 							4° Período
 						</h3>
@@ -226,16 +255,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(3).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(3).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -264,7 +287,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="4" class="caption">
 						<h3>
 							5° Período
 						</h3>
@@ -280,16 +303,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(4).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(4).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -322,7 +339,7 @@
 		<div class="row">
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="5" class="caption">
 						<h3>
 							6° Período
 						</h3>
@@ -338,16 +355,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(5).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(5).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -376,7 +387,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="6" class="caption">
 						<h3>
 							7° Período
 						</h3>
@@ -392,16 +403,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(6).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(6).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -430,7 +435,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="7" class="caption">
 						<h3>
 							8° Período
 						</h3>
@@ -446,16 +451,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(7).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(7).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -484,7 +483,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="8" class="caption">
 						<h3>
 							9° Período
 						</h3>
@@ -500,16 +499,10 @@
 							  <strong>Nada deve ser alocado aqui!</strong> O período anterior está irregular.
 							</div>
 							}
-							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() < 14 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-danger alert-dismissable">
+							@if(!aluno.getListaDePeriodos().get(8).numeroDeCreditosValido()){
+							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Espere!</strong> Você não completou a quantidade mínima de créditos!
-							</div>
-							}
-							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() > 28 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() > 13 && aluno.getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo() < 29){
-							<div class="alert alert-warning alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui mais créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(8).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
@@ -538,7 +531,7 @@
 
 			<div style="float: left; WIDTH: 20%">
 				<div class="thumbnail">
-					<div class="caption">
+					<div id="9" class="caption">
 						<h3>
 							10° Período
 						</h3>
@@ -548,10 +541,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getListaDePeriodos().get(9).getDificuldadeDoPeriodo()</div>
 						    
-							@if(aluno.getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo() < 14){
+							@if(!aluno.getListaDePeriodos().get(9).numeroDeCreditosValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Nada dever ser alocado aqui!</strong> Você não completou o período anterior.
+							  <strong>Ops!</strong> Você possui @aluno.getListaDePeriodos().get(9).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>

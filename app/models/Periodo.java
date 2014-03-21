@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import models.validador.ValidacaoCreditos;
 import models.validador.ValidadorDeCreditos;
-import models.validador.ValidadorMinMaxDeCreditos;
-
 import play.db.ebean.Model;
 
 /**
@@ -27,7 +26,7 @@ public class Periodo extends Model {
 	private List<Disciplina> disciplinas;
 	private int periodo;
 	private int dificuldadeDoPeriodo;
-	private ValidadorDeCreditos validadorDoPeriodo;
+	private ValidacaoCreditos validadorDoPeriodo;
 
 	/**
 	 * Construtor da classe
@@ -38,7 +37,7 @@ public class Periodo extends Model {
 		this.periodo = periodo;
 		this.disciplinas = disciplinas;
 		dificuldadeDoPeriodo(disciplinas, periodo);
-		this.validadorDoPeriodo = new ValidadorMinMaxDeCreditos();
+		this.validadorDoPeriodo = ValidacaoCreditos.MINMAX;
 	}
 	
 	/**
@@ -101,6 +100,10 @@ public class Periodo extends Model {
 	public boolean numeroDeCreditosValido() {
 		return getValidadorDoPeriodo().permiteNumeroDeCreditos(getNumeroDeCreditosDoPeriodo());
 	}
+	
+	public String tipoValidacao() {
+		return getValidadorDoPeriodo().getTipoValidacao(getNumeroDeCreditosDoPeriodo());
+	}
 
 	public Long getId() {
 		return id;
@@ -110,11 +113,11 @@ public class Periodo extends Model {
 		this.id = id;
 	}
 
-	public ValidadorDeCreditos getValidadorDoPeriodo() {
+	public ValidacaoCreditos getValidadorDoPeriodo() {
 		return validadorDoPeriodo;
 	}
 
-	public void setValidadorDoPeriodo(ValidadorDeCreditos validadorDoPeriodo) {
+	public void setValidadorDoPeriodo(ValidacaoCreditos validadorDoPeriodo) {
 		this.validadorDoPeriodo = validadorDoPeriodo;
 	}
 	
