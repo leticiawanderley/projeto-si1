@@ -25,7 +25,7 @@ public class Application extends Controller {
 			
 	private static GridSystem grid = new GridSystem();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
-	private static Finder<String, User> usuariosLogados = new Finder<String, User>(String.class, User.class);
+	private static Finder<String, Aluno> usuariosLogados = new Finder<String, Aluno>(String.class, Aluno.class);
  	private static Aluno USUARIO_NAO_LOGADO;
 	
 	/**
@@ -35,14 +35,18 @@ public class Application extends Controller {
 	@Security.Authenticated(Secured.class)
     public static Result index() {
 		if (session("email") == null) {
-			return redirect(routes.Application.login());
+			System.out.println("Eita");
+			
+//			return redirect(routes.Application.login());
 		}
-		
-    	if (usuariosLogados.ref(session("email")) ==  USUARIO_NAO_LOGADO) {
+		System.out.println("EPA");
+		System.out.println(session("email"));
+    	if (usuariosLogados.all().get(0) ==  USUARIO_NAO_LOGADO) {
+    		System.out.println("Nada");
     		return redirect(routes.Application.login());
     	}
     	
-        return ok(views.html.index.render((Aluno) usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
+        return ok(views.html.index.render((Aluno) usuariosLogados.all().get(0), disciplinaForm, grid.getPlanejador()));
     }
     
     /**
@@ -127,7 +131,6 @@ public class Application extends Controller {
 	public static Result logout() {
 	    session().clear();
 	    flash("success", "You've been logged out");
-	    session().clear();
 	    return redirect(routes.Application.login());
 	}
 	
@@ -139,6 +142,7 @@ public class Application extends Controller {
 	    	if (grid.getFinder().all().contains(new Aluno("", loginForm.get().getEmail(), loginForm.get().getPassword()))) {
 	    		for (Aluno aluno : grid.getFinder().all()) {
 	    			if (aluno.equals(new Aluno("", loginForm.get().getEmail(), loginForm.get().getPassword()))) {
+	    				session().clear();
 	    		        session("email", aluno.getEmail());
 	    		        return redirect(routes.Application.index());
 	    			}

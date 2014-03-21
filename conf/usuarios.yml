@@ -16,17 +16,17 @@
     name:       Jeff
     password:   12345
     
- &juliana !!models.User
+- &juliana !!models.User
     email:      juliana@example.com
     name:       Juliana
     password:   juju.
     
-&maysa !!models.User
+- &maysa !!models.User
     email:      maysa@example.com
     name:       Maysa
     password:   ma
     
-    &julio !!models.User
+- &julio !!models.User
     email:      julio@example.com
     name:       Julio
     password:   ju
@@ -134,7 +134,7 @@
     &paz !!models.User
     email:      paz@example.com
     name:       Paz
-    password:   secret
+    password:   amor
     
     &laura !!models.User
     email:      laura@example.com

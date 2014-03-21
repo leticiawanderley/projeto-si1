@@ -44,7 +44,6 @@ public class GridSystem {
 
 	public void alocandoNovoUsuario(Aluno aluno) {
 		if (aluno.getListaDePeriodos().isEmpty()) {
-			System.out.println("! ! ! ! !");
 			addPeriodosAoAluno(aluno);
 		}
 	}
