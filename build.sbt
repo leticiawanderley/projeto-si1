@@ -10,5 +10,4 @@ libraryDependencies ++= Seq(
   "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
 )     
 
-
 play.Project.playJavaSettings
