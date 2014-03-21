@@ -1,5 +1,7 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
+
 import models.Aluno;
 import models.Disciplina;
 import models.User;
@@ -15,11 +17,8 @@ import play.mvc.Security;
  */
 public class Application extends Controller {
 	
-	private static final String CADEIRA_NAO_EXISTENTE = "O nome da disciplina está incorreta ou não existe";
-			
 	private static GridSystem grid = new GridSystem();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
-	private static Finder<String, Aluno> usuariosLogados = new Finder<String, Aluno>(String.class, Aluno.class);
  	private static Aluno USUARIO_NAO_LOGADO;
 	
 	/**
@@ -31,11 +30,11 @@ public class Application extends Controller {
 		if (session("email") == null) {
 			return redirect(routes.Application.login());
 		}
-    	if (usuariosLogados.byId(session("email")) ==  USUARIO_NAO_LOGADO) {
+    	if (grid.getFinder().byId(session("email")) ==  USUARIO_NAO_LOGADO) {
     		return redirect(routes.Application.login());
     	}
     	
-        return ok(views.html.index.render(usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
+        return ok(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm, grid.getPlanejador()));
     }
     
     /**
@@ -51,7 +50,7 @@ public class Application extends Controller {
      * @return um resultado/pagina que serah exibida no navegador
      */
     public static Result selecionarDisciplinas() {
-    	return ok(views.html.disciplinasDoCurso.render(usuariosLogados.byId(session("email")), disciplinaForm,grid.getPlanejador()));
+    	return ok(views.html.disciplinasDoCurso.render(grid.getFinder().byId(session("email")), disciplinaForm,grid.getPlanejador()));
     }
 
     /**
@@ -61,9 +60,9 @@ public class Application extends Controller {
     public static Result matriculaNaDisciplina(int periodo, String disciplina) {
     	Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
     	if (filledForm.hasErrors()) {
-			return badRequest(views.html.index.render(usuariosLogados.byId(session("email")), disciplinaForm, grid.getPlanejador()));
+			return badRequest(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm, grid.getPlanejador()));
 		} else {
-			grid.getPlanejador().alteraPeriodoDaDisciplina(usuariosLogados.byId(session("email")), grid.getPlanejador().getDisciplina(disciplina), periodo);
+			grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getFinder().byId(session("email")), grid.getPlanejador().getDisciplina(disciplina), periodo);
 		}
     	return redirect("/");
     }
@@ -73,7 +72,7 @@ public class Application extends Controller {
      * @return um resultado/pagina que serah exibida no navegador
      */
 	public static Result removeDisciplina(String nomeDaDisciplina) {
-		Aluno aluno = usuariosLogados.byId(session("email"));
+		Aluno aluno = grid.getFinder().byId(session("email"));
 		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(aluno, grid.getPlanejador().getDisciplina(nomeDaDisciplina));
 		aluno.update();
 		return redirect("/");
@@ -94,12 +93,14 @@ public class Application extends Controller {
 			return cadastrarNovoUsuario();
 		}
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
-    	if (usuariosLogados.byId(novoAluno.getEmail()) != null) {
+    	if (grid.getFinder().byId(novoAluno.getEmail()) != null) {
     		flash("success", "Usuário já existente no sistema, utilize outro e-mail");
 			return cadastrarNovoUsuario();
     	}
     	grid.alocandoNovoUsuario(novoAluno);
-    	novoAluno.save();
+    	Ebean.save(novoAluno);
+    	System.out.println("Número de alunos " + 
+    	grid.getFinder().all());
     	session().clear();
     	session("email", novoAluno.getEmail());
     	return index();
@@ -120,10 +121,10 @@ public class Application extends Controller {
 	    if (loginForm.hasErrors()) {
 	        return badRequest(views.html.login.render(loginForm));
 	    } else {
-	    	if (usuariosLogados.byId(loginForm.get().getEmail()) == null) {
+	    	if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
 	    		flash("success", "Usuário não existente");
 	    	} else {
-	    		if (!usuariosLogados.byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
+	    		if (!grid.getFinder().byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
 	    			flash("success", "Senha incorreta, tente novamente");
 	    		} else {
 	    			session().clear();
@@ -136,7 +137,7 @@ public class Application extends Controller {
 	}
 	
 	public static Result setarPeriodoAtual(int periodoAtual) {
-		Aluno aluno = usuariosLogados.byId(session("email"));
+		Aluno aluno = grid.getFinder().byId(session("email"));
 		aluno.setPeriodoAtual(periodoAtual);
 		aluno.update();
 		return redirect("/");

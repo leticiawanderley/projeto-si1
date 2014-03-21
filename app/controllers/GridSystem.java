@@ -28,7 +28,7 @@ public class GridSystem {
 	private static final int DECIMO_PERIODO = 10;
 	
 	private Planejador planejador;
-	private Finder<Long, Aluno> finder = new Finder<Long, Aluno>(Long.class, Aluno.class);
+	private Finder<String, Aluno> finder = new Finder<String, Aluno>(String.class, Aluno.class);
 	
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class GridSystem {
 		this.planejador = new Planejador();
 	}
 	
-	public Finder<Long, Aluno> getFinder() {
+	public Finder<String, Aluno> getFinder() {
 		return finder;
 	}
 
