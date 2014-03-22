@@ -1,15 +1,14 @@
 package controllers;
 
-import com.avaje.ebean.Ebean;
-
 import models.Aluno;
 import models.Disciplina;
 import models.Usuario;
 import play.data.Form;
-import play.db.ebean.Model.Finder;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+
+import com.avaje.ebean.Ebean;
 
 /**
  * Classe que controla as requisições do sistema web

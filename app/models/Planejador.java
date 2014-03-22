@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exception.AlunoNaoPossuiPreRequisitosException;
-import exception.NumeroDeCreditosNaoPermitidoException;
 
 /**
  * Representa um controlador que sera responsavel de gerenciar o planejamento da

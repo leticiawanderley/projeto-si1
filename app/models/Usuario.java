@@ -2,7 +2,7 @@ package models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import org.mindrot.jbcrypt.BCrypt;
+
 import play.db.ebean.Model;
 
 /**

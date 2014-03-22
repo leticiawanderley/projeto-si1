@@ -1,6 +1,7 @@
 package exception;
 
 /**
+ * TODO Ainda usaremos
  * Excecao para um periodo que possui o numero de creditos nao permitido
  *
  */

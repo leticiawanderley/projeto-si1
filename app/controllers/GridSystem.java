@@ -1,21 +1,14 @@
 package controllers;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import models.Aluno;
 import models.Disciplina;
-import models.Grade.DisciplinasDSC;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
-import scala.annotation.meta.field;
-import views.html.main;
 
 /**
  * Classe que ira conter os objetos para utilizar no sistema pelo usuario

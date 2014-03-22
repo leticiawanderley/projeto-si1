@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import org.springframework.core.annotation.Order;
-
 import models.validador.ValidacaoCreditos;
 import play.db.ebean.Model;
 

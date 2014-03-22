@@ -1,6 +1,7 @@
 package exception;
 
 /**
+ *TODO Ainda usaremos
  * Excecao para caso o aluno tente pagar uma disciplina que ele nao possua os pre requisitos
  *
  */
