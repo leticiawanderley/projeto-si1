@@ -24,7 +24,6 @@ public class Periodo extends Model {
 	private Long id;
 	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
 	@ManyToMany(cascade = CascadeType.ALL)
-	@Order
 	private List<Disciplina> disciplinas;
 	private int periodo;
 	private int dificuldadeDoPeriodo;

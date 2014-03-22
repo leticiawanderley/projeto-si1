@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.springframework.core.annotation.Order;
 
@@ -30,7 +31,7 @@ public class Aluno extends Usuario {
 	private static final String CREDITOS_PAGOS = "creditosPagos";
 	private static final String CREDITOS_EM_CURSO = "creditosEmCurso";
 	private static final String CREDITOS_PLANEJADOS = "creditosPlanejados";
-	@Order
+	@OrderBy
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
 	private int periodoAtual;

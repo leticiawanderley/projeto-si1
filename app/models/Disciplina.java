@@ -31,7 +31,6 @@ public class Disciplina extends Model {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="listaDePreRequisitos", joinColumns=@JoinColumn(name="disciplina_codigo", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="requisito_codigo", referencedColumnName="id"))
-	@Order
 	private List<Disciplina> listaDePreRequisitos;
 	private int dificuldadeDaDisciplina;
 	
