@@ -28,7 +28,6 @@ public class Periodo extends Model {
 	private List<Disciplina> disciplinas;
 	private int periodo;
 	private int dificuldadeDoPeriodo;
-	@ManyToMany(cascade = CascadeType.ALL)
 	private ValidacaoCreditos validadorDoPeriodo;
 
 	/**
