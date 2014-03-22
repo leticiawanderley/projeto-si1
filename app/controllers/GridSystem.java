@@ -89,16 +89,10 @@ public class GridSystem {
 	}
 	
 	private static void adicionaUsuarios() {
-		File arquivo =new File("conf/usuarios.txt");
-		InputStream is = null;
-		try {
-			is = new FileInputStream(arquivo);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		Scanner usuarios = new Scanner(is);
-		while(usuarios.hasNextLine()) {
-			String[] elementos = usuarios.nextLine().split("-");
+		InputStream is = play.Play.application().resourceAsStream("conf/usuarios.txt");
+		Scanner scanner = new Scanner(is);
+		while(scanner.hasNextLine()) {
+			String[] elementos = scanner.nextLine().split("-");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
 			new GridSystem().addPeriodosAoAluno(aluno);
 			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getListaDePeriodos()
@@ -107,6 +101,7 @@ public class GridSystem {
 					.get((int) (Math.random()*6)));
 			aluno.save();
 		}
+		scanner.close();
 	}
 	
 }
