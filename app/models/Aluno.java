@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.springframework.core.annotation.Order;
+
 import models.validador.ValidacaoCreditos;
 
 /**
@@ -29,6 +31,7 @@ public class Aluno extends Usuario {
 	private static final String CREDITOS_EM_CURSO = "creditosEmCurso";
 	private static final String CREDITOS_PLANEJADOS = "creditosPlanejados";
 	@OneToMany(cascade = CascadeType.ALL)
+	@Order
 	private List<Periodo> listaDePeriodo;
 	@Column
 	private int periodoAtual;

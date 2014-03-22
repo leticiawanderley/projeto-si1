@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import models.Aluno;
@@ -95,6 +96,13 @@ public class GridSystem {
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), NONO_PERIODO));
 		
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
+	}
+	
+	public void reverteListaDePeriodoDoAluno(Aluno aluno) {
+		List<Periodo> periodos = aluno.getListaDePeriodos();
+		for (int i = 0; i < 10; i++) {
+			aluno.getListaDePeriodos().set(i, periodos.get(10 - i));
+		}
 	}
 
 }
