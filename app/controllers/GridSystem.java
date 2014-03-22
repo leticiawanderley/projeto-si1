@@ -1,6 +1,11 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import models.Aluno;
 import models.Disciplina;
@@ -56,6 +61,22 @@ public class GridSystem {
 		return planejador;
 	}
 
+	public void adicionaUsuarios() {
+		Aluno aluno;
+		File arquivo =new File("conf/usuarios.txt");
+		InputStream is = null;
+		try {
+			is = new FileInputStream(arquivo);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		Scanner usuarios = new Scanner(is);
+		while(usuarios.hasNextLine()) {
+			String[] elementos = usuarios.nextLine().split("-");
+			aluno = new Aluno(elementos[0],elementos[1], elementos[2]);
+			aluno.save();
+		}
+	}
 	/**
 	 * Inicia os periodos do aluno
 	 * @param aluno 
