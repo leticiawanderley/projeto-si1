@@ -13,6 +13,8 @@ import models.Disciplina;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
+import scala.annotation.meta.field;
+import views.html.main;
 
 /**
  * Classe que ira conter os objetos para utilizar no sistema pelo usuario
@@ -42,6 +44,9 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
+		/*if (finder.all().isEmpty() || finder.all().size() < 10) {
+			adicionaUsuarios();
+		}*/
 	}
 	
 	public Finder<String, Aluno> getFinder() {
@@ -62,27 +67,11 @@ public class GridSystem {
 		return planejador;
 	}
 
-	public void adicionaUsuarios() {
-		Aluno aluno;
-		File arquivo =new File("conf/usuarios.txt");
-		InputStream is = null;
-		try {
-			is = new FileInputStream(arquivo);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		Scanner usuarios = new Scanner(is);
-		while(usuarios.hasNextLine()) {
-			String[] elementos = usuarios.nextLine().split("-");
-			aluno = new Aluno(elementos[0],elementos[1], elementos[2]);
-			aluno.save();
-		}
-	}
 	/**
 	 * Inicia os periodos do aluno
 	 * @param aluno 
 	 */
-	private void addPeriodosAoAluno(Aluno aluno) {
+	public void addPeriodosAoAluno(Aluno aluno) {
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSegundoPeriodo(), SEGUNDO_PERIODO));
 		aluno.getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoTerceiroPeriodo(), TERCEIRO_PERIODO));
@@ -96,6 +85,31 @@ public class GridSystem {
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), NONO_PERIODO));
 		
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
+	}
+	/*
+	public static void main(String[] args) {
+		adicionaUsuarios();
+	}*/
+	
+	private static void adicionaUsuarios() {
+		File arquivo =new File("conf/usuarios.txt");
+		InputStream is = null;
+		try {
+			is = new FileInputStream(arquivo);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		Scanner usuarios = new Scanner(is);
+		while(usuarios.hasNextLine()) {
+			String[] elementos = usuarios.nextLine().split("-");
+			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
+			new GridSystem().addPeriodosAoAluno(aluno);
+			for (int i = 0; i < ((int)Math.random() * 10); i++) {
+				aluno.getListaDePeriodos().get((int)Math.random()*10).getDisciplinas().remove(0);
+			}
+			System.out.println(new Planejador().getTodasDisciplinasDoAluno(aluno).size());
+		/*	aluno.save();*/
+		}
 	}
 	
 }

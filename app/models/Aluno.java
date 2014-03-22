@@ -30,8 +30,8 @@ public class Aluno extends Usuario {
 	private static final String CREDITOS_PAGOS = "creditosPagos";
 	private static final String CREDITOS_EM_CURSO = "creditosEmCurso";
 	private static final String CREDITOS_PLANEJADOS = "creditosPlanejados";
-	@OneToMany(cascade = CascadeType.ALL)
 	@Order
+	@OneToMany()
 	private List<Periodo> listaDePeriodo;
 	private int periodoAtual;
 
