@@ -99,8 +99,6 @@ public class Application extends Controller {
     	}
     	grid.alocandoNovoUsuario(novoAluno);
     	Ebean.save(novoAluno);
-    	System.out.println("Número de alunos " + 
-    	grid.getFinder().all());
     	session().clear();
     	session("email", novoAluno.getEmail());
     	return index();

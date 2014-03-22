@@ -98,11 +98,4 @@ public class GridSystem {
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
 	}
 	
-	public void reverteListaDePeriodoDoAluno(Aluno aluno) {
-		List<Periodo> periodos = aluno.getListaDePeriodos();
-		for (int i = 0; i < 10; i++) {
-			aluno.getListaDePeriodos().set(i, periodos.get(10 - i));
-		}
-	}
-
 }

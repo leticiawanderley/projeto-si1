@@ -33,7 +33,6 @@ public class Aluno extends Usuario {
 	@OneToMany(cascade = CascadeType.ALL)
 	@Order
 	private List<Periodo> listaDePeriodo;
-	@Column
 	private int periodoAtual;
 
 	/**

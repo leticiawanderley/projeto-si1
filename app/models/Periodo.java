@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.core.annotation.Order;
+
 import models.validador.ValidacaoCreditos;
 import play.db.ebean.Model;
 
@@ -22,9 +24,11 @@ public class Periodo extends Model {
 	private Long id;
 	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
 	@ManyToMany(cascade = CascadeType.ALL)
+	@Order
 	private List<Disciplina> disciplinas;
 	private int periodo;
 	private int dificuldadeDoPeriodo;
+	@ManyToMany(cascade = CascadeType.ALL)
 	private ValidacaoCreditos validadorDoPeriodo;
 
 	/**
