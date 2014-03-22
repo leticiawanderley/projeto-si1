@@ -21,7 +21,6 @@ create table disciplina (
 
 create table periodo (
   id                        bigint not null,
-  aluno_email               varchar(255) not null,
   periodo                   integer,
   dificuldade_do_periodo    integer,
   validador_do_periodo      integer,
@@ -36,6 +35,12 @@ create table usuario (
   constraint pk_usuario primary key (email))
 ;
 
+
+create table aluno_periodo (
+  aluno_email                    varchar(255) not null,
+  periodo_id                     bigint not null,
+  constraint pk_aluno_periodo primary key (aluno_email, periodo_id))
+;
 
 create table listaDePreRequisitos (
   disciplina_codigo              bigint not null,
@@ -56,10 +61,12 @@ create sequence periodo_seq;
 
 create sequence usuario_seq;
 
-alter table periodo add constraint fk_periodo_aluno_1 foreign key (aluno_email) references aluno (email) on delete restrict on update restrict;
-create index ix_periodo_aluno_1 on periodo (aluno_email);
 
 
+
+alter table aluno_periodo add constraint fk_aluno_periodo_aluno_01 foreign key (aluno_email) references aluno (email) on delete restrict on update restrict;
+
+alter table aluno_periodo add constraint fk_aluno_periodo_periodo_02 foreign key (periodo_id) references periodo (id) on delete restrict on update restrict;
 
 alter table listaDePreRequisitos add constraint fk_listaDePreRequisitos_disci_01 foreign key (disciplina_codigo) references disciplina (id) on delete restrict on update restrict;
 
@@ -74,6 +81,8 @@ alter table periodo_disciplina add constraint fk_periodo_disciplina_discipl_02 f
 SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists aluno;
+
+drop table if exists aluno_periodo;
 
 drop table if exists disciplina;
 

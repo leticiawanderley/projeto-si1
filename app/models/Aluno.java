@@ -7,7 +7,7 @@ import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 
 import models.validador.ValidacaoCreditos;
@@ -29,7 +29,7 @@ public class Aluno extends Usuario {
 	private static final String CREDITOS_EM_CURSO = "creditosEmCurso";
 	private static final String CREDITOS_PLANEJADOS = "creditosPlanejados";
 	@OrderBy
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
 	private int periodoAtual;
 
