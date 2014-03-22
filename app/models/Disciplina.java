@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.core.annotation.Order;
+
 import play.db.ebean.Model;
 
 /**
@@ -29,6 +31,7 @@ public class Disciplina extends Model {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="listaDePreRequisitos", joinColumns=@JoinColumn(name="disciplina_codigo", referencedColumnName="id"),
 	inverseJoinColumns=@JoinColumn(name="requisito_codigo", referencedColumnName="id"))
+	@Order
 	private List<Disciplina> listaDePreRequisitos;
 	private int dificuldadeDaDisciplina;
 	
