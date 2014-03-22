@@ -1,3 +1,4 @@
+
 package models;
 
 import java.util.ArrayList;
@@ -80,13 +81,13 @@ public class Grade {
 		ADSD(new Disciplina("Avaliação de Desempenho de Sistemas Discretos", QUATRO_CREDITOS, new Disciplina[]{PROBABILIDADE.getDisciplina()}, DIFICIL)),
 		PROJETO1(new Disciplina("Projeto em Computação 1", QUATRO_CREDITOS, new Disciplina[]{METODOLOGIA.getDisciplina(), LES.getDisciplina()}, DIFICIL)),
 		OP3(new Disciplina("Optativa 3", QUATRO_CREDITOS, DIFICIL)),
-		OP4(new Disciplina("Optativa 4", DOIS_CREDITOS, MEDIO)),
+		OP4(new Disciplina("Optativa 4", QUATRO_CREDITOS, MEDIO)),
 		OP5(new Disciplina("Optativa 5", QUATRO_CREDITOS, FACIL)),
-		OP6(new Disciplina("Optativa 6", DOIS_CREDITOS, FACIL)),
+		OP6(new Disciplina("Optativa 6", QUATRO_CREDITOS, FACIL)),
 		
 		PROJETO2(new Disciplina("Projeto em Computação 2", SEIS_CREDITOS, new Disciplina[]{PROJETO1.getDisciplina()}, DIFICIL)),
 		OP7(new Disciplina("Optativa 7", QUATRO_CREDITOS, MEDIO)),
-		OP8(new Disciplina("Optativa 8", DOIS_CREDITOS, DIFICIL)),
+		OP8(new Disciplina("Optativa 8", QUATRO_CREDITOS, DIFICIL)),
 		OP9(new Disciplina("Optativa 9", QUATRO_CREDITOS, FACIL)),
 		OP10(new Disciplina("Optativa 10",	QUATRO_CREDITOS, FACIL)),
 		OP11(new Disciplina("Optativa 11", QUATRO_CREDITOS, MEDIO)),

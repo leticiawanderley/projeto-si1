@@ -80,7 +80,7 @@
     </p>
 </head>
 <body onload="colorPeriodos()" >
-	<table>
+	<table width="98%">
 		<tr><div class="thumbnail">
 			<div class="btn-group">
 				@form(routes.Application.verGrade()) {
@@ -88,7 +88,7 @@
    				}
    			</div>
 		</div></tr>
-		<tr><div>
+		<tr><td width="60%"><div>
 			<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
 				<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value-1)">
 				<input type="submit" class="btn btn-info" value="2" onclick="selecionaPeriodo(this.value-1)">
@@ -101,7 +101,24 @@
 				<input type="submit" class="btn btn-info" value="9" onclick="selecionaPeriodo(this.value-1)">
 				<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value-1)">
 			<br><br>				
-		</div></tr>
+		</div></td>
+		<td width="25%" align="left">
+			<table class="thumbnail">
+				<tr>
+					<td><h5>Créditos pagos: </h5>
+						<h3><small>@aluno.estatisticasDoAluno().get("creditosPagos")</small></h3>
+					</td>
+					<td><h5>Créditos em curso: </h5>
+						<h3><small>@aluno.estatisticasDoAluno().get("creditosEmCurso")</small></h3>
+					</td>
+					<td><h5>Créditos Planejados: </h5>
+						<h3><small>@aluno.estatisticasDoAluno().get("creditosPlanejados")</small></h3>
+					</td>
+				</tr>
+			</table>
+		</td>		
+		</tr>
+		
 	</table>
    		 
 			
