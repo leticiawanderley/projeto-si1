@@ -9,6 +9,7 @@ import models.Disciplina;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
+import views.html.main;
 
 /**
  * Classe que ira conter os objetos para utilizar no sistema pelo usuario
@@ -38,9 +39,9 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
-		if (finder.all().isEmpty() || finder.all().size() < 10) {
+	/*	if (finder.all().isEmpty() || finder.all().size() < 10) {
 			adicionaUsuarios();
-		}
+		}*/
 	}
 	
 	public Finder<String, Aluno> getFinder() {
