@@ -10,14 +10,14 @@ import play.db.ebean.Model;
  *
  */
 @Entity
-public class User extends Model {
+public class Usuario extends Model {
 
 	private static final long serialVersionUID = 1L;
 	private String name;
 	@Id
     private String email;
     private String password;
-    public static Finder<String,User> find = new Finder<String,User>(String.class, User.class); 
+    public static Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class); 
     
     /**
      * Construtor de classe 
@@ -25,7 +25,7 @@ public class User extends Model {
      * @param email e-mail do usuario
      * @param password senha do usuario
      */
-	public User(String name, String email, String password) {
+	public Usuario(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -35,7 +35,7 @@ public class User extends Model {
 		/*this.save();*/
 	}
 	
-    public  User authenticate(String email, String password) {
+    public  Usuario authenticate(String email, String password) {
     		    // metodo para checar se senha confere
     		    /*if (BCrypt.checkpw(password, this.password)) {
     		    	System.out.println("reconheceu");
@@ -99,7 +99,7 @@ public class User extends Model {
 			return true;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Usuario other = (Usuario) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;

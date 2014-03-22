@@ -4,7 +4,7 @@ import com.avaje.ebean.Ebean;
 
 import models.Aluno;
 import models.Disciplina;
-import models.User;
+import models.Usuario;
 import play.data.Form;
 import play.db.ebean.Model.Finder;
 import play.mvc.Controller;
@@ -79,11 +79,11 @@ public class Application extends Controller {
     }
 	
 	public static Result cadastrarNovoUsuario() {
-		return ok(views.html.cadastrarUsuario.render(Form.form(User.class)));
+		return ok(views.html.cadastrarUsuario.render(Form.form(Usuario.class)));
 	}
 	
 	public static Result criarUsuario() {
-		Form<User> loginForm = Form.form(User.class).bindFromRequest();
+		Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
 		if (loginForm.get().getPassword().equals("")) {
 			flash("success", "A senha não pode ser vazia");
 			return cadastrarNovoUsuario();
@@ -106,7 +106,7 @@ public class Application extends Controller {
     	return index();
 	}
 	public static Result login() {
-	    return ok(views.html.login.render(Form.form(User.class)));
+	    return ok(views.html.login.render(Form.form(Usuario.class)));
 	}
 	
 	public static Result logout() {
@@ -117,7 +117,7 @@ public class Application extends Controller {
 	}
 	
 	public static Result authenticate() {
-	    Form<User> loginForm = Form.form(User.class).bindFromRequest();
+	    Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
 	    if (loginForm.hasErrors()) {
 	        return badRequest(views.html.login.render(loginForm));
 	    } else {
@@ -133,7 +133,7 @@ public class Application extends Controller {
 	    		}
 	    	}
 	    }
-	    return badRequest(views.html.login.render(Form.form(User.class)));
+	    return badRequest(views.html.login.render(Form.form(Usuario.class)));
 	}
 	
 	public static Result setarPeriodoAtual(int periodoAtual) {

@@ -29,11 +29,11 @@ create table periodo (
   constraint pk_periodo primary key (id))
 ;
 
-create table user (
+create table usuario (
   email                     varchar(255) not null,
   name                      varchar(255),
   password                  varchar(255),
-  constraint pk_user primary key (email))
+  constraint pk_usuario primary key (email))
 ;
 
 
@@ -54,7 +54,7 @@ create sequence disciplina_seq;
 
 create sequence periodo_seq;
 
-create sequence user_seq;
+create sequence usuario_seq;
 
 alter table periodo add constraint fk_periodo_aluno_1 foreign key (aluno_email) references aluno (email) on delete restrict on update restrict;
 create index ix_periodo_aluno_1 on periodo (aluno_email);
@@ -83,7 +83,7 @@ drop table if exists periodo;
 
 drop table if exists periodo_disciplina;
 
-drop table if exists user;
+drop table if exists usuario;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
@@ -93,5 +93,5 @@ drop sequence if exists disciplina_seq;
 
 drop sequence if exists periodo_seq;
 
-drop sequence if exists user_seq;
+drop sequence if exists usuario_seq;
 

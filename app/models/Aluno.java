@@ -17,7 +17,7 @@ import models.validador.ValidacaoCreditos;
  * 
  */
 @Entity
-public class Aluno extends User {
+public class Aluno extends Usuario {
 
 	// INFORMATION EXPERT - contém as informacoes do
 	// aluno:nomeDoAluno,listaDePeriodos .
