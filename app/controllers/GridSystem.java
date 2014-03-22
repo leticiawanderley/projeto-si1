@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import models.Aluno;
 import models.Disciplina;
+import models.Grade.DisciplinasDSC;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
@@ -44,9 +45,9 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
-		/*if (finder.all().isEmpty() || finder.all().size() < 10) {
+		if (finder.all().isEmpty() || finder.all().size() < 10) {
 			adicionaUsuarios();
-		}*/
+		}
 	}
 	
 	public Finder<String, Aluno> getFinder() {
@@ -86,10 +87,6 @@ public class GridSystem {
 		
 		aluno.getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
 	}
-	/*
-	public static void main(String[] args) {
-		adicionaUsuarios();
-	}*/
 	
 	private static void adicionaUsuarios() {
 		File arquivo =new File("conf/usuarios.txt");
@@ -104,11 +101,11 @@ public class GridSystem {
 			String[] elementos = usuarios.nextLine().split("-");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
 			new GridSystem().addPeriodosAoAluno(aluno);
-			for (int i = 0; i < ((int)Math.random() * 10); i++) {
-				aluno.getListaDePeriodos().get((int)Math.random()*10).getDisciplinas().remove(0);
-			}
-			System.out.println(new Planejador().getTodasDisciplinasDoAluno(aluno).size());
-		/*	aluno.save();*/
+			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getListaDePeriodos()
+					.get(PRIMEIRO_PERIODO)
+					.getDisciplinas()
+					.get((int) (Math.random()*6)));
+			aluno.save();
 		}
 	}
 	
