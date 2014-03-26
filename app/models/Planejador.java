@@ -113,6 +113,42 @@ public class Planejador {
 	}
 
 	/**
+	 * Método para interface que retorna uma String contendo todas as
+	 * disciplinas que são pré-requisitos da disciplina passada como parâmetro e
+	 * não estão alocadas corretamente
+	 * 
+	 * @param aluno
+	 * 		aluno que está no sistema
+	 * @param disciplina
+	 * 		disciplina analisada
+	 * @param periodo
+	 * 		período atual da disciplina analisada
+	 * @return
+	 * 		String com todos as disciplinas pré-requisito não alocadas corretamente
+	 */
+	public String getRequisitosNaoPreenchidos(Aluno aluno,
+			Disciplina disciplina, int periodo) {
+		String requisitosNaoPreenchidos = "\n";
+		for (Periodo periodoAnalisado : aluno.getListaDePeriodos()) {
+			for (Disciplina disciplinaAnalisada : periodoAnalisado
+					.getDisciplinas()) {
+				if (disciplina.getListaDePreRequisitos().contains(
+						disciplinaAnalisada)
+						&& periodoAnalisado.getPeriodo() - 1 >= periodo) {
+					requisitosNaoPreenchidos += disciplinaAnalisada.getNome()
+							+ "\n";
+				}
+			}
+		}
+		for (Disciplina d : disciplina.getListaDePreRequisitos()) {
+			if (!getTodasDisciplinasDoAluno(aluno).contains(d)) {
+				requisitosNaoPreenchidos += d.getNome() + "\n";
+			}
+		}
+		return requisitosNaoPreenchidos;
+	}
+
+	/**
 	 * 
 	 * @param aluno
 	 *            aluno que estah no sistema
