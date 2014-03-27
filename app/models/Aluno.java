@@ -22,7 +22,7 @@ public class Aluno extends Usuario {
 	// INFORMATION EXPERT - contém as informacoes do
 	private static final int PRIMEIRO_PERIODO = 0;
 	private static final int ULTIMO_PERIODO = 9;
-	@OrderBy("periodo")
+	@OrderBy("numeroDoPeriodo")
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
 	private int periodoAtual;
