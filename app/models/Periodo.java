@@ -17,13 +17,12 @@ import play.db.ebean.Model;
 @Entity
 public class Periodo extends Model {
 	
-	private static final long serialVersionUID = 1L;
 	@Id
 	private Long id;
 	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
-	private int periodo;
+	private int numeroDoPeriodo;
 	private int dificuldadeDoPeriodo;
 	private ValidacaoCreditos validadorDoPeriodo;
 
@@ -33,7 +32,7 @@ public class Periodo extends Model {
 	 * @param periodo quantificacao do periodo
 	 */
 	public Periodo(List<Disciplina> disciplinas, int periodo) {
-		this.periodo = periodo;
+		this.numeroDoPeriodo = periodo;
 		this.disciplinas = disciplinas;
 		dificuldadeDoPeriodo(disciplinas, periodo);
 		this.validadorDoPeriodo = ValidacaoCreditos.MINMAX;
@@ -43,16 +42,16 @@ public class Periodo extends Model {
 	 * Retorna o valor do periodo
 	 * @return
 	 */
-	public int getPeriodo() {
-		return periodo;
+	public int getNumeroDoPeriodo() {
+		return numeroDoPeriodo;
 	}
 	
 	/**
 	 * Altera o valor do periodo
 	 * @param periodo
 	 */
-	public void setPeriodo(int periodo) {
-		this.periodo = periodo;
+	public void setNumeroDoPeriodoPeriodo(int periodo) {
+		this.numeroDoPeriodo = periodo;
 	}
 	
 	/**
@@ -96,28 +95,48 @@ public class Periodo extends Model {
 		}
 	}
 	
-	public boolean numeroDeCreditosValido() {
+	/**
+	 * 
+	 * @return se o perido eh valido
+	 */
+	public boolean ehPeriodoValido() {
 		return getValidadorDoPeriodo().permiteNumeroDeCreditos(getNumeroDeCreditosDoPeriodo());
 	}
 	
+	/**
+	 * 
+	 * @return 
+	 */
 	public String tipoValidacao() {
 		return getValidadorDoPeriodo().getTipoValidacao(getNumeroDeCreditosDoPeriodo());
 	}
 
+	/**
+	 * 
+	 * @return o id da disciplina
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id o id da disciplina
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public ValidacaoCreditos getValidadorDoPeriodo() {
-		return validadorDoPeriodo;
-	}
-
+	/**
+	 * 
+	 * @param validadorDoPeriodo novo validador do periodo
+	 */
 	public void setValidadorDoPeriodo(ValidacaoCreditos validadorDoPeriodo) {
 		this.validadorDoPeriodo = validadorDoPeriodo;
+	}
+
+	public ValidacaoCreditos getValidadorDoPeriodo() {
+		return this.validadorDoPeriodo;
 	}
 	
 }

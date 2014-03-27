@@ -82,7 +82,7 @@ public class Planejador {
 					.getDisciplinas()) {
 				if (disciplina.getListaDePreRequisitos().contains(
 						disciplinaAnalisada)
-						&& periodoAnalisado.getPeriodo() - 1 >= periodo) {
+						&& periodoAnalisado.getNumeroDoPeriodo() - 1 >= periodo) {
 					return true;
 				}
 			}
@@ -136,7 +136,7 @@ public class Planejador {
 					.getDisciplinas()) {
 				if (disciplina.getListaDePreRequisitos().contains(
 						disciplinaAnalisada)
-						&& periodoAnalisado.getPeriodo() - 1 >= periodo) {
+						&& periodoAnalisado.getNumeroDoPeriodo() - 1 >= periodo) {
 					requisitosNaoPreenchidos += disciplinaAnalisada.getNome()
 							+ "\n";
 				}
@@ -297,7 +297,7 @@ public class Planejador {
 	}
 
 	/**
-	 * 
+	 * Metodo para obter os dados de creditos pagos, creditos em curso e creditos planejador pelo aluno.
 	 * @param aluno aluno que estah logado no sistema
 	 * @return mapa com os dados de acordo com o planejamento do aluno
 	 */
@@ -313,9 +313,9 @@ public class Planejador {
 		estatisticas.put(CREDITOS_PLANEJADOS, 0);
 		
 		for (Periodo periodo : aluno.getListaDePeriodos()) {
-			if (periodo.getPeriodo() < aluno.getPeriodoAtual()) {
+			if (periodo.getNumeroDoPeriodo() < aluno.getPeriodoAtual()) {
 				estatisticas.put(CREDITOS_PAGOS, estatisticas.get(CREDITOS_PAGOS) + periodo.getNumeroDeCreditosDoPeriodo());
-			} else if (periodo.getPeriodo() == aluno.getPeriodoAtual()) {
+			} else if (periodo.getNumeroDoPeriodo() == aluno.getPeriodoAtual()) {
 				estatisticas.put(CREDITOS_EM_CURSO, estatisticas.get(CREDITOS_EM_CURSO) + periodo.getNumeroDeCreditosDoPeriodo());
 			} else {
 				estatisticas.put(CREDITOS_PLANEJADOS, estatisticas.get(CREDITOS_PLANEJADOS) + periodo.getNumeroDeCreditosDoPeriodo());

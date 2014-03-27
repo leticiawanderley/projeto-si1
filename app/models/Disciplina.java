@@ -22,7 +22,6 @@ public class Disciplina extends Model {
 	
 	@Id
 	private Long id;
-	private static final long serialVersionUID = 1L;
 	//INFORMATION EXPERT - Contém as informações da disciplina: id,nomeDaDisciplina, numeroDeCreditos, listaDePreRequisitos e o periodoAlocado. 
 	private String nomeDaDisciplina;
 	private int numeroDeCreditos;
@@ -132,10 +131,18 @@ public class Disciplina extends Model {
 		this.dificuldadeDaDisciplina = dificuldade;
 	}
 
+	/**
+	 * 
+	 * @return o id da disciplina
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * 
+	 * @param id novo id da disciplina
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
