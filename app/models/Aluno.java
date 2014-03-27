@@ -20,14 +20,8 @@ import models.validador.ValidacaoCreditos;
 public class Aluno extends Usuario {
 
 	// INFORMATION EXPERT - contém as informacoes do
-	// aluno:nomeDoAluno,listaDePeriodos .
-
-	private static final long serialVersionUID = 7507028957989504099L;
 	private static final int PRIMEIRO_PERIODO = 0;
 	private static final int ULTIMO_PERIODO = 9;
-	private static final String CREDITOS_PAGOS = "creditosPagos";
-	private static final String CREDITOS_EM_CURSO = "creditosEmCurso";
-	private static final String CREDITOS_PLANEJADOS = "creditosPlanejados";
 	@OrderBy("periodo")
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
@@ -77,32 +71,5 @@ public class Aluno extends Usuario {
 		listaDePeriodo.get(ULTIMO_PERIODO).setValidadorDoPeriodo(
 				ValidacaoCreditos.MIN);
 	}
-
-	public Map<String, Integer> estatisticasDoAluno() {
-		Map<String, Integer> estatisticas = new HashMap<String, Integer>();
-		int quantidadeDeCreditos;
-		estatisticas.put(CREDITOS_PAGOS, 0);
-		estatisticas.put(CREDITOS_EM_CURSO, 0);
-		estatisticas.put(CREDITOS_PLANEJADOS, 0);
-		for (int i = 0; i < getListaDePeriodos().size(); i++) {
-			if (i < periodoAtual) {
-				quantidadeDeCreditos = estatisticas.get(CREDITOS_PAGOS);
-				estatisticas.put(CREDITOS_PAGOS, quantidadeDeCreditos
-						+ getListaDePeriodos().get(i)
-								.getNumeroDeCreditosDoPeriodo());
-			} else if (i == periodoAtual) {
-				estatisticas.put(CREDITOS_EM_CURSO, getListaDePeriodos().get(i)
-						.getNumeroDeCreditosDoPeriodo());
-			} else {
-				quantidadeDeCreditos = estatisticas.get(CREDITOS_PLANEJADOS);
-				estatisticas.put(CREDITOS_PLANEJADOS, quantidadeDeCreditos
-						+ getListaDePeriodos().get(i)
-								.getNumeroDeCreditosDoPeriodo());
-			}
-		}
-		return estatisticas;
-	}
-	
-	
 
 }

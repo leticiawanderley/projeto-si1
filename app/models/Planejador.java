@@ -1,7 +1,9 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import exception.AlunoNaoPossuiPreRequisitosException;
 
@@ -118,13 +120,13 @@ public class Planejador {
 	 * não estão alocadas corretamente
 	 * 
 	 * @param aluno
-	 * 		aluno que está no sistema
+	 *            aluno que está no sistema
 	 * @param disciplina
-	 * 		disciplina analisada
+	 *            disciplina analisada
 	 * @param periodo
-	 * 		período atual da disciplina analisada
-	 * @return
-	 * 		String com todos as disciplinas pré-requisito não alocadas corretamente
+	 *            período atual da disciplina analisada
+	 * @return String com todos as disciplinas pré-requisito não alocadas
+	 *         corretamente
 	 */
 	public String getRequisitosNaoPreenchidos(Aluno aluno,
 			Disciplina disciplina, int periodo) {
@@ -293,5 +295,34 @@ public class Planejador {
 			}
 		}
 	}
+
+	/**
+	 * 
+	 * @param aluno aluno que estah logado no sistema
+	 * @return mapa com os dados de acordo com o planejamento do aluno
+	 */
+	public Map<String, Integer> estatisticasDoAluno(Aluno aluno) {
+		String CREDITOS_PAGOS = "creditosPagos";
+		String CREDITOS_EM_CURSO = "creditosEmCurso";
+		String CREDITOS_PLANEJADOS = "creditosPlanejados";
+
+		Map<String, Integer> estatisticas = new HashMap<String, Integer>();
+		
+		estatisticas.put(CREDITOS_PAGOS, 0);
+		estatisticas.put(CREDITOS_EM_CURSO, 0);
+		estatisticas.put(CREDITOS_PLANEJADOS, 0);
+		
+		for (Periodo periodo : aluno.getListaDePeriodos()) {
+			if (periodo.getPeriodo() < aluno.getPeriodoAtual()) {
+				estatisticas.put(CREDITOS_PAGOS, estatisticas.get(CREDITOS_PAGOS) + periodo.getNumeroDeCreditosDoPeriodo());
+			} else if (periodo.getPeriodo() == aluno.getPeriodoAtual()) {
+				estatisticas.put(CREDITOS_EM_CURSO, estatisticas.get(CREDITOS_EM_CURSO) + periodo.getNumeroDeCreditosDoPeriodo());
+			} else {
+				estatisticas.put(CREDITOS_PLANEJADOS, estatisticas.get(CREDITOS_PLANEJADOS) + periodo.getNumeroDeCreditosDoPeriodo());
+			}
+		}
+		return estatisticas;
+	}
+	
 
 }

@@ -106,13 +106,13 @@
 			<table class="thumbnail">
 				<tr>
 					<td><h5>Créditos pagos: </h5>
-						<h3><small>@aluno.estatisticasDoAluno().get("creditosPagos")</small></h3>
+						<h3><small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h3>
 					</td>
 					<td><h5>Créditos em curso: </h5>
-						<h3><small>@aluno.estatisticasDoAluno().get("creditosEmCurso")</small></h3>
+						<h3><small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h3>
 					</td>
 					<td><h5>Créditos Planejados: </h5>
-						<h3><small>@aluno.estatisticasDoAluno().get("creditosPlanejados")</small></h3>
+						<h3><small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h3>
 					</td>
 				</tr>
 			</table>
