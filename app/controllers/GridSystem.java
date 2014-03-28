@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import models.Aluno;
 import models.Disciplina;
+import models.GradeComum;
+import models.GradeOficial;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
@@ -50,7 +52,7 @@ public class GridSystem {
 
 	public void alocandoNovoUsuario(Aluno aluno) {
 		if (aluno.getPlanoDoAluno().getListaDePeriodos().isEmpty()) {
-			addPeriodosAoAluno(aluno);
+			addPeriodosAoAluno(aluno,"comum");
 		}
 	}
 	
@@ -66,7 +68,12 @@ public class GridSystem {
 	 * Inicia os periodos do aluno
 	 * @param aluno 
 	 */
-	public void addPeriodosAoAluno(Aluno aluno) {
+	public void addPeriodosAoAluno(Aluno aluno, String tipoDeGrade) {
+		
+		if(tipoDeGrade.equals("comum")) {
+			planejador.setGrade(new GradeComum());
+		}
+		
 		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
 		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSegundoPeriodo(), SEGUNDO_PERIODO));
 		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoTerceiroPeriodo(), TERCEIRO_PERIODO));
@@ -88,7 +95,7 @@ public class GridSystem {
 		while(scanner.hasNextLine()) {
 			String[] elementos = scanner.nextLine().split("-");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
-			new GridSystem().addPeriodosAoAluno(aluno);
+			new GridSystem().addPeriodosAoAluno(aluno,"comum");
 			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getPlanoDoAluno().getListaDePeriodos()
 					.get(PRIMEIRO_PERIODO)
 					.getDisciplinas()

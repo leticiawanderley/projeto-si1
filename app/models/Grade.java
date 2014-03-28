@@ -9,7 +9,7 @@ import java.util.List;
  * Representacao da grade de Ciencia da Computacao da Universidade Federal de Campina Grande 
  *
  */
-public class Grade {
+public abstract class Grade {
 	
 	private static final int DOIS_CREDITOS = 2;
 	private static final int QUATRO_CREDITOS = 4;
@@ -277,6 +277,10 @@ public class Grade {
 		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP10.getDisciplina());
 		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.OP11.getDisciplina());
 		return disciplinasDoOitavoPeriodo;
+	}
+	
+	public void iniciaGradeMaisComum() {
+		
 	}
 	
 	/**

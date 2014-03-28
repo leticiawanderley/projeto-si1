@@ -16,7 +16,11 @@ public class Planejador {
 
 	// CONTROLLER - Delega para outros objetos o trabalho que precisa ser feito
 	// CREATOR - Classe Planejador registra objeto do tipo Grade
-	private Grade grade = new Grade();
+	private Grade grade ;
+
+	public Planejador() {
+		this.grade = new GradeOficial();
+	}
 
 	private static final int MINIMO_CREDITOS = 14;
 	private static final int MAXIMO_CREDITOS = 28;
@@ -322,6 +326,9 @@ public class Planejador {
 			}
 		}
 		return estatisticas;
+	}
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
 	
 
