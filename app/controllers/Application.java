@@ -135,7 +135,7 @@ public class Application extends Controller {
 	
 	public static Result setarPeriodoAtual(int periodoAtual) {
 		Aluno aluno = grid.getFinder().byId(session("email"));
-		aluno.setPeriodoAtual(periodoAtual);
+		aluno.getPlanoDoAluno().setPeriodoAtual(periodoAtual);
 		aluno.update();
 		return redirect("/");
 	}

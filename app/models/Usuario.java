@@ -17,6 +17,7 @@ public class Usuario extends Model {
 	@Id
     private String email;
     private String password;
+    
     public static Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class); 
     
     /**

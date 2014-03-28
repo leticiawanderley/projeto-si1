@@ -38,79 +38,79 @@ public class SistemaTest {
 		assertFalse(planejador.getTodasDisciplinasDoAluno(aluno).contains(DisciplinasDSC.MSN.getDisciplina()));
 		
 		// TODO Ainda arrumarei os testes para passarem =P
-		aluno.setPeriodoAtual(PERIODO_ATUAL);
+		aluno.getPlanoDoAluno().setPeriodoAtual(PERIODO_ATUAL);
 		
 		for (int i = 0; i < PERIODO_ATUAL; i++) {
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
 		for (int i = PERIODO_ATUAL; i < ULTIMO_PERIODO; i++) {
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+		assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		
 		// TODO
-		aluno.setPeriodoAtual(PERIODO_ALTERADO );
+		aluno.getPlanoDoAluno().setPeriodoAtual(PERIODO_ALTERADO );
 		
 		for (int i = 0; i < PERIODO_ALTERADO; i++) {
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
 		for (int i = PERIODO_ALTERADO; i < ULTIMO_PERIODO; i++) {
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+		assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		
 		// TODO
-		aluno.setPeriodoAtual(OUTRO_PERIODO_ALTERADO);
+		aluno.getPlanoDoAluno().setPeriodoAtual(OUTRO_PERIODO_ALTERADO);
 		
 		for (int i = 0; i < OUTRO_PERIODO_ALTERADO; i++) {
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
 		for (int i = OUTRO_PERIODO_ALTERADO; i < ULTIMO_PERIODO; i++) {
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-			assertTrue(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-			assertFalse(aluno.getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+			assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+			assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 		}
 		
-		assertFalse(aluno.getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
-		assertTrue(aluno.getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
+		assertFalse(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO ).getValidadorDoPeriodo().permiteNumeroDeCreditos(MENOR_DO_QUE_MINIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MINIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(NUMERO_CREDITOS_NORMAL));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAXIMO_DE_CREDITOS));
+		assertTrue(aluno.getPlanoDoAluno().getListaDePeriodos().get(ULTIMO_PERIODO).getValidadorDoPeriodo().permiteNumeroDeCreditos(MAIOR_DO_QUE_MAXIMO_DE_CREDITOS));
 	}
 
 }

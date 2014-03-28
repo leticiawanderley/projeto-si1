@@ -1,16 +1,11 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
+import javax.persistence.OneToOne;
 
-import models.validador.ValidacaoCreditos;
+import play.data.validation.Constraints;
+
 
 /**
  * Classe que representa um aluno
@@ -19,13 +14,14 @@ import models.validador.ValidacaoCreditos;
 @Entity
 public class Aluno extends Usuario {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// INFORMATION EXPERT - contém as informacoes do
-	private static final int PRIMEIRO_PERIODO = 0;
-	private static final int ULTIMO_PERIODO = 9;
-	@OrderBy("numeroDoPeriodo")
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Periodo> listaDePeriodo;
-	private int periodoAtual;
+	@OneToOne(cascade = CascadeType.ALL)
+	@Constraints.Required
+	private Plano planoDoAluno;
 
 	/**
 	 * Construtor da classe
@@ -35,41 +31,16 @@ public class Aluno extends Usuario {
 	 */
 	public Aluno(String name, String email, String password) {
 		super(name, email, password);
-		this.listaDePeriodo = new ArrayList<Periodo>();
-		this.periodoAtual = PRIMEIRO_PERIODO;
+		this.planoDoAluno = new Plano();
+		this.planoDoAluno.save();
 	}
 
-	/**
-	 * 
-	 * @return a lista dos periodos do aluno
-	 */
-	public List<Periodo> getListaDePeriodos() {
-		return listaDePeriodo;
+	public Plano getPlanoDoAluno() {
+		return planoDoAluno;
 	}
 
-	/**
-	 * 
-	 * @return o periodo em que o aluno estah
-	 */
-	public int getPeriodoAtual() {
-		return periodoAtual;
-	}
-
-	/**
-	 * @param periodoAtual
-	 *            o periodo em que o aluno estah atualmente
-	 */
-	public void setPeriodoAtual(int periodoAtual) {
-		this.periodoAtual = periodoAtual;
-		for (int i = 0; i < periodoAtual; i++) {
-			listaDePeriodo.get(i).setValidadorDoPeriodo(ValidacaoCreditos.MAX);
-		}
-		for (int i = periodoAtual; i < listaDePeriodo.size(); i++) {
-			listaDePeriodo.get(i).setValidadorDoPeriodo(
-					ValidacaoCreditos.MINMAX);
-		}
-		listaDePeriodo.get(ULTIMO_PERIODO).setValidadorDoPeriodo(
-				ValidacaoCreditos.MIN);
+	public void setPlanoDoAluno(Plano planoDoAluno) {
+		this.planoDoAluno = planoDoAluno;
 	}
 
 }

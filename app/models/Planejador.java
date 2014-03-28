@@ -58,7 +58,7 @@ public class Planejador {
 	 */
 	public void addCadeiraAoAluno(Aluno aluno, Disciplina disciplina,
 			int periodo) {
-		aluno.getListaDePeriodos().get(periodo).getDisciplinas()
+		aluno.getPlanoDoAluno().getListaDePeriodos().get(periodo).getDisciplinas()
 				.add(disciplina);
 	}
 
@@ -77,7 +77,7 @@ public class Planejador {
 	 */
 	public boolean verificaPeriodoDiferenteDosRequisitos(Aluno aluno,
 			Disciplina disciplina, int periodo) {
-		for (Periodo periodoAnalisado : aluno.getListaDePeriodos()) {
+		for (Periodo periodoAnalisado : aluno.getPlanoDoAluno().getListaDePeriodos()) {
 			for (Disciplina disciplinaAnalisada : periodoAnalisado
 					.getDisciplinas()) {
 				if (disciplina.getListaDePreRequisitos().contains(
@@ -131,7 +131,7 @@ public class Planejador {
 	public String getRequisitosNaoPreenchidos(Aluno aluno,
 			Disciplina disciplina, int periodo) {
 		String requisitosNaoPreenchidos = "\n";
-		for (Periodo periodoAnalisado : aluno.getListaDePeriodos()) {
+		for (Periodo periodoAnalisado : aluno.getPlanoDoAluno().getListaDePeriodos()) {
 			for (Disciplina disciplinaAnalisada : periodoAnalisado
 					.getDisciplinas()) {
 				if (disciplina.getListaDePreRequisitos().contains(
@@ -157,7 +157,7 @@ public class Planejador {
 	 * @return se o aluno tem o minimo de creditos
 	 */
 	public boolean alunoTemMinimoDeCreditos(Aluno aluno, int periodo) {
-		return aluno.getListaDePeriodos().get(periodo)
+		return aluno.getPlanoDoAluno().getListaDePeriodos().get(periodo)
 				.getNumeroDeCreditosDoPeriodo() >= MINIMO_CREDITOS;
 	}
 
@@ -168,7 +168,7 @@ public class Planejador {
 	 * @return se o aluno tem o numero maximo de creditos
 	 */
 	public boolean alunoTemMaximoDeCreditos(Aluno aluno, int periodo) {
-		return aluno.getListaDePeriodos().get(periodo)
+		return aluno.getPlanoDoAluno().getListaDePeriodos().get(periodo)
 				.getNumeroDeCreditosDoPeriodo() > MAXIMO_CREDITOS;
 	}
 
@@ -196,7 +196,7 @@ public class Planejador {
 	 */
 	public List<Disciplina> getTodasDisciplinasDoAluno(Aluno aluno) {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-		for (Periodo periodo : aluno.getListaDePeriodos()) {
+		for (Periodo periodo : aluno.getPlanoDoAluno().getListaDePeriodos()) {
 			disciplinas.addAll(periodo.getDisciplinas());
 		}
 		return disciplinas;
@@ -215,12 +215,12 @@ public class Planejador {
 			Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = getDisciplinasDependentes(
 				aluno, disciplina);
-		for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
-			for (int j = 0; j < aluno.getListaDePeriodos().get(i)
+		for (int i = 0; i < aluno.getPlanoDoAluno().getListaDePeriodos().size(); i++) {
+			for (int j = 0; j < aluno.getPlanoDoAluno().getListaDePeriodos().get(i)
 					.getDisciplinas().size(); j++) {
-				if (aluno.getListaDePeriodos().get(i).getDisciplinas().get(j)
+				if (aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getDisciplinas().get(j)
 						.equals(disciplina)) {
-					aluno.getListaDePeriodos().get(i).getDisciplinas()
+					aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getDisciplinas()
 							.remove(disciplina);
 				}
 			}
@@ -280,16 +280,16 @@ public class Planejador {
 			Disciplina disciplinaRealocada, int periodo) {
 		removeDisciplina(aluno, disciplinaRealocada);
 		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
-		aluno.update();
+		aluno.getPlanoDoAluno().update();
 	}
 
 	private void removeDisciplina(Aluno aluno, Disciplina disciplina) {
-		for (int i = 0; i < aluno.getListaDePeriodos().size(); i++) {
-			for (int j = 0; j < aluno.getListaDePeriodos().get(i)
+		for (int i = 0; i < aluno.getPlanoDoAluno().getListaDePeriodos().size(); i++) {
+			for (int j = 0; j < aluno.getPlanoDoAluno().getListaDePeriodos().get(i)
 					.getDisciplinas().size(); j++) {
-				if (aluno.getListaDePeriodos().get(i).getDisciplinas().get(j)
+				if (aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getDisciplinas().get(j)
 						.equals(disciplina)) {
-					aluno.getListaDePeriodos().get(i).getDisciplinas()
+					aluno.getPlanoDoAluno().getListaDePeriodos().get(i).getDisciplinas()
 							.remove(disciplina);
 				}
 			}
@@ -297,7 +297,7 @@ public class Planejador {
 	}
 
 	/**
-	 * Metodo para obter os dados de creditos pagos, creditos em curso e creditos planejador pelo aluno.
+	 * Metodo para obter os dados de creditos pagos, creditos em curso e creditos planejador pelo aluno.getPlanoDoAluno().
 	 * @param aluno aluno que estah logado no sistema
 	 * @return mapa com os dados de acordo com o planejamento do aluno
 	 */
@@ -312,10 +312,10 @@ public class Planejador {
 		estatisticas.put(CREDITOS_EM_CURSO, 0);
 		estatisticas.put(CREDITOS_PLANEJADOS, 0);
 		
-		for (Periodo periodo : aluno.getListaDePeriodos()) {
-			if (periodo.getNumeroDoPeriodo() < aluno.getPeriodoAtual()) {
+		for (Periodo periodo : aluno.getPlanoDoAluno().getListaDePeriodos()) {
+			if (periodo.getNumeroDoPeriodo() < aluno.getPlanoDoAluno().getPeriodoAtual()) {
 				estatisticas.put(CREDITOS_PAGOS, estatisticas.get(CREDITOS_PAGOS) + periodo.getNumeroDeCreditosDoPeriodo());
-			} else if (periodo.getNumeroDoPeriodo() == aluno.getPeriodoAtual()) {
+			} else if (periodo.getNumeroDoPeriodo() == aluno.getPlanoDoAluno().getPeriodoAtual()) {
 				estatisticas.put(CREDITOS_EM_CURSO, estatisticas.get(CREDITOS_EM_CURSO) + periodo.getNumeroDeCreditosDoPeriodo());
 			} else {
 				estatisticas.put(CREDITOS_PLANEJADOS, estatisticas.get(CREDITOS_PLANEJADOS) + periodo.getNumeroDeCreditosDoPeriodo());
