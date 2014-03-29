@@ -52,7 +52,7 @@ public class GridSystem {
 
 	public void alocandoNovoUsuario(Aluno aluno) {
 		if (aluno.getPlanoDoAluno().getListaDePeriodos().isEmpty()) {
-			addPeriodosAoAluno(aluno,"comum");
+			addPeriodosAoAluno(aluno,"oficial");
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class GridSystem {
 		while(scanner.hasNextLine()) {
 			String[] elementos = scanner.nextLine().split("-");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
-			new GridSystem().addPeriodosAoAluno(aluno,"comum");
+			new GridSystem().addPeriodosAoAluno(aluno,"oficial");
 			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getPlanoDoAluno().getListaDePeriodos()
 					.get(PRIMEIRO_PERIODO)
 					.getDisciplinas()
