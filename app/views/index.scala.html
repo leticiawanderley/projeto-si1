@@ -72,7 +72,9 @@
         			<td width="85%">
         			</td>
         			<td width="5%">
-        				<a href="@routes.Application.logout()">Sair</a>
+        				@form(routes.Application.logout()) {
+        					<input type="submit" class="btn btn-info" value="Sair">
+        					}
         			</td>
         		</tr>
         	</table>
