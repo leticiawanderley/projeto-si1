@@ -2,16 +2,15 @@ package controllers;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import models.Aluno;
 import models.Disciplina;
 import models.GradeComum;
-import models.GradeOficial;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
-import views.html.main;
 
 /**
  * Classe que ira conter os objetos para utilizar no sistema pelo usuario
@@ -54,6 +53,20 @@ public class GridSystem {
 		if (aluno.getPlanoDoAluno().getListaDePeriodos().isEmpty()) {
 			addPeriodosAoAluno(aluno,"oficial");
 		}
+	}
+	
+	public List<Aluno> buscaAlunos() {
+		return finder.all();
+	}
+	
+	public List<Aluno> buscaAlunoPorNome(String nome) {
+		List<Aluno> alunos = new ArrayList<Aluno>();
+		for (Aluno aluno : buscaAlunos()) {
+			if (aluno.getName().contains(nome)) {
+				alunos.add(aluno);
+			}
+		}
+		return alunos;	
 	}
 	
 	/**
