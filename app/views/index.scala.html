@@ -64,32 +64,37 @@
 		}
 		
 	</script>
-	<h1><small><div class="well"><a>CSPlanner</a></div></h1></small>
-	<p>
-        <dd>
-        	<table width="100%">
-        		<tr>
-        			<td width="85%">
-        			</td>
-        			<td width="5%">
+		<div class="well">
+			<table width="100%">
+				<tr>
+        			<td width="15%">
+						<h1><small><a>CSPlanner</a></h1></small>
+					</td>
+					<td width="70%" align="right">
+						<br>
+           				<input type="search" id="searchbox" name="f" value="" placeholder="Nome do usuário">
+           			</td>
+           			<td width="8%" align="left">
+            			<input type="submit" id="searchsubmit" value="Buscar" class="btn primary">
+					</td>
+        			<td width="5%"><br>
         				@form(routes.Application.logout()) {
         					<input type="submit" class="btn btn-info" value="Sair">
         					}
         			</td>
         		</tr>
         	</table>
-        </dd>
-    </p>
+	</div>
 </head>
 <body onload="colorPeriodos()" >
 	<table width="98%">
-		<tr><div class="thumbnail">
+		<tr>	
 			<div class="btn-group">
 				@form(routes.Application.verGrade()) {
     				<input type="submit" class="btn btn-info" value="Ver grade do curso">
    				}
    			</div>
-		</div></tr>
+		</tr>
 		<tr><td width="60%"><div>
 			<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
 				<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value-1)">
