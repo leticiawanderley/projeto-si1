@@ -53,7 +53,7 @@
 
 		function colorPeriodos() {
 			var value = @aluno.getPlanoDoAluno().getPeriodoAtual();
-			var periodos = @aluno.getPlanoDoAluno().getListaDePeriodos().size();
+			var periodos = @aluno.getPlanoDoAluno().getNumeroDePeriodos();
 			for (var i = 0; i < value; i++) {
 				document.getElementById(i.toString()).classList.add('passado');
 			}
@@ -137,13 +137,13 @@
 						</h3>
 						<p>
 						<ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(0).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(0).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(0).getDificuldadeDoPeriodo()</div>						  
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(0).getDificuldadeDoPeriodo()</div>						  
 						</ul>
 
 						<div class="periodo connected" ondrop="drop(event, 1)" ondragover="allowDrop(event)" >
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(0).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(0).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 0)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 0)">
@@ -174,20 +174,20 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(1).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(1).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(1).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(1).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(1).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(1).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(1).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(1).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 
 						<div class="periodo connected" ondrop="drop(event, 2)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(1).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(1).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,1)){
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 1)">
@@ -218,19 +218,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(2).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(2).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(2).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(2).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(2).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(2).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(2).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(2).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 3)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(2).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(2).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 2)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 2)">
@@ -261,19 +261,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(3).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(3).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(3).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(3).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(3).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(3).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(3).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(3).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 4)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(3).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(3).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 3)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 3)">
@@ -304,19 +304,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(4).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(4).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(4).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(4).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(4).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(4).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(4).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(4).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 5)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(4).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(4).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 4)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 4)">
@@ -351,19 +351,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(5).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(5).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(5).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(5).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(5).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(5).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(5).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(5).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 6)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(5).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(5).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 5)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 5)">
@@ -394,19 +394,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(6).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(6).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(6).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(6).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(6).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(6).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(6).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(6).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 7)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(6).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(6).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 6)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 6)">
@@ -437,19 +437,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(7).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(7).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(7).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(7).getDificuldadeDoPeriodo()</div>
 						  
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(7).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(7).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(7).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(7).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 8)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(7).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(7).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 7)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 7)">
@@ -480,19 +480,19 @@
 						</h3>
 						<p>
 						  <ul class="nav nav-pills nav-stacked ">
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(8).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(8).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(8).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(8).getDificuldadeDoPeriodo()</div>
 						 
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(8).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(8).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(8).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(8).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 9)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(8).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(8).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 8)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 8)">
@@ -523,20 +523,20 @@
 						</h3>
 						<p>
 						<ul class="nav nav-pills nav-stacked " >
-							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getListaDePeriodos().get(9).getNumeroDeCreditosDoPeriodo()</div>
+							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(9).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
-						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getListaDePeriodos().get(9).getDificuldadeDoPeriodo()</div>
+						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(9).getDificuldadeDoPeriodo()</div>
 						    
-							@if(!aluno.getPlanoDoAluno().getListaDePeriodos().get(9).ehPeriodoValido()){
+							@if(!aluno.getPlanoDoAluno().getPeriodo(9).ehPeriodoValido()){
 							<div class="alert alert-info alert-dismissable">
 							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getListaDePeriodos().get(9).tipoValidacao() créditos que o permitido!
+							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(9).tipoValidacao() créditos que o permitido!
 							</div>
 							}
 						</ul>
 
 						<div class="periodo connected" ondrop="drop(event, 10)" ondragover="allowDrop(event)">
-							@for(disciplina <- aluno.getPlanoDoAluno().getListaDePeriodos().get(9).getDisciplinas()) {
+							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(9).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 9)) {
 									<div style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 9)">

@@ -51,7 +51,7 @@ public class GridSystem {
 	}
 
 	public void alocandoNovoUsuario(Aluno aluno) {
-		if (aluno.getPlanoDoAluno().getListaDePeriodos().isEmpty()) {
+		if (aluno.getPlanoDoAluno().semPeriodos()) {
 			addPeriodosAoAluno(aluno,"oficial");
 		}
 	}
@@ -74,23 +74,23 @@ public class GridSystem {
 			planejador.setGrade(new GradeComum());
 		}
 		
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSegundoPeriodo(), SEGUNDO_PERIODO));
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoTerceiroPeriodo(), TERCEIRO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoSegundoPeriodo(), SEGUNDO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoTerceiroPeriodo(), TERCEIRO_PERIODO));
 		
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoQuartoPeriodo(), QUARTO_PERIODO));
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoQuintoPeriodo(), QUINTO_PERIODO));
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSextoPeriodo(), SEXTO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoQuartoPeriodo(), QUARTO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoQuintoPeriodo(), QUINTO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoSextoPeriodo(), SEXTO_PERIODO));
 		
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoSetimoPeriodo(), SETIMO_PERIODO));
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(planejador.getGrade().getDisciplinasDoOitavoPeriodo(), OITAVO_PERIDO));
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), NONO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoSetimoPeriodo(), SETIMO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoOitavoPeriodo(), OITAVO_PERIDO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(new ArrayList<Disciplina>(), NONO_PERIODO));
 		
-		aluno.getPlanoDoAluno().getListaDePeriodos().add(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
 	}
 	
 	private static void adicionaUsuarios() {
-		InputStream is = play.Play.application().resourceAsStream("conf/usuarios.txt");
+	/*	InputStream is = play.Play.application().resourceAsStream("conf/usuarios.txt");
 		Scanner scanner = new Scanner(is);
 		while(scanner.hasNextLine()) {
 			String[] elementos = scanner.nextLine().split("-");
@@ -102,7 +102,7 @@ public class GridSystem {
 					.get((int) (Math.random()*6)));
 			aluno.getPlanoDoAluno().save();
 		}
-		scanner.close();
+		scanner.close();*/
 	}
 	
 }

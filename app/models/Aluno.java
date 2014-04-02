@@ -32,7 +32,6 @@ public class Aluno extends Usuario {
 	public Aluno(String name, String email, String password) {
 		super(name, email, password);
 		this.planoDoAluno = new Plano();
-		this.planoDoAluno.save();
 	}
 
 	public Plano getPlanoDoAluno() {
@@ -42,5 +41,5 @@ public class Aluno extends Usuario {
 	public void setPlanoDoAluno(Plano planoDoAluno) {
 		this.planoDoAluno = planoDoAluno;
 	}
-
+	
 }
