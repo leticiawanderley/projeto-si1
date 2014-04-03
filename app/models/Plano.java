@@ -169,12 +169,9 @@ public class Plano extends Model {
 	 */
 	public void removeDisciplinaParaAlocacao(Disciplina disciplina) {
 		for (int i = 0; i < listaDePeriodo.size(); i++) {
-			for (int j = 0; j < listaDePeriodo.get(i)
-					.getDisciplinas().size(); j++) {
-				if (listaDePeriodo.get(i).getDisciplinas().get(j)
-						.equals(disciplina)) {
-					listaDePeriodo.get(i).getDisciplinas()
-							.remove(disciplina);
+			for (int j = 0; j < listaDePeriodo.get(i).getDisciplinas().size(); j++) {
+				if (listaDePeriodo.get(i).getDisciplinas().get(j).equals(disciplina)) {
+					listaDePeriodo.get(i).getDisciplinas().remove(disciplina);
 				}
 			}
 		}
@@ -190,10 +187,8 @@ public class Plano extends Model {
 	public String getNomeDaDisciplinasRequisitos(Disciplina disciplina,int periodo) {
 		String requisitosNaoPreenchidos = "\n";
 		for (Periodo periodoAnalisado : listaDePeriodo) {
-			for (Disciplina disciplinaAnalisada : periodoAnalisado
-					.getDisciplinas()) {
-				if (disciplina.getListaDePreRequisitos().contains(
-						disciplinaAnalisada)
+			for (Disciplina disciplinaAnalisada : periodoAnalisado.getDisciplinas()) {
+				if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) 
 						&& periodoAnalisado.getNumeroDoPeriodo() - 1 >= periodo) {
 					requisitosNaoPreenchidos += disciplinaAnalisada.getNome()
 							+ "\n";
@@ -258,18 +253,14 @@ public class Plano extends Model {
 	public void removeDisciplinaESeusPreRequisitos(Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = getDisciplinasDependentes(disciplina);
 		for (int i = 0; i < this.listaDePeriodo.size(); i++) {
-			for (int j = 0; j < this.listaDePeriodo.get(i)
-					.getDisciplinas().size(); j++) {
-				if (this.listaDePeriodo.get(i).getDisciplinas().get(j)
-						.equals(disciplina)) {
-					this.listaDePeriodo.get(i).getDisciplinas()
-							.remove(disciplina);
+			for (int j = 0; j < this.listaDePeriodo.get(i).getDisciplinas().size(); j++) {
+				if (this.listaDePeriodo.get(i).getDisciplinas().get(j).equals(disciplina)) {
+					this.listaDePeriodo.get(i).getDisciplinas().remove(disciplina);
 				}
 			}
 		}
 		for (int i = 0; i < disciplinasDependentes.size(); i++) {
-			removeDisciplinaESeusPreRequisitos(
-					disciplinasDependentes.get(i));
+			removeDisciplinaESeusPreRequisitos(disciplinasDependentes.get(i));
 		}
 	}
 	
@@ -281,12 +272,10 @@ public class Plano extends Model {
 	 *            disciplina que o aluno quer as disciplinas que dependem dela
 	 * @return As disciplinas que dependem da disciplina do parametro
 	 */
-	private List<Disciplina> getDisciplinasDependentes(
-			Disciplina disciplina) {
+	private List<Disciplina> getDisciplinasDependentes(Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = new ArrayList<Disciplina>();
 		for (Disciplina disciplinaDoAluno : getTodasDisciplinas()) {
-			if (disciplinaDoAluno.getListaDePreRequisitos()
-					.contains(disciplina)) {
+			if (disciplinaDoAluno.getListaDePreRequisitos().contains(disciplina)) {
 				disciplinasDependentes.add(disciplinaDoAluno);
 			}
 		}
