@@ -3,6 +3,8 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import play.db.ebean.Model;
 
 /**
@@ -30,26 +32,9 @@ public class Usuario extends Model {
 		super();
 		this.name = name;
 		this.email = email;
-		// this.password = BCrypt.hashpw(password, BCrypt.gensalt()); 
-		//   this.save();
-		this.password = password; 
-		/*this.save();*/
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 	
-    public  Usuario authenticate(String email, String password) {
-    		    // metodo para checar se senha confere
-    		    /*if (BCrypt.checkpw(password, this.password)) {
-    		    	System.out.println("reconheceu");
-    		    } else
-    		    	System.out.println("nao reconheceu");*/
-
-        return find.where().eq("email", email).eq("password", password).findUnique();
-    }
-	
-	/**
-	 * 
-	 * @return o nome do usuario
-	 */
 	public String getName() {
 		return name;
 	}

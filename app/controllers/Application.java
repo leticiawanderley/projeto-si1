@@ -1,5 +1,7 @@
 package controllers;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import models.Aluno;
 import models.Disciplina;
 import models.Usuario;
@@ -97,7 +99,9 @@ public class Application extends Controller {
 		if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
 			flash("success", "Usuário não existente");
 		} else {
-			if (!grid.getFinder().byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
+			if(!BCrypt.checkpw(loginForm.get().getPassword(), grid.getFinder().byId(loginForm.get().getEmail()).getPassword())) {
+			//if (!grid.getFinder().byId(loginForm.get().getEmail())
+					//.getPassword().equals(loginForm.get().getPassword())) {
 				flash("success", "Senha incorreta, tente novamente");
 			} else {
 				session().clear();

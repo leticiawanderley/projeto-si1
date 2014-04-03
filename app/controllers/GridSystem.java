@@ -1,5 +1,9 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +44,9 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
-	/*	if (finder.all().isEmpty() || finder.all().size() < 10) {
+		if (finder.all().isEmpty()) {
 			adicionaUsuarios();
-		}*/
+		}
 	}
 	
 	public Finder<String, Aluno> getFinder() {
@@ -103,19 +107,44 @@ public class GridSystem {
 	}
 	
 	private static void adicionaUsuarios() {
-	/*	InputStream is = play.Play.application().resourceAsStream("conf/usuarios.txt");
+		System.out.println("entrou no método!");
+		InputStream is = play.Play.application().resourceAsStream("resource/usuarios.txt");
+		
+		try {
+			if (is == null) {
+				System.out.println("opa...!!!!!!!!!!!!!!1");
+			
+				is = new FileInputStream(new File("resource/usuarios.txt"));
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("pegou o arquivo");
 		Scanner scanner = new Scanner(is);
+		System.out.println("scanner funcionou");
 		while(scanner.hasNextLine()) {
+			System.out.println("tem próxima linha");
 			String[] elementos = scanner.nextLine().split("-");
+			System.out.println("separou os elementos");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
 			new GridSystem().addPeriodosAoAluno(aluno,"oficial");
-			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getPlanoDoAluno().getListaDePeriodos()
-					.get(PRIMEIRO_PERIODO)
+			System.out.println("adicionou periodo o aluno");
+			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getPlanoDoAluno().getPeriodo(PRIMEIRO_PERIODO)
 					.getDisciplinas()
 					.get((int) (Math.random()*6)));
+			System.out.println("removeu algumas disciplinas");
 			aluno.getPlanoDoAluno().save();
+			System.out.println("salvou o plano do aluno");
 		}
-		scanner.close();*/
+		scanner.close();
+		try {
+			is.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
