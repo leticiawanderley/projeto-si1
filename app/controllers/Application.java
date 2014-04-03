@@ -42,19 +42,14 @@ public class Application extends Controller {
 	 */
 	public static Result criarUsuario() {
 		Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
-		if (loginForm.get().getPassword().equals("")) {
-			flash("success", "A senha não pode ser vazia");
+		String mensagemDeProblema = verificacaoDosDadosDoCadastro(loginForm);
+		if (!mensagemDeProblema.equals("")) {
+			flash("sucess", mensagemDeProblema);
 			return cadastrarNovoUsuario();
 		}
-		if (!loginForm.get().getPassword().equals(loginForm.data().get("confirmPassword"))) {
-			flash("success", "Senha e confirmação de senha estão incompativeis");
-			return cadastrarNovoUsuario();
-		}
+		
     	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
-    	if (grid.getFinder().byId(novoAluno.getEmail()) != null) {
-    		flash("success", "Usuário já existente no sistema, utilize outro e-mail");
-			return cadastrarNovoUsuario();
-    	}
+    	
     	grid.alocandoNovoUsuario(novoAluno);
     	Ebean.save(novoAluno);
     	session().clear();
@@ -64,6 +59,23 @@ public class Application extends Controller {
 	
 	/**
 	 * 
+	 * @param loginForm form de cadastro de novo usuario do sistema
+	 * @return a mensagem de erro decorrente dos dados incorretos no cadastro
+	 */
+	private static String verificacaoDosDadosDoCadastro(Form<Usuario> loginForm) {
+		String mensagemDeProblema = "";
+		if (loginForm.get().getPassword().equals("")) {
+			mensagemDeProblema = "A senha não pode ser vazia";
+		} else if (!loginForm.get().getPassword().equals(loginForm.data().get("confirmPassword"))) {
+			mensagemDeProblema = "Senha e confirmação de senha estão incompativeis";
+		} else if (grid.getFinder().byId(loginForm.get().getEmail()) != null) {
+			mensagemDeProblema = "Usuário já existente no sistema, utilize outro e-mail";
+		}
+		return mensagemDeProblema;
+	}
+
+	/**
+	 * 
 	 * @return resultado da tentativa de autenticacao do usuario no sistema
 	 */
 	public static Result authenticate() {
@@ -71,19 +83,29 @@ public class Application extends Controller {
 	    if (loginForm.hasErrors()) {
 	        return badRequest(views.html.login.render(loginForm));
 	    } else {
-	    	if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
-	    		flash("success", "Usuário não existente");
-	    	} else {
-	    		if (!grid.getFinder().byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
-	    			flash("success", "Senha incorreta, tente novamente");
-	    		} else {
-	    			session().clear();
-    		        session("email", loginForm.get().getEmail());
-    		        return redirect(routes.Application.index());
-	    		}
-	    	}
+	    	return verificacaoDeAutenticacao(loginForm);
 	    }
-	    return badRequest(views.html.login.render(Form.form(Usuario.class)));
+	}
+
+	/**
+	 * 
+	 * @param loginForm form do login do sistema 
+	 * @return a pagina do login com a mensagem porque nao consegui entrar ou a pagina inicial do usuario, caso
+	 * os dados inseridos estejao corretos
+	 */
+	private static Result verificacaoDeAutenticacao(Form<Usuario> loginForm) {
+		if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
+			flash("success", "Usuário não existente");
+		} else {
+			if (!grid.getFinder().byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
+				flash("success", "Senha incorreta, tente novamente");
+			} else {
+				session().clear();
+		        session("email", loginForm.get().getEmail());
+		        return redirect(routes.Application.index());
+			}
+		}
+		return badRequest(views.html.login.render(Form.form(Usuario.class)));
 	}
 	
 	/**
@@ -92,14 +114,14 @@ public class Application extends Controller {
 	 */
 	@Security.Authenticated(Secured.class)
     public static Result index() {
-		if (session("email") == null ) {
+		if (session("email") == null) {
 			return redirect(routes.Application.login());
 		}
-/*    	if (grid.getFinder().byId(session("email")) ==  USUARIO_NAO_LOGADO) {
+		if (grid.getFinder().byId(session("email")) ==  null) {
     		System.out.println();
     		return redirect(routes.Application.login());
     	}
-*/        return ok(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm, grid.getPlanejador()));
+       return ok(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm, grid.getPlanejador()));
     }
     
     /**

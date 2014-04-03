@@ -150,7 +150,7 @@ public class Planejador {
 	 *            seus pre-requisitos
 	 */
 	public void removeDisciplinaESeusPreRequisitos(Aluno aluno, Disciplina disciplina) {
-		aluno.getPlanoDoAluno().removeDisciplina(disciplina);
+		aluno.getPlanoDoAluno().removeDisciplinaESeusPreRequisitos(disciplina);
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class Planejador {
 	}
 
 	public void alteraPeriodoDaDisciplina(Aluno aluno, Disciplina disciplinaRealocada, int periodo) {
-		aluno.getPlanoDoAluno().removeDisciplina(disciplinaRealocada);
+		aluno.getPlanoDoAluno().removeDisciplinaParaAlocacao(disciplinaRealocada);
 		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
 		aluno.getPlanoDoAluno().update();
 	}

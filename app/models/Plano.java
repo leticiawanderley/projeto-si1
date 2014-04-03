@@ -167,8 +167,17 @@ public class Plano extends Model {
 	 * 
 	 * @param disciplina disciplina que ira ser removida do plano de curso do aluno
 	 */
-	public void removeDisciplina(Disciplina disciplina) {
-		removeDisciplinaESeusPreRequisitos(disciplina);
+	public void removeDisciplinaParaAlocacao(Disciplina disciplina) {
+		for (int i = 0; i < listaDePeriodo.size(); i++) {
+			for (int j = 0; j < listaDePeriodo.get(i)
+					.getDisciplinas().size(); j++) {
+				if (listaDePeriodo.get(i).getDisciplinas().get(j)
+						.equals(disciplina)) {
+					listaDePeriodo.get(i).getDisciplinas()
+							.remove(disciplina);
+				}
+			}
+		}
 	}
 	
 	/**
