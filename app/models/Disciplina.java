@@ -22,7 +22,6 @@ public class Disciplina extends Model {
 	
 	@Id
 	private Long id;
-	//INFORMATION EXPERT - Contém as informações da disciplina: id,nomeDaDisciplina, numeroDeCreditos, listaDePreRequisitos e o periodoAlocado. 
 	private String nomeDaDisciplina;
 	private int numeroDeCreditos;
 	@ManyToMany(cascade = CascadeType.ALL)

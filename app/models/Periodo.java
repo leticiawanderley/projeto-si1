@@ -19,7 +19,6 @@ public class Periodo extends Model {
 	
 	@Id
 	private Long id;
-	//INFORMATION EXPERT - Contém as informações do período: disciplinas, período, dificuldade.
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> disciplinas;
 	private int numeroDoPeriodo;
@@ -135,6 +134,10 @@ public class Periodo extends Model {
 		this.validadorDoPeriodo = validadorDoPeriodo;
 	}
 
+	/**
+	 * 
+	 * @return o validator de creditos do periodo
+	 */
 	public ValidacaoCreditos getValidadorDoPeriodo() {
 		return this.validadorDoPeriodo;
 	}

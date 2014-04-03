@@ -3,14 +3,17 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Grade.DisciplinasDSC;
-
+/**
+ * Grade Comum do curso de Ciencia da Computacao da Universidade Federal de Campina Grande
+ *
+ */
 public class GradeComum extends Grade {
 	
 	public GradeComum() {
 		super();
 	}
 	
+	@Override
 	public List<Disciplina> getDisciplinasDoSegundoPeriodo() {
 		List<Disciplina> disciplinasDoSegundoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoSegundoPeriodo.add(DisciplinasDSC.CALCULO2.getDisciplina());
@@ -23,6 +26,7 @@ public class GradeComum extends Grade {
 		return disciplinasDoSegundoPeriodo;
 	}
 	
+	@Override
 	public List<Disciplina> getDisciplinasDoQuartoPeriodo() {
 		List<Disciplina> disciplinasDoQuartoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoQuartoPeriodo.add(DisciplinasDSC.LOGICA.getDisciplina());
@@ -34,6 +38,7 @@ public class GradeComum extends Grade {
 		return disciplinasDoQuartoPeriodo;
 	}
 	
+	@Override
 	public List<Disciplina> getDisciplinasDoQuintoPeriodo() {
 		List<Disciplina> disciplinasDoQuintoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoQuintoPeriodo.add(DisciplinasDSC.METODOS.getDisciplina());
@@ -43,6 +48,7 @@ public class GradeComum extends Grade {
 		return disciplinasDoQuintoPeriodo;
 	}
 	
+	@Override
 	public List<Disciplina> getDisciplinasDoSextoPeriodo() {
 		List<Disciplina> disciplinasDoSextoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoSextoPeriodo.add(DisciplinasDSC.METODOLOGIA.getDisciplina());
@@ -54,6 +60,7 @@ public class GradeComum extends Grade {
 		return disciplinasDoSextoPeriodo;
 	}
 
+	@Override
 	public List<Disciplina> getDisciplinasDoSetimoPeriodo() {
 		List<Disciplina> disciplinasDoSetimoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoSetimoPeriodo.add(DisciplinasDSC.LIRC.getDisciplina());
@@ -65,6 +72,7 @@ public class GradeComum extends Grade {
 		return disciplinasDoSetimoPeriodo;
 	}
 	
+	@Override
 	public List<Disciplina> getDisciplinasDoOitavoPeriodo() {
 		List<Disciplina> disciplinasDoOitavoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoOitavoPeriodo.add(DisciplinasDSC.PROJETO1.getDisciplina());

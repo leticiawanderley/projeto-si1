@@ -47,13 +47,13 @@ public class AlunoTest {
 		aluno.getPlanoDoAluno().addPeriodo(primeiroPeriodo);
 		
 		
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Cálculo Diferencial e Integral I", QUATRO_CREDITOS, MEDIO)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Álgebra Vetorial e Geometria Analítica", QUATRO_CREDITOS, FACIL)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Leitura e Produção de Textos", QUATRO_CREDITOS, MUITO_FACIL)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Cálculo Diferencial e Integral I", QUATRO_CREDITOS, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Álgebra Vetorial e Geometria Analítica", QUATRO_CREDITOS, FACIL)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Leitura e Produção de Textos", QUATRO_CREDITOS, MUITO_FACIL)));
 		
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Programação I", QUATRO_CREDITOS, MEDIO)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Introdução à Computação", QUATRO_CREDITOS, FACIL)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Laboratório de Programação I", QUATRO_CREDITOS, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Programação I", QUATRO_CREDITOS, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Introdução à Computação", QUATRO_CREDITOS, FACIL)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(new Disciplina("Laboratório de Programação I", QUATRO_CREDITOS, MEDIO)));
 		
 		assertEquals(aluno.getPlanoDoAluno().getNumeroDeCreditosDoPeriodo(PRIMEIRO_PERIODO), NUMERO_DE_CREDITOS_1_PERIODO);
 		
@@ -114,14 +114,14 @@ public class AlunoTest {
 		assertFalse(sistema.alunoTemMaximoDeCreditos(aluno, SEGUNDO_PERIODO));
 		
 		//Verifica se as disciplinas atuais contém as que foram matriculadas
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Cálculo Diferencial e Integral II", QUATRO_CREDITOS, DIFICIL)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Matemática Discreta", QUATRO_CREDITOS, MEDIO)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Metodologia Científica", QUATRO_CREDITOS, FACIL)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Cálculo Diferencial e Integral II", QUATRO_CREDITOS, DIFICIL)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Matemática Discreta", QUATRO_CREDITOS, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Metodologia Científica", QUATRO_CREDITOS, FACIL)));
 		
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Programação II", QUATRO_CREDITOS, MEDIO)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Teoria dos Grafos", 2, MEDIO)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Fundamentos de Física Clássica", QUATRO_CREDITOS, DIFICIL)));
-		assertTrue(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Laboratório de Programação II", QUATRO_CREDITOS, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Programação II", QUATRO_CREDITOS, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Teoria dos Grafos", 2, MEDIO)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Fundamentos de Física Clássica", QUATRO_CREDITOS, DIFICIL)));
+		assertTrue(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(SEGUNDO_PERIODO).contains(new Disciplina("Laboratório de Programação II", QUATRO_CREDITOS, MEDIO)));
 		
 		assertEquals(aluno.getPlanoDoAluno().getNumeroDeCreditosDoPeriodo(SEGUNDO_PERIODO), 26);
 		//verifica o número de créditos correspondente a disciplina
@@ -168,7 +168,7 @@ public class AlunoTest {
 		}catch(Exception e) {
 			e.getMessage().equals("O aluno nao possui os pre-requisitos para esta disciplina");
 		}
-		assertFalse(aluno.getPlanoDoAluno().getDisciplinaDoPeriodo(PRIMEIRO_PERIODO).contains(DisciplinasDSC.BD1.getDisciplina()));
+		assertFalse(aluno.getPlanoDoAluno().getDisciplinasDoPeriodo(PRIMEIRO_PERIODO).contains(DisciplinasDSC.BD1.getDisciplina()));
 	
 		// TESTE REFERENTE A US4
 		sistema.removeDisciplinaESeusPreRequisitos(aluno, DisciplinasDSC.LEDA.getDisciplina());

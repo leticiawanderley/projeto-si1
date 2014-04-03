@@ -18,7 +18,73 @@ public class Application extends Controller {
 	
 	private static GridSystem grid = new GridSystem();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
- 	private static Aluno USUARIO_NAO_LOGADO;
+	
+	/**
+	 * 
+	 * @return pagina inicial de login do sistema
+	 */
+	public static Result login() {
+	    return ok(views.html.login.render(Form.form(Usuario.class)));
+	}
+	
+	/**
+	 * 
+	 * @return pagina para cadastrar um novo usuario no sistema
+	 */
+	public static Result cadastrarNovoUsuario() {
+		return ok(views.html.cadastrarUsuario.render(Form.form(Usuario.class)));
+	}
+	
+	/**
+	 * 
+	 * @return resultado de cadastro do novo usuario. Em caso de inconsistencias dos dados, continuara no cadastro.
+	 * Caso contrario, sera criado o usuario e redirecionado para pagina inicial da conta
+	 */
+	public static Result criarUsuario() {
+		Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
+		if (loginForm.get().getPassword().equals("")) {
+			flash("success", "A senha não pode ser vazia");
+			return cadastrarNovoUsuario();
+		}
+		if (!loginForm.get().getPassword().equals(loginForm.data().get("confirmPassword"))) {
+			flash("success", "Senha e confirmação de senha estão incompativeis");
+			return cadastrarNovoUsuario();
+		}
+    	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
+    	if (grid.getFinder().byId(novoAluno.getEmail()) != null) {
+    		flash("success", "Usuário já existente no sistema, utilize outro e-mail");
+			return cadastrarNovoUsuario();
+    	}
+    	grid.alocandoNovoUsuario(novoAluno);
+    	Ebean.save(novoAluno);
+    	session().clear();
+    	session("email", novoAluno.getEmail());
+    	return index();
+	}
+	
+	/**
+	 * 
+	 * @return resultado da tentativa de autenticacao do usuario no sistema
+	 */
+	public static Result authenticate() {
+	    Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
+	    if (loginForm.hasErrors()) {
+	        return badRequest(views.html.login.render(loginForm));
+	    } else {
+	    	if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
+	    		flash("success", "Usuário não existente");
+	    	} else {
+	    		if (!grid.getFinder().byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
+	    			flash("success", "Senha incorreta, tente novamente");
+	    		} else {
+	    			session().clear();
+    		        session("email", loginForm.get().getEmail());
+    		        return redirect(routes.Application.index());
+	    		}
+	    	}
+	    }
+	    return badRequest(views.html.login.render(Form.form(Usuario.class)));
+	}
 	
 	/**
 	 * Pagina inicial da alocacao das disciplinas
@@ -26,14 +92,14 @@ public class Application extends Controller {
 	 */
 	@Security.Authenticated(Secured.class)
     public static Result index() {
-		if (session("email") == null) {
+		if (session("email") == null ) {
 			return redirect(routes.Application.login());
 		}
-    	if (grid.getFinder().byId(session("email")) ==  USUARIO_NAO_LOGADO) {
+/*    	if (grid.getFinder().byId(session("email")) ==  USUARIO_NAO_LOGADO) {
+    		System.out.println();
     		return redirect(routes.Application.login());
     	}
-    	
-        return ok(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm, grid.getPlanejador()));
+*/        return ok(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm, grid.getPlanejador()));
     }
     
     /**
@@ -77,67 +143,27 @@ public class Application extends Controller {
 		return redirect("/");
     }
 	
-	public static Result cadastrarNovoUsuario() {
-		return ok(views.html.cadastrarUsuario.render(Form.form(Usuario.class)));
-	}
-	
-	public static Result criarUsuario() {
-		Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
-		if (loginForm.get().getPassword().equals("")) {
-			flash("success", "A senha não pode ser vazia");
-			return cadastrarNovoUsuario();
-		}
-		if (!loginForm.get().getPassword().equals(loginForm.data().get("confirmPassword"))) {
-			flash("success", "Senha e confirmação de senha estão incompativeis");
-			return cadastrarNovoUsuario();
-		}
-    	Aluno novoAluno = new Aluno(loginForm.get().getName(), loginForm.get().getEmail(), loginForm.get().getPassword());
-    	if (grid.getFinder().byId(novoAluno.getEmail()) != null) {
-    		flash("success", "Usuário já existente no sistema, utilize outro e-mail");
-			return cadastrarNovoUsuario();
-    	}
-    	grid.alocandoNovoUsuario(novoAluno);
-    	Ebean.save(novoAluno);
-    	session().clear();
-    	session("email", novoAluno.getEmail());
-    	return index();
-	}
-	public static Result login() {
-	    return ok(views.html.login.render(Form.form(Usuario.class)));
-	}
-	
-	public static Result logout() {
-	    session().clear();
-	    session("email", "usuarioLogout");
-	    flash("success", "Você saiu do sistema.");
-	    return redirect(routes.Application.login());
-	}
-	
-	public static Result authenticate() {
-	    Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
-	    if (loginForm.hasErrors()) {
-	        return badRequest(views.html.login.render(loginForm));
-	    } else {
-	    	if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
-	    		flash("success", "Usuário não existente");
-	    	} else {
-	    		if (!grid.getFinder().byId(loginForm.get().getEmail()).getPassword().equals(loginForm.get().getPassword())) {
-	    			flash("success", "Senha incorreta, tente novamente");
-	    		} else {
-	    			session().clear();
-    		        session("email", loginForm.get().getEmail());
-    		        return redirect(routes.Application.index());
-	    		}
-	    	}
-	    }
-	    return badRequest(views.html.login.render(Form.form(Usuario.class)));
-	}
-	
+	/**
+	 * 
+	 * @param periodoAtual periodo corrente do aluno
+	 * @return novo periodo corrente do aluno
+	 */
 	public static Result setarPeriodoAtual(int periodoAtual) {
 		Aluno aluno = grid.getFinder().byId(session("email"));
 		aluno.getPlanoDoAluno().setPeriodoAtual(periodoAtual);
 		aluno.update();
 		return redirect("/");
+	}
+	
+	/**
+	 * 
+	 * @return pagina inicial do sistema
+	 */
+	public static Result logout() {
+	    session().clear();
+	    session("email", "usuarioLogout");
+	    flash("success", "Você saiu do sistema.");
+	    return redirect(routes.Application.login());
 	}
 
 }

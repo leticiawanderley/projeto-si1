@@ -20,7 +20,6 @@ public abstract class Grade {
 	private static final int DIFICIL = 4;
 	private static final int MUITO_DIFICIL = 5;
 	
-	//INFORMATION EXPERT - Contém as informações da Grade: listaDeDisciplinas.
 	private List<Disciplina> listaDeDisciplinas;
 
 	/**
@@ -196,9 +195,16 @@ public abstract class Grade {
 		return disciplinasDoPrimeiroPeriodo;
 	}
 	
+	/**
+	 * 
+	 * @return as disciplinas do segundo periodo
+	 */
 	public abstract List<Disciplina> getDisciplinasDoSegundoPeriodo();
 	
-	
+	/**
+	 * 
+	 * @return as disciplinas do terceiro periodo
+	 */
 	public List<Disciplina> getDisciplinasDoTerceiroPeriodo() {
 		List<Disciplina> disciplinasDoTerceiroPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoTerceiroPeriodo.add(DisciplinasDSC.ALGEBRALINEAR.getDisciplina());
@@ -211,17 +217,36 @@ public abstract class Grade {
 		return disciplinasDoTerceiroPeriodo;
 	}
 	
+	/**
+	 * 
+	 * @return as disciplinas do quarto periodo
+	 */
 	public abstract List<Disciplina> getDisciplinasDoQuartoPeriodo();
 		
+	/**
+	 * 
+	 * @return as disciplinas do quinto periodo
+	 */
 	public abstract List<Disciplina> getDisciplinasDoQuintoPeriodo();
 	
+	/**
+	 * 
+	 * @return as disciplinas do sexto periodo
+	 */
 	public abstract List<Disciplina> getDisciplinasDoSextoPeriodo();
 		
+	/**
+	 * 
+	 * @return as disciplinas do setimo periodo
+	 */
 	public abstract List<Disciplina> getDisciplinasDoSetimoPeriodo();
 		
+	/**
+	 * 
+	 * @return as disciplinas do oitavo periodo
+	 */
 	public abstract List<Disciplina> getDisciplinasDoOitavoPeriodo();
 		
-	
 	/**
 	 * 
 	 * @return as disciplinas do curso

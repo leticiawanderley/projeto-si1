@@ -14,8 +14,6 @@ import exception.AlunoNaoPossuiPreRequisitosException;
  */
 public class Planejador {
 
-	// CONTROLLER - Delega para outros objetos o trabalho que precisa ser feito
-	// CREATOR - Classe Planejador registra objeto do tipo Grade
 	private Grade grade ;
 
 	public Planejador() {
@@ -139,7 +137,7 @@ public class Planejador {
 	 * @return todas as disciplinas alocadas do aluno
 	 */
 	public List<Disciplina> getTodasDisciplinasDoAluno(Aluno aluno) {
-		return aluno.getPlanoDoAluno().getDisciplinas();
+		return aluno.getPlanoDoAluno().getTodasDisciplinas();
 	}
 
 	/**
