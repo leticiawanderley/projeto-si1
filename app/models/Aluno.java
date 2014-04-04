@@ -32,6 +32,7 @@ public class Aluno extends Usuario {
 	public Aluno(String name, String email, String password) {
 		super(name, email, password);
 		this.planoDoAluno = new Plano();
+		this.tipoFluxograma = "comum";
 	}
 
 	/**
