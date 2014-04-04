@@ -44,9 +44,9 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
-		if (finder.all().isEmpty()) {
+		/*if (finder.all().isEmpty()) {
 			//adicionaUsuarios();
-		}
+		}*/
 	}
 	
 	public Finder<String, Aluno> getFinder() {
