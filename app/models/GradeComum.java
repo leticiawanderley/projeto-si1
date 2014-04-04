@@ -85,6 +85,7 @@ public class GradeComum extends Grade {
 		return disciplinasDoOitavoPeriodo;
 	}
 	
+	@Override
 	public List<Disciplina> getDisciplinasDoNonoPeriodo() {
 		List<Disciplina> disciplinasDoNonoPeriodo = new ArrayList<Disciplina>();
 		disciplinasDoNonoPeriodo.add(DisciplinasDSC.PROJETO2.getDisciplina());

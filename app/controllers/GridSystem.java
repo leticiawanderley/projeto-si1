@@ -45,7 +45,7 @@ public class GridSystem {
 	public GridSystem() {
 		this.planejador = new Planejador();
 		if (finder.all().isEmpty()) {
-			adicionaUsuarios();
+			//adicionaUsuarios();
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class GridSystem {
 
 	public void alocandoNovoUsuario(Aluno aluno) {
 		if (aluno.getPlanoDoAluno().semPeriodos()) {
-			addPeriodosAoAluno(aluno,"oficial");
+			addPeriodosAoAluno(aluno, aluno.getTipoFluxograma());
 		}
 	}
 	
@@ -101,12 +101,12 @@ public class GridSystem {
 		
 		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoSetimoPeriodo(), SETIMO_PERIODO));
 		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoOitavoPeriodo(), OITAVO_PERIDO));
-		aluno.getPlanoDoAluno().addPeriodo(new Periodo(new ArrayList<Disciplina>(), NONO_PERIODO));
+		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoNonoPeriodo(), NONO_PERIODO));
 		
 		aluno.getPlanoDoAluno().addPeriodo(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
 	}
 	
-	private static void adicionaUsuarios() {
+	/*private static void adicionaUsuarios() {
 		System.out.println("entrou no método!");
 		InputStream is = play.Play.application().resourceAsStream("resource/usuarios.txt");
 		
@@ -145,6 +145,6 @@ public class GridSystem {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 }

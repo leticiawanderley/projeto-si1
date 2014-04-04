@@ -160,6 +160,7 @@ public abstract class Grade {
 		listaDeDisciplinas.addAll(getDisciplinasDoSextoPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoSetimoPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoOitavoPeriodo());
+		listaDeDisciplinas.addAll(getDisciplinasDoNonoPeriodo());
 		listaDeDisciplinas.addAll(disciplinasOptativas);
 		listaDeDisciplinas.addAll(disciplinasTECC);		
 	}
@@ -246,6 +247,12 @@ public abstract class Grade {
 	 * @return as disciplinas do oitavo periodo
 	 */
 	public abstract List<Disciplina> getDisciplinasDoOitavoPeriodo();
+	
+	/**
+	 * 
+	 * @return as disciplinas do nono periodo
+	 */
+	public abstract List<Disciplina> getDisciplinasDoNonoPeriodo();
 		
 	/**
 	 * 

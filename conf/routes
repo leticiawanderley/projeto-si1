@@ -10,7 +10,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET 	/cadastrar					controllers.Application.cadastrarNovoUsuario()
 
-POST	/criar					controllers.Application.criarUsuario()
+POST	/criar						controllers.Application.criarUsuario()
 
 GET     /login                  	controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
@@ -19,7 +19,9 @@ GET     /logout                     controllers.Application.logout()
 
 GET		/verGrade					controllers.Application.verGrade()
 GET 	/selecionarDisciplinas		controllers.Application.selecionarDisciplinas()
+
 GET		/matriculaNaDisciplina/:periodo/:disciplina		controllers.Application.matriculaNaDisciplina(periodo: Integer, disciplina: String)
 GET 	/removerDisciplina/:disciplina			controllers.Application.removeDisciplina(disciplina: String)
 
+GET 	/setarFluxograma/:tipoFluxograma			controllers.Application.setarFluxograma(tipoFluxograma: String)
 GET     /selecionarPeriodo/:periodoAtual 			controllers.Application.setarPeriodoAtual(periodoAtual: Integer)

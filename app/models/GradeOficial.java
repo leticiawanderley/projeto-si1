@@ -91,4 +91,10 @@ public class GradeOficial extends Grade {
 		return disciplinasDoOitavoPeriodo;
 	}
 	
+	@Override
+	public List<Disciplina> getDisciplinasDoNonoPeriodo() {
+		List<Disciplina> disciplinasDoNonoPeriodo = new ArrayList<Disciplina>();
+		return disciplinasDoNonoPeriodo;
+	}
+	
 }
