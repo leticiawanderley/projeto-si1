@@ -10,7 +10,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET 	/cadastrar					controllers.Application.cadastrarNovoUsuario()
 
-GET		/criar					controllers.Application.criarUsuario()
+POST	/criar					controllers.Application.criarUsuario()
 
 GET     /login                  	controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
