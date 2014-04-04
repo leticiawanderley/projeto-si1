@@ -109,17 +109,24 @@
 				<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value-1)">
 			<br><br>				
 		</div></td>
-		<td width="25%" align="left">
-			<table class="thumbnail">
+		<td width="25%" align="right">
+			<table class="estatisticas">
 				<tr>
-					<td><h5>Créditos pagos: </h5>
-						<h3><small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h3>
+					<td>	
+					<h5>Créditos pagos:
+					<small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h5>
 					</td>
-					<td><h5>Créditos em curso: </h5>
-						<h3><small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h3>
+				</tr>
+				<tr>
+					<td>
+					<h5>Créditos em curso:
+					<small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h5>
 					</td>
-					<td><h5>Créditos Planejados: </h5>
-						<h3><small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h3>
+				</tr>
+				<tr>
+					<td>
+					<h5>Créditos planejados: 
+					<small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h5>
 					</td>
 				</tr>
 			</table>
