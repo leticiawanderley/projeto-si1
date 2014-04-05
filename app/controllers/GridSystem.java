@@ -12,6 +12,8 @@ import java.util.Scanner;
 import models.Aluno;
 import models.Disciplina;
 import models.GradeComum;
+import models.GradeNova;
+import models.GradeOficial;
 import models.Periodo;
 import models.Planejador;
 import play.db.ebean.Model.Finder;
@@ -22,18 +24,18 @@ import play.db.ebean.Model.Finder;
  */
 public class GridSystem {
 
-	private static final int PRIMEIRO_PERIODO = 1;
-	private static final int SEGUNDO_PERIODO = 2;
-	private static final int TERCEIRO_PERIODO = 3;
+	private static final int PRIMEIRO_PERIODO = 0;
+	private static final int SEGUNDO_PERIODO = 1;
+	private static final int TERCEIRO_PERIODO = 2;
 	
-	private static final int QUARTO_PERIODO = 4;
-	private static final int QUINTO_PERIODO = 5;
-	private static final int SEXTO_PERIODO = 6;
+	private static final int QUARTO_PERIODO = 3;
+	private static final int QUINTO_PERIODO = 4;
+	private static final int SEXTO_PERIODO = 5;
 	
-	private static final int SETIMO_PERIODO = 7;
-	private static final int OITAVO_PERIDO = 8;
-	private static final int NONO_PERIODO = 9;
-	private static final int DECIMO_PERIODO = 10;
+	private static final int SETIMO_PERIODO = 6;
+	private static final int OITAVO_PERIDO = 7;
+	private static final int NONO_PERIODO = 8;
+	private static final int DECIMO_PERIODO = 9;
 	
 	private Planejador planejador;
 	private Finder<String, Aluno> finder = new Finder<String, Aluno>(String.class, Aluno.class);
@@ -87,8 +89,14 @@ public class GridSystem {
 	 */
 	public void addPeriodosAoAluno(Aluno aluno, String tipoDeGrade) {
 		
-		if(tipoDeGrade.equals("comum")) {
+		if (tipoDeGrade.equals("comum")) {
 			planejador.setGrade(new GradeComum());
+		}
+		else if (tipoDeGrade.equals("novo")) {
+			planejador.setGrade(new GradeNova());
+		}
+		else {
+			planejador.setGrade(new GradeOficial());
 		}
 		
 		aluno.getPlanoDoAluno().addPeriodo(new Periodo(planejador.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO));
