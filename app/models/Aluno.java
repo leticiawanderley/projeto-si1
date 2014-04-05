@@ -21,7 +21,6 @@ public class Aluno extends Usuario {
 	@OneToOne(cascade = CascadeType.ALL)
 	@Constraints.Required
 	private Plano planoDoAluno;
-	
 	private String tipoFluxograma;
 
 	/**
@@ -32,7 +31,7 @@ public class Aluno extends Usuario {
 	public Aluno(String name, String email, String password) {
 		super(name, email, password);
 		this.planoDoAluno = new Plano();
-		this.tipoFluxograma = "comum";
+		this.tipoFluxograma = "oficial";
 	}
 
 	/**
