@@ -1,0 +1,25 @@
+@(alunos: List[models.Aluno])
+
+@import helper._
+
+<html>
+    <head>
+        <title>CSPlanner</title>
+       	<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/escolha.css")">
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        <header>
+            <a href="@routes.Application.login" id="logo"><span>CS</span>Planner</a>
+        </header>
+        
+        <div class = "visualizar alunos">
+        	@for(aluno <- alunos) {
+        		<h3>aluno.getName()</h3>
+        	}
+        </div>
+        
+   </body>
+
+</html>

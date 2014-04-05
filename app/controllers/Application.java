@@ -1,10 +1,13 @@
 package controllers;
 
-import org.mindrot.jbcrypt.BCrypt;
+import java.util.List;
 
 import models.Aluno;
 import models.Disciplina;
 import models.Usuario;
+
+import org.mindrot.jbcrypt.BCrypt;
+
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -217,6 +220,12 @@ public class Application extends Controller {
 		aluno.getPlanoDoAluno().setPeriodoAtual(periodoAtual);
 		aluno.update();
 		return redirect("/");
+	}
+	
+	// TODO
+	public static Result search() {
+		List<Aluno> lista = grid.buscaAlunoPorNome("");
+		return (views.html.visualizaAlunos.render(((List<Aluno>)lista)));
 	}
 
 	/**

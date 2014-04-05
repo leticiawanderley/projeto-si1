@@ -7,63 +7,6 @@
 
 	
 <head>	
-	<script>
-		function allowDrop(ev)
-		{
-			ev.preventDefault();
-		}
-		
-		function drag(ev)
-		{
-			ev.dataTransfer.setData("Text", ev.target.id);
-		}
-		
-		function drop(ev, periodo)
-		{	
-			ev.preventDefault();
-			var disciplina = ev.dataTransfer.getData("Text");			
-			location.href = '/matriculaNaDisciplina/'+ periodo + '/' + disciplina;
-		}
-
-		function drop(ev, periodo)
-		{	
-			ev.preventDefault();
-			var disciplina = ev.dataTransfer.getData("Text");			
-			location.href = '/matriculaNaDisciplina/'+ periodo + '/' + disciplina;
-		}
-
-		function dropRemove(ev)
-		{	
-			ev.preventDefault();
-			var disciplina = ev.dataTransfer.getData("Text");	
-			var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
-			"\nas disciplinas dela dependentes.");
-			if (transfere) {
-				location.href = '/removerDisciplina/' + disciplina;
-			}
-			else {
-				location.href = '/'
-			}		
-		}
-
-		function selecionaPeriodo(value) 
-		{	
-			location.href = '/selecionarPeriodo/' + value; 
-		}
-
-		function colorPeriodos() {
-			var value = @aluno.getPlanoDoAluno().getPeriodoAtual();
-			var periodos = @aluno.getPlanoDoAluno().getNumeroDePeriodos();
-			for (var i = 0; i < value; i++) {
-				document.getElementById(i.toString()).classList.add('passado');
-			}
-			document.getElementById(value).classList.add('atual');
-			for (var j = value + 1; j < periodos; j++) {
-				document.getElementById(j.toString()).classList.add('futuro');
-			}
-		}
-		
-	</script>
 		<div class="well">
 			<table width="100%">
 				<tr>
@@ -75,9 +18,7 @@
            				<input type="search" id="searchbox" name="f" value="" placeholder="Nome do usuário">
            			</td>
            			<td width="8%" align="left">
-           			@form(routes.Application.search()) {
             				<input type="submit" id="searchsubmit" value="Buscar" class="btn primary">
-            		}
 					</td>
         			<td width="5%"><br>
         				@form(routes.Application.logout()) {
@@ -90,27 +31,7 @@
 </head>
 <body onload="colorPeriodos()" >
 	<table width="98%">
-		<tr>	
-			<div class="btn-group">
-				@form(routes.Application.verGrade()) {
-    				<input type="submit" class="btn btn-info" value="Ver grade do curso">
-   				}
-   			</div>
-		</tr>
-		<tr><td width="60%"><div>
-			<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
-				<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="2" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="3" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="4" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="5" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="6" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="7" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="8" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="9" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value-1)">
-			<br><br>				
-		</div></td>
+		<tr>
 		<td width="25%" align="right">
 			<table class="estatisticas">
 				<tr>
@@ -137,7 +58,6 @@
 		
 	</table>
    		 
-			
 <div class="container-fluid">
 		<table width="100%">
 		<tr>
@@ -573,29 +493,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</td>
-	<td width="20%" valign="top">
-		<div class="desalocadas" width="100%" align="center" ondrop="dropRemove(event)" ondragover="allowDrop(event)">
-			<h3>
-				Disciplinas não alocadas
-			</h3>
-			<ul class="info-ul">
-			<li class="info">
-				<strong>Para desalocar disciplinas arraste-as aqui.
-				Para aloca-las arraste para o período escolhido.</strong>
-			</li>
-			</ul>
-			 @for(disciplina <- planejador.getGrade().getDisciplinasDoCurso()) {
-                  @if(!planejador.getTodasDisciplinasDoAluno(aluno).contains(disciplina)) {
-						
-						<div id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
-							@disciplina.getNome()
-							<span class="badgeC">@disciplina.getCreditos()</span>		
-							<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
-							</div>
-				  }
-			}
 		</div>
 	</td>
 	</tr>
