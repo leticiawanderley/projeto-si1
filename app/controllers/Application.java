@@ -225,7 +225,7 @@ public class Application extends Controller {
 	// TODO
 	public static Result search() {
 		List<Aluno> lista = grid.buscaAlunoPorNome("");
-		return (views.html.visualizaAlunos.render(((List<Aluno>)lista)));
+		return ok(views.html.visualizaAlunos.render(lista));
 	}
 
 	/**
