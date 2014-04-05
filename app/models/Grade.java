@@ -11,14 +11,14 @@ import java.util.List;
  */
 public abstract class Grade {
 	
-	private static final int DOIS_CREDITOS = 2;
-	private static final int QUATRO_CREDITOS = 4;
-	private static final int SEIS_CREDITOS = 6;
-	private static final int MUITO_FACIL = 1;
-	private static final int FACIL = 2;
-	private static final int MEDIO = 3;
-	private static final int DIFICIL = 4;
-	private static final int MUITO_DIFICIL = 5;
+	protected static final int DOIS_CREDITOS = 2;
+	protected static final int QUATRO_CREDITOS = 4;
+	protected static final int SEIS_CREDITOS = 6;
+	protected static final int MUITO_FACIL = 1;
+	protected static final int FACIL = 2;
+	protected static final int MEDIO = 3;
+	protected static final int DIFICIL = 4;
+	protected static final int MUITO_DIFICIL = 5;
 	
 	private List<Disciplina> listaDeDisciplinas;
 
@@ -139,19 +139,6 @@ public abstract class Grade {
 	 * 
 	 */
 	private void populaGrade() {		
-		List<Disciplina> disciplinasOptativas = Arrays.asList(DisciplinasDSC.CALC3.getDisciplina(),
-				DisciplinasDSC.BASQUETE.getDisciplina(),
-				DisciplinasDSC.CRIATIVIDADE.getDisciplina(),
-				DisciplinasDSC.ETICA.getDisciplina(),
-				DisciplinasDSC.INGLES.getDisciplina());
-		
-		List<Disciplina> disciplinasTECC = Arrays.asList(DisciplinasDSC.COMPPARALELA.getDisciplina(),
-				DisciplinasDSC.COMPQUANTICA.getDisciplina(),
-				DisciplinasDSC.DATAMINIG.getDisciplina(),
-				DisciplinasDSC.GRADESCOMP.getDisciplina(),
-				DisciplinasDSC.METODOSFORMAIS.getDisciplina(),
-				DisciplinasDSC.PROG3.getDisciplina());
-		
 		listaDeDisciplinas.addAll(getDisciplinasDoPrimeiroPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoSegundoPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoTerceiroPeriodo());
@@ -161,8 +148,8 @@ public abstract class Grade {
 		listaDeDisciplinas.addAll(getDisciplinasDoSetimoPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoOitavoPeriodo());
 		listaDeDisciplinas.addAll(getDisciplinasDoNonoPeriodo());
-		listaDeDisciplinas.addAll(disciplinasOptativas);
-		listaDeDisciplinas.addAll(disciplinasTECC);		
+		listaDeDisciplinas.addAll(getDisciplinasOptativas());
+		listaDeDisciplinas.addAll(getDisciplinasTECC());		
 	}
 
 	/**
@@ -178,6 +165,25 @@ public abstract class Grade {
 			}
 		}
 		return -1;
+	}
+	
+	public List<Disciplina> getDisciplinasOptativas() {
+		List<Disciplina> disciplinasOptativas = Arrays.asList(DisciplinasDSC.CALC3.getDisciplina(),
+				DisciplinasDSC.BASQUETE.getDisciplina(),
+				DisciplinasDSC.CRIATIVIDADE.getDisciplina(),
+				DisciplinasDSC.ETICA.getDisciplina(),
+				DisciplinasDSC.INGLES.getDisciplina());
+		return disciplinasOptativas;
+	}
+	
+	public List<Disciplina> getDisciplinasTECC() {
+		List<Disciplina> disciplinasTECC = Arrays.asList(DisciplinasDSC.COMPPARALELA.getDisciplina(),
+				DisciplinasDSC.COMPQUANTICA.getDisciplina(),
+				DisciplinasDSC.DATAMINIG.getDisciplina(),
+				DisciplinasDSC.GRADESCOMP.getDisciplina(),
+				DisciplinasDSC.METODOSFORMAIS.getDisciplina(),
+				DisciplinasDSC.PROG3.getDisciplina());
+		return disciplinasTECC;
 	}
 	
 	/**

@@ -17,14 +17,14 @@ import play.db.ebean.Model;
 public class Plano extends Model {
 
 	@Id
-	private Long id;	
+	private Long id;
 	private static final int PRIMEIRO_PERIODO = 0;
 	private static final int ULTIMO_PERIODO = 9;
 	@OrderBy("numeroDoPeriodo")
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Periodo> listaDePeriodo;
 	private int periodoAtual;
-	
+
 	/**
 	 * Construtor da classe Plano
 	 */
@@ -35,7 +35,7 @@ public class Plano extends Model {
 
 	private static final int MINIMO_CREDITOS = 14;
 	private static final int MAXIMO_CREDITOS = 28;
-	
+
 	/**
 	 * 
 	 * @return o periodo em que o aluno estah
@@ -46,6 +46,7 @@ public class Plano extends Model {
 
 	/**
 	 * TODO MELHORAR
+	 * 
 	 * @param periodoAtual
 	 *            o periodo em que o aluno estah atualmente
 	 */
@@ -72,7 +73,8 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @param id novo id do plano
+	 * @param id
+	 *            novo id do plano
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -80,8 +82,11 @@ public class Plano extends Model {
 
 	/**
 	 * Adiciona uma nova disciplina ao periodo
-	 * @param disciplina disciplina que sera matriculada	
-	 * @param periodo periodo em que a disciplina sera matriculada
+	 * 
+	 * @param disciplina
+	 *            disciplina que sera matriculada
+	 * @param periodo
+	 *            periodo em que a disciplina sera matriculada
 	 */
 	public void addDisciplinaAoPeriodo(Disciplina disciplina, int periodo) {
 		this.listaDePeriodo.get(periodo).getDisciplinas().add(disciplina);
@@ -89,28 +94,32 @@ public class Plano extends Model {
 
 	/**
 	 * TODO melhorar
-	 * @param disciplina disciplina analisada do aluno
-	 * @param periodo periodo em que a disciplina esta alocada
-	 * @return se o periodo em que a disciplina eh diferente dos periodos das disciplinas requisito
+	 * 
+	 * @param disciplina
+	 *            disciplina analisada do aluno
+	 * @param periodo
+	 *            periodo em que a disciplina esta alocada
+	 * @return se o periodo em que a disciplina eh diferente dos periodos das
+	 *         disciplinas requisito
 	 */
 	public boolean isPeriodoDiferenteDosRequisitos(Disciplina disciplina,
 			int periodo) {
 		for (Periodo periodoAnalisado : this.listaDePeriodo) {
-		for (Disciplina disciplinaAnalisada : periodoAnalisado
-				.getDisciplinas()) {
-			if (disciplina.getListaDePreRequisitos().contains(
-					disciplinaAnalisada)
-					&& periodoAnalisado.getNumeroDoPeriodo() - 1 >= periodo) {
-				return true;
+			for (Disciplina disciplinaAnalisada : periodoAnalisado
+					.getDisciplinas()) {
+				if (disciplina.getListaDePreRequisitos().contains(
+						disciplinaAnalisada)
+						&& periodoAnalisado.getNumeroDoPeriodo() >= periodo) {
+					return true;
+				}
 			}
 		}
+		if (verificaPreRequisitosNaoAlocados(disciplina)) {
+			return true;
+		}
+		return false;
 	}
-	if (verificaPreRequisitosNaoAlocados(disciplina)) {
-		return true;
-	}
-	return false;
-	}
-	
+
 	/**
 	 * Verifica se a disciplina que estah sendo realocada tem algum de seus
 	 * pre-requisitos nao alocados
@@ -134,7 +143,8 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @param periodo periodo analisado do aluno
+	 * @param periodo
+	 *            periodo analisado do aluno
 	 * @return se o periodo tem o minimo de creditos
 	 */
 	public boolean temMinimo(int periodo) {
@@ -143,7 +153,8 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @param periodo periodo analisado do aluno
+	 * @param periodo
+	 *            periodo analisado do aluno
 	 * @return se o periodo tem o maximo de creditos
 	 */
 	public boolean temMaximo(int periodo) {
@@ -152,8 +163,8 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @return as disciplinas do aluno contidas no aluno, isto eh, todas as disciplinas em que o aluno
-	 * esta matriculado
+	 * @return as disciplinas do aluno contidas no aluno, isto eh, todas as
+	 *         disciplinas em que o aluno esta matriculado
 	 */
 	public List<Disciplina> getTodasDisciplinas() {
 		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
@@ -162,33 +173,38 @@ public class Plano extends Model {
 		}
 		return disciplinas;
 	}
-	
+
 	/**
 	 * 
-	 * @param disciplina disciplina que ira ser removida do plano de curso do aluno
+	 * @param disciplina
+	 *            disciplina que ira ser removida do plano de curso do aluno
 	 */
 	public void removeDisciplinaParaAlocacao(Disciplina disciplina) {
 		for (int i = 0; i < listaDePeriodo.size(); i++) {
 			for (int j = 0; j < listaDePeriodo.get(i).getDisciplinas().size(); j++) {
-				if (listaDePeriodo.get(i).getDisciplinas().get(j).equals(disciplina)) {
+				if (listaDePeriodo.get(i).getDisciplinas().get(j)
+						.equals(disciplina)) {
 					listaDePeriodo.get(i).getDisciplinas().remove(disciplina);
 				}
 			}
 		}
 	}
-	
+
 	/**
-	 * TODO MELHORAR 
-	 * Metodo utilizado na interface 
-	 * @param disciplina 
+	 * TODO MELHORAR Metodo utilizado na interface
+	 * 
+	 * @param disciplina
 	 * @param periodo
 	 * @return
 	 */
-	public String getNomeDaDisciplinasRequisitos(Disciplina disciplina,int periodo) {
+	public String getNomeDaDisciplinasRequisitos(Disciplina disciplina,
+			int periodo) {
 		String requisitosNaoPreenchidos = "\n";
 		for (Periodo periodoAnalisado : listaDePeriodo) {
-			for (Disciplina disciplinaAnalisada : periodoAnalisado.getDisciplinas()) {
-				if (disciplina.getListaDePreRequisitos().contains(disciplinaAnalisada) 
+			for (Disciplina disciplinaAnalisada : periodoAnalisado
+					.getDisciplinas()) {
+				if (disciplina.getListaDePreRequisitos().contains(
+						disciplinaAnalisada)
 						&& periodoAnalisado.getNumeroDoPeriodo() - 1 >= periodo) {
 					requisitosNaoPreenchidos += disciplinaAnalisada.getNome()
 							+ "\n";
@@ -202,10 +218,11 @@ public class Plano extends Model {
 		}
 		return requisitosNaoPreenchidos;
 	}
-	
+
 	/**
 	 * 
-	 * @param periodo novo periodo alocado ao aluno
+	 * @param periodo
+	 *            novo periodo alocado ao aluno
 	 */
 	public void addPeriodo(Periodo periodo) {
 		this.listaDePeriodo.add(periodo);
@@ -221,7 +238,8 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @param periodo numero do periodo
+	 * @param periodo
+	 *            numero do periodo
 	 * @return as disciplinas do periodo
 	 */
 	public List<Disciplina> getDisciplinasDoPeriodo(int periodo) {
@@ -230,7 +248,8 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @param periodo numero do periodo
+	 * @param periodo
+	 *            numero do periodo
 	 * @return o numero de creditos do periodo
 	 */
 	public int getNumeroDeCreditosDoPeriodo(int periodo) {
@@ -239,23 +258,30 @@ public class Plano extends Model {
 
 	/**
 	 * 
-	 * @param periodo numero do periodo
+	 * @param periodo
+	 *            numero do periodo
 	 * @return o n(periodo)-esimo periodo do aluno
 	 */
 	public Periodo getPeriodo(int periodo) {
 		return this.listaDePeriodo.get(periodo);
 	}
-	
+
 	/**
 	 * Remove a disciplina e relacionadas do aluno
-	 * @param disciplina disciplina que sera removida juntamente com suas disciplinas relacionadas
+	 * 
+	 * @param disciplina
+	 *            disciplina que sera removida juntamente com suas disciplinas
+	 *            relacionadas
 	 */
 	public void removeDisciplinaESeusPreRequisitos(Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = getDisciplinasDependentes(disciplina);
 		for (int i = 0; i < this.listaDePeriodo.size(); i++) {
-			for (int j = 0; j < this.listaDePeriodo.get(i).getDisciplinas().size(); j++) {
-				if (this.listaDePeriodo.get(i).getDisciplinas().get(j).equals(disciplina)) {
-					this.listaDePeriodo.get(i).getDisciplinas().remove(disciplina);
+			for (int j = 0; j < this.listaDePeriodo.get(i).getDisciplinas()
+					.size(); j++) {
+				if (this.listaDePeriodo.get(i).getDisciplinas().get(j)
+						.equals(disciplina)) {
+					this.listaDePeriodo.get(i).getDisciplinas()
+							.remove(disciplina);
 				}
 			}
 		}
@@ -263,7 +289,7 @@ public class Plano extends Model {
 			removeDisciplinaESeusPreRequisitos(disciplinasDependentes.get(i));
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param aluno
@@ -275,13 +301,14 @@ public class Plano extends Model {
 	private List<Disciplina> getDisciplinasDependentes(Disciplina disciplina) {
 		List<Disciplina> disciplinasDependentes = new ArrayList<Disciplina>();
 		for (Disciplina disciplinaDoAluno : getTodasDisciplinas()) {
-			if (disciplinaDoAluno.getListaDePreRequisitos().contains(disciplina)) {
+			if (disciplinaDoAluno.getListaDePreRequisitos()
+					.contains(disciplina)) {
 				disciplinasDependentes.add(disciplinaDoAluno);
 			}
 		}
 		return disciplinasDependentes;
 	}
-	
+
 	/**
 	 * 
 	 * @return o numero de periodos do plano
@@ -289,5 +316,5 @@ public class Plano extends Model {
 	public int getNumeroDePeriodos() {
 		return this.listaDePeriodo.size();
 	}
-	
+
 }

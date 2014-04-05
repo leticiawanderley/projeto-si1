@@ -17,12 +17,16 @@
    <div class="escolha">
        <h1>Com qual fluxograma você deseja iniciar o sistema?</h1>
        <p>
-      		<button type="submit" id="oficial" onclick="escolheFluxograma('oficial')" title="Fluxograma divulgado pela coordenção do curso">
+      		<button type="submit" id="oficial" onclick="escolheFluxograma(this.id)" title="Fluxograma divulgado pela coordenção do curso">
       		Oficial</button>
        </p>
        <p>
-       		<button type="submit" id="comum" onclick="escolheFluxograma('comum')" title="Fluxograma mais comum entre os aluno do curso">
+       		<button type="submit" id="comum" onclick="escolheFluxograma(this.id)" title="Fluxograma mais comum entre os aluno do curso">
        		Mais comum</button>
+       </p>
+       <p>
+       		<button type="submit" id="novo" onclick="escolheFluxograma(this.id)" title="Novo fluxograma do curso">
+       		Novo</button>
        </p>
    </div>
    </body>
