@@ -13,10 +13,18 @@
         <header>
             <a href="@routes.Application.login" id="logo"><span>CS</span>Planner</a>
         </header>
+        </br>
         
+        <h1>Alunos cadastrados no sistema</h1>
+        </br>
         <div class = "visualizar alunos">
+        
         	@for(aluno <- alunos) {
-        		<h3>@aluno.getName()</h3>
+        		<a href = "@routes.Application.look(aluno.getEmail())">
+        			<h1>@aluno.getName()</h1>
+        		</a>
+        		
+        		</br>
         	}
         </div>
         

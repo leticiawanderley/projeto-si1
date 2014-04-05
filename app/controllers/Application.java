@@ -222,10 +222,13 @@ public class Application extends Controller {
 		return redirect("/");
 	}
 	
-	// TODO
 	public static Result search() {
-		List<Aluno> lista = grid.buscaAlunoPorNome("");
-		return ok(views.html.visualizaAlunos.render(lista));
+		return ok(views.html.visualizaAlunos.render(grid.buscaAlunoPorNome("")));
+	}
+	
+	public static Result look(String email) {
+		return ok(views.html.apenasVisualizacao.render(grid.getFinder().byId(email), disciplinaForm,
+			grid.getPlanejador()));
 	}
 
 	/**

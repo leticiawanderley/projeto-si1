@@ -181,7 +181,7 @@ public class Planejador {
 	public void alteraPeriodoDaDisciplina(Aluno aluno, Disciplina disciplinaRealocada, int periodo) {
 		aluno.getPlanoDoAluno().removeDisciplinaParaAlocacao(disciplinaRealocada);
 		addCadeiraAoAluno(aluno, disciplinaRealocada, periodo - 1);
-		aluno.getPlanoDoAluno().update();
+		aluno.update();
 	}
 
 	/**
