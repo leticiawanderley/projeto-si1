@@ -15,9 +15,9 @@
         </header>
         </br>
         
-        <h1>Alunos cadastrados no sistema</h1>
+        <h1>Alunos cadastrados no sistema de acordo com a sua pesquisa</h1>
         </br>
-        <div class = "visualizar alunos">
+        <div class = "well">
         
         	@for(aluno <- alunos) {
         		<a href = "@routes.Application.look(aluno.getEmail())">
@@ -27,6 +27,10 @@
         		</br>
         	}
         </div>
+ 		</br>       
+       	 @form(routes.Application.index()) {
+    			<input type="submit" value="Voltar para página inicial">
+   		 }	
         
    </body>
 
