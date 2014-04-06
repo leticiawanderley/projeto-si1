@@ -61,7 +61,7 @@ public class GridSystem {
 	public List<Aluno> buscaAlunoPorNome(String nome) {
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		for (Aluno aluno : finder.all()) {
-			if (aluno.getName().contains(nome)) {
+			if (aluno.getName().toLowerCase().contains(nome.toLowerCase())) {
 				alunos.add(aluno);
 			}
 		}

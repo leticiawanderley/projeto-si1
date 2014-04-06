@@ -4,20 +4,18 @@
 @import play.api.libs.json.Json
 
 @main("CSPlanner") {
-
-	
-<head>	
+<head>
 	<script>
 		function allowDrop(ev)
 		{
 			ev.preventDefault();
 		}
-		
+
 		function drag(ev)
 		{
 			ev.dataTransfer.setData("Text", ev.target.id);
 		}
-		
+
 		function drop(ev, periodo)
 		{	
 			ev.preventDefault();
@@ -37,7 +35,7 @@
 			ev.preventDefault();
 			var disciplina = ev.dataTransfer.getData("Text");	
 			var transfere = window.confirm("Ao desalocar esta disciplina você estará desalocando" +
-			"\nas disciplinas dela dependentes.");
+					"\nas disciplinas dela dependentes.");
 			if (transfere) {
 				location.href = '/removerDisciplina/' + disciplina;
 			}
@@ -62,79 +60,76 @@
 				document.getElementById(j.toString()).classList.add('futuro');
 			}
 		}
-		
 	</script>
-		<div class="well">
-			<table width="100%">
+</head>
+<body onload="colorPeriodos()" >
+	<table width="100%">
+		<tr width="10%">
+			<table class="well" width="100%">
 				<tr>
-        			<td width="15%">
+        			<td width="50%">
 						<h1><small><a>CSPlanner</a></h1></small>
 					</td>
-
-           			<td width="8%" align="left">
-           			@form(routes.Application.search()) {
-            				<input type="search" id="searchbox" name="searchComponent" value="" placeholder="Nome do usuário">
-            				<input type="submit" id="searchsubmit" value="Buscar" class="btn primary">
-            		}
+					@form(routes.Application.search()) {
+					<td width="12%" valign="baseline" align="right">
+						<input type="text" id="searchbox" name="searchComponent" placeholder="Nome do usuário">
 					</td>
-        			<td width="5%"><br>
+					<td width="6%" valign="top">
+            				<input type="submit" id="searchsubmit" value="Buscar" class="btn primary">
+					</td>
+					}
+					<td width="10%" valign="top" align="center">
+						@form(routes.Application.verGrade()) {
+    						<input type="submit" class="btn btn-info" value="Ver grade do curso">
+   						}
+					</td>
+           			<td width="5%" valign="top">
         				@form(routes.Application.logout()) {
         					<input type="submit" class="btn btn-info" value="Sair">
         					}
         			</td>
         		</tr>
         	</table>
-	</div>
-</head>
-<body onload="colorPeriodos()" >
-	<table width="98%">
-		<tr>	
-			<div class="btn-group">
-				@form(routes.Application.verGrade()) {
-    				<input type="submit" class="btn btn-info" value="Ver grade do curso">
-   				}
-   			</div>
 		</tr>
-		<tr><td width="60%"><div>
-			<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
-				<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="2" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="3" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="4" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="5" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="6" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="7" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="8" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="9" onclick="selecionaPeriodo(this.value-1)">
-				<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value-1)">
-			<br><br>				
-		</div></td>
-		<td width="25%" align="right">
-			<table class="estatisticas">
-				<tr>
-					<td>	
-					<h5>Créditos pagos:
-					<small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<h5>Créditos em curso:
-					<small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<h5>Créditos planejados: 
-					<small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h5>
-					</td>
-				</tr>
-			</table>
-		</td>		
+		<tr width="8%">
+		<table width="98%">
+			<tr valign="top">
+				<td width="60%"><div>
+					<h2><small>Selecione o período que você está cursando atualmente:</small></h2>
+					<input type="submit" class="btn btn-info" value="1" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="2" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="3" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="4" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="5" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="6" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="7" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="8" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="9" onclick="selecionaPeriodo(this.value-1)">
+					<input type="submit" class="btn btn-info" value="10" onclick="selecionaPeriodo(this.value-1)">				
+				</div></td>
+				<td width="25%" align="right">
+					<table class="estatisticas">
+						<tr>
+							<td><h5>Créditos pagos:
+								<small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h5>
+							</td>
+						</tr>
+						<tr>
+							<td><h5>Créditos em curso:
+								<small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h5>
+							</td>
+						</tr>
+						<tr>
+							<td><h5>Créditos planejados: 
+								<small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h5>
+							</td>
+						</tr>
+					</table>
+				</td>		
+			</tr>
+		</table> 
 		</tr>
-		
-	</table>
-   		 
+		<tr width="80%">
 			
 <div class="container-fluid">
 		<table width="100%">
@@ -599,6 +594,8 @@
 	</tr>
 	</table>
 </div>
+</tr>
+</table>
 </body>
 
 }

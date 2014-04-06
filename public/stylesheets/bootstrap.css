@@ -3112,6 +3112,10 @@ div.periodo {
 	background-color: #E3F6CE;
 }
 
+.nomes {
+	width: 290px; 
+}
+
 .info-ul {
 	display: table-cell; 
 	vertical-align: middle;	

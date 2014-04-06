@@ -1,12 +1,11 @@
 @(aluno : models.Aluno, disciplinaForm: Form[models.Disciplina], planejador: models.Planejador)
 
 @import helper._
+@import play.api.libs.json.Json
 
 @main("CSPlanner") {
-
-	
-<head>	
-<script>
+<head>
+	<script>
 		function colorPeriodos() {
 			var value = @aluno.getPlanoDoAluno().getPeriodoAtual();
 			var periodos = @aluno.getPlanoDoAluno().getNumeroDePeriodos();
@@ -18,53 +17,52 @@
 				document.getElementById(j.toString()).classList.add('futuro');
 			}
 		}
-		
 	</script>
-
-		<div class="well">
-			<table width="100%">
+</head>
+<body onload="colorPeriodos()" >
+	<table width="100%">
+		<tr width="10%">
+			<table class="well" width="100%">
 				<tr>
-        			<td width="15%">
+        			<td width="86%">
 						<h1><small><a>CSPlanner</a></h1></small>
 					</td>
-        			<td width="5%"><br>
+           			<td width="5%" valign="top">
         				@form(routes.Application.search()) {
         					<input type="submit" class="btn btn-info" value="Voltar">
-        					}
+        				}
         			</td>
         		</tr>
         	</table>
-	</div>
-</head>
-<body onload="colorPeriodos()" >
-	<table width="98%">
-		<tr>
-		<td width="25%" align="right">
-			<table class="estatisticas">
-				<tr>
-					<td>	
-					<h5>Créditos pagos:
-					<small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<h5>Créditos em curso:
-					<small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h5>
-					</td>
-				</tr>
-				<tr>
-					<td>
-					<h5>Créditos planejados: 
-					<small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h5>
-					</td>
-				</tr>
-			</table>
-		</td>		
 		</tr>
-		
-	</table>
-   		 
+		<tr width="10%">
+		<table width="98%">
+			<tr>
+				<td width="60%"></td>
+				<td width="25%" align="right">
+					<table class="estatisticas">
+						<tr>
+							<td><h5>Créditos pagos:
+								<small>@planejador.estatisticasDoAluno(aluno).get("creditosPagos")</small></h5>
+							</td>
+						</tr>
+						<tr>
+							<td><h5>Créditos em curso:
+								<small>@planejador.estatisticasDoAluno(aluno).get("creditosEmCurso")</small></h5>
+							</td>
+						</tr>
+						<tr>
+							<td><h5>Créditos planejados: 
+								<small>@planejador.estatisticasDoAluno(aluno).get("creditosPlanejados")</small></h5>
+							</td>
+						</tr>
+					</table>
+				</td>		
+			</tr>
+		</table> 
+		</tr>
+		<tr width="80%">
+			
 <div class="container-fluid">
 		<table width="100%">
 		<tr>
@@ -118,13 +116,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(1).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(1).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(1).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(1).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 
 						<div class="periodo connected" ondrop="drop(event, 2)" ondragover="allowDrop(event)">
@@ -162,13 +153,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(2).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(2).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(2).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(2).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 3)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(2).getDisciplinas()) {
@@ -205,13 +189,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(3).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(3).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(3).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(3).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 4)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(3).getDisciplinas()) {
@@ -248,13 +225,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(4).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(4).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(4).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(4).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 5)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(4).getDisciplinas()) {
@@ -295,13 +265,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(5).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(5).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(5).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(5).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 6)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(5).getDisciplinas()) {
@@ -338,13 +301,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(6).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(6).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(6).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(6).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 7)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(6).getDisciplinas()) {
@@ -381,13 +337,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(7).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(7).getDificuldadeDoPeriodo()</div>
-						  
-							@if(!aluno.getPlanoDoAluno().getPeriodo(7).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(7).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 8)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(7).getDisciplinas()) {
@@ -424,13 +373,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(8).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(8).getDificuldadeDoPeriodo()</div>
-						 
-							@if(!aluno.getPlanoDoAluno().getPeriodo(8).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(8).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 						<div class="periodo connected" ondrop="drop(event, 9)" ondragover="allowDrop(event)">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(8).getDisciplinas()) {
@@ -467,13 +409,6 @@
 							<div class="creditos">Total de Créditos: @aluno.getPlanoDoAluno().getPeriodo(9).getNumeroDeCreditosDoPeriodo()</div>
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(9).getDificuldadeDoPeriodo()</div>
-						    
-							@if(!aluno.getPlanoDoAluno().getPeriodo(9).ehPeriodoValido()){
-							<div class="alert alert-info alert-dismissable">
-							  
-							  <strong>Ops!</strong> Você possui @aluno.getPlanoDoAluno().getPeriodo(9).tipoValidacao() créditos que o permitido!
-							</div>
-							}
 						</ul>
 
 						<div class="periodo connected" ondrop="drop(event, 10)" ondragover="allowDrop(event)">
@@ -505,6 +440,8 @@
 	</tr>
 	</table>
 </div>
+</tr>
+</table>
 </body>
 
 }
