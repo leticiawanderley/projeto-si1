@@ -8,6 +8,7 @@ import models.Usuario;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -223,7 +224,8 @@ public class Application extends Controller {
 	}
 	
 	public static Result search() {
-		return ok(views.html.visualizaAlunos.render(grid.buscaAlunoPorNome("")));
+		DynamicForm busca = Form.form().bindFromRequest();
+		return ok(views.html.visualizaAlunos.render(grid.buscaAlunoPorNome(busca.get("f"))));
 	}
 	
 	public static Result look(String email) {
