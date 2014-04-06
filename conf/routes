@@ -27,4 +27,4 @@ GET 	/setarFluxograma/:tipoFluxograma				controllers.Application.setarFluxograma
 GET     /selecionarPeriodo/:periodoAtual 				controllers.Application.setarPeriodoAtual(periodoAtual: Integer)
 
 GET 	/search											controllers.Application.search()
-GET 	/look/:email									controllers.Application.look(email:String)
+GET 	/look											controllers.Application.look(email:String)

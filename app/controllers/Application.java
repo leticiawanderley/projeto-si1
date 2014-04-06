@@ -1,10 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import models.Aluno;
 import models.Disciplina;
 import models.Usuario;
