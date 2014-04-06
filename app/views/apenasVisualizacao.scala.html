@@ -6,6 +6,21 @@
 
 	
 <head>	
+<script>
+		function colorPeriodos() {
+			var value = @aluno.getPlanoDoAluno().getPeriodoAtual();
+			var periodos = @aluno.getPlanoDoAluno().getNumeroDePeriodos();
+			for (var i = 0; i < value; i++) {
+				document.getElementById(i.toString()).classList.add('passado');
+			}
+			document.getElementById(value).classList.add('atual');
+			for (var j = value + 1; j < periodos; j++) {
+				document.getElementById(j.toString()).classList.add('futuro');
+			}
+		}
+		
+	</script>
+
 		<div class="well">
 			<table width="100%">
 				<tr>
