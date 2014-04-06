@@ -70,12 +70,10 @@
         			<td width="15%">
 						<h1><small><a>CSPlanner</a></h1></small>
 					</td>
-					<td width="70%" align="right">
-						<br>
-           				<input type="search" id="searchbox" name="f" value="" placeholder="Nome do usuário">
-           			</td>
+
            			<td width="8%" align="left">
            			@form(routes.Application.search()) {
+            				<input type="search" id="searchbox" name="f" value="" placeholder="Nome do usuário">
             				<input type="submit" id="searchsubmit" value="Buscar" class="btn primary">
             		}
 					</td>
