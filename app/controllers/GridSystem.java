@@ -37,7 +37,7 @@ public class GridSystem {
 	private static final int NONO_PERIODO = 8;
 	private static final int DECIMO_PERIODO = 9;
 	
-	private Planejador planejador;
+	private static Planejador planejador;
 	private Finder<String, Aluno> finder = new Finder<String, Aluno>(String.class, Aluno.class);
 	
 	/**
@@ -46,9 +46,9 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
-		/*if (finder.all().isEmpty()) {
-			//adicionaUsuarios();
-		}*/
+		if (finder.all().isEmpty()) {
+			adicionaUsuarios();
+		}
 	}
 	
 	public Finder<String, Aluno> getFinder() {
@@ -83,7 +83,7 @@ public class GridSystem {
 	 * Inicia os periodos do aluno
 	 * @param aluno 
 	 */
-	public void addPeriodosAoAluno(Aluno aluno, String tipoDeGrade) {
+	public static void addPeriodosAoAluno(Aluno aluno, String tipoDeGrade) {
 		
 		if (tipoDeGrade.equals("comum")) {
 			planejador.setGrade(new GradeComum());
@@ -110,45 +110,33 @@ public class GridSystem {
 		aluno.getPlanoDoAluno().addPeriodo(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
 	}
 	
-	/*private static void adicionaUsuarios() {
-		System.out.println("entrou no método!");
-		InputStream is = play.Play.application().resourceAsStream("resource/usuarios.txt");
-		
+	private static void adicionaUsuarios() {
+		InputStream inputStream = play.Play.application().resourceAsStream("resource/usuarios.txt");
 		try {
-			if (is == null) {
-				System.out.println("opa...!!!!!!!!!!!!!!1");
-			
-				is = new FileInputStream(new File("resource/usuarios.txt"));
+			if (inputStream == null) {
+				inputStream = new FileInputStream(new File("resource/usuarios.txt"));
 			}
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		System.out.println("pegou o arquivo");
-		Scanner scanner = new Scanner(is);
-		System.out.println("scanner funcionou");
+		Scanner scanner = new Scanner(inputStream);
 		while(scanner.hasNextLine()) {
-			System.out.println("tem próxima linha");
 			String[] elementos = scanner.nextLine().split("-");
-			System.out.println("separou os elementos");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
-			new GridSystem().addPeriodosAoAluno(aluno,"oficial");
-			System.out.println("adicionou periodo o aluno");
+			addPeriodosAoAluno(aluno,"oficial");
 			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getPlanoDoAluno().getPeriodo(PRIMEIRO_PERIODO)
 					.getDisciplinas()
 					.get((int) (Math.random()*6)));
-			System.out.println("removeu algumas disciplinas");
-			aluno.getPlanoDoAluno().save();
-			System.out.println("salvou o plano do aluno");
+			aluno.getPlanoDoAluno().setPeriodoAtual((int) (Math.random()*10));
+			aluno.save();
 		}
 		scanner.close();
 		try {
-			is.close();
+			inputStream.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 }

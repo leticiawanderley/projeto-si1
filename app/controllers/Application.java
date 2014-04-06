@@ -23,8 +23,8 @@ import com.avaje.ebean.Ebean;
 public class Application extends Controller {
 
 	private static GridSystem grid = new GridSystem();
-	private static Form<Disciplina> disciplinaForm = Form
-			.form(Disciplina.class);
+	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
+	private static String searchCache = "";
 
 	/**
 	 * 
@@ -111,8 +111,6 @@ public class Application extends Controller {
 		} else {
 			if (!BCrypt.checkpw(loginForm.get().getPassword(), grid.getFinder()
 					.byId(loginForm.get().getEmail()).getPassword())) {
-				// if (!grid.getFinder().byId(loginForm.get().getEmail())
-				// .getPassword().equals(loginForm.get().getPassword())) {
 				flash("success", "Senha incorreta, tente novamente");
 			} else {
 				session().clear();
@@ -134,7 +132,6 @@ public class Application extends Controller {
 			return redirect(routes.Application.login());
 		}
 		if (grid.getFinder().byId(session("email")) == null) {
-			System.out.println();
 			return redirect(routes.Application.login());
 		}
 		return ok(views.html.index.render(
@@ -224,8 +221,10 @@ public class Application extends Controller {
 	}
 	
 	public static Result search() {
-		DynamicForm busca = Form.form().bindFromRequest();
-		return ok(views.html.visualizaAlunos.render(grid.buscaAlunoPorNome(busca.get("f"))));
+		String search = Form.form().bindFromRequest().get("searchComponent");
+		search = (search == null ? searchCache : search);
+		searchCache = search;
+		return ok(views.html.visualizaAlunos.render(grid.buscaAlunoPorNome(search)));
 	}
 	
 	public static Result look(String email) {
