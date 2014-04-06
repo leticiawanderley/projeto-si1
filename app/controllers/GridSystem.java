@@ -46,9 +46,6 @@ public class GridSystem {
 	 */
 	public GridSystem() {
 		this.planejador = new Planejador();
-		if (finder.all().isEmpty()) {
-			adicionaUsuarios();
-		}
 	}
 	
 	public Finder<String, Aluno> getFinder() {
@@ -136,6 +133,12 @@ public class GridSystem {
 			inputStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public void flag() {
+		if (finder.all().isEmpty()) {
+			adicionaUsuarios();
 		}
 	}
 	

@@ -8,7 +8,6 @@ import models.Usuario;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -25,12 +24,16 @@ public class Application extends Controller {
 	private static GridSystem grid = new GridSystem();
 	private static Form<Disciplina> disciplinaForm = Form.form(Disciplina.class);
 	private static String searchCache = "";
+	private static boolean flagUsuariosAdicionados = false;
 
 	/**
 	 * 
 	 * @return pagina inicial de login do sistema
 	 */
 	public static Result login() {
+		if (!flagUsuariosAdicionados) {
+			addUsuariosAoBanco();
+		}
 		return ok(views.html.login.render(Form.form(Usuario.class)));
 	}
 
@@ -241,6 +244,11 @@ public class Application extends Controller {
 		session("email", "usuarioLogout");
 		flash("success", "Você saiu do sistema.");
 		return redirect(routes.Application.login());
+	}
+	
+	private static void addUsuariosAoBanco() {
+		grid.flag();
+		flagUsuariosAdicionados= true;
 	}
 
 }
