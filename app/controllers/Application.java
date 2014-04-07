@@ -110,8 +110,7 @@ public class Application extends Controller {
 		if (grid.getFinder().byId(loginForm.get().getEmail()) == null) {
 			flash("success", "Usuário não existente");
 		} else {
-			if (!BCrypt.checkpw(loginForm.get().getPassword(), grid.getFinder()
-					.byId(loginForm.get().getEmail()).getPassword())) {
+			if (!BCrypt.checkpw(loginForm.get().getPassword(), grid.getFinder().byId(loginForm.get().getEmail()).getPassword())) {
 				flash("success", "Senha incorreta, tente novamente");
 			} else {
 				session().clear();
@@ -135,8 +134,7 @@ public class Application extends Controller {
 		if (grid.getFinder().byId(session("email")) == null) {
 			return redirect(routes.Application.login());
 		}
-		return ok(views.html.index.render(
-				grid.getFinder().byId(session("email")), disciplinaForm,
+		return ok(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm,
 				grid.getPlanejador()));
 	}
 
@@ -155,8 +153,7 @@ public class Application extends Controller {
 	 * @return um resultado/pagina que serah exibida no navegador
 	 */
 	public static Result selecionarDisciplinas() {
-		return ok(views.html.disciplinasDoCurso.render(
-				grid.getFinder().byId(session("email")), disciplinaForm,
+		return ok(views.html.disciplinasDoCurso.render(grid.getFinder().byId(session("email")), disciplinaForm,
 				grid.getPlanejador()));
 	}
 
@@ -168,12 +165,10 @@ public class Application extends Controller {
 	public static Result matriculaNaDisciplina(int periodo, String disciplina) {
 		Form<Disciplina> filledForm = disciplinaForm.bindFromRequest();
 		if (filledForm.hasErrors()) {
-			return badRequest(views.html.index.render(
-					grid.getFinder().byId(session("email")), disciplinaForm,
+			return badRequest(views.html.index.render(grid.getFinder().byId(session("email")), disciplinaForm,
 					grid.getPlanejador()));
 		} else {
-			grid.getPlanejador().alteraPeriodoDaDisciplina(
-					grid.getFinder().byId(session("email")),
+			grid.getPlanejador().alteraPeriodoDaDisciplina(grid.getFinder().byId(session("email")),
 					grid.getPlanejador().getDisciplina(disciplina), periodo);
 		}
 		return redirect("/");
@@ -186,8 +181,7 @@ public class Application extends Controller {
 	 */
 	public static Result removeDisciplina(String nomeDaDisciplina) {
 		Aluno aluno = grid.getFinder().byId(session("email"));
-		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(aluno,
-				grid.getPlanejador().getDisciplina(nomeDaDisciplina));
+		grid.getPlanejador().removeDisciplinaESeusPreRequisitos(aluno,grid.getPlanejador().getDisciplina(nomeDaDisciplina));
 		aluno.update();
 		return redirect("/");
 	}
@@ -202,7 +196,7 @@ public class Application extends Controller {
 	 */
 	public static Result setarFluxograma(String tipoFluxograma) {
 		Aluno aluno = grid.getFinder().byId(session("email"));
-		aluno.setTipoFluxograma(tipoFluxograma);
+		aluno.setTipoFluxograma(grid.getTipoDeFluxograma(tipoFluxograma));
 		grid.alocandoNovoUsuario(aluno);
 		aluno.update();
 		return redirect("/");
@@ -221,6 +215,10 @@ public class Application extends Controller {
 		return redirect("/");
 	}
 	
+	/**
+	 * 
+	 * @return pagina de pesquisa do sistema
+	 */
 	public static Result search() {
 		String search = Form.form().bindFromRequest().get("searchComponent");
 		search = (search == null ? searchCache : search);
@@ -228,6 +226,11 @@ public class Application extends Controller {
 		return ok(views.html.visualizaAlunos.render(grid.buscaAlunoPorNome(search)));
 	}
 	
+	/**
+	 * 
+	 * @param email do usuario pesquisado
+	 * @return pagina com apenas visualizacao do plano de curso do usuario pesquisado
+	 */
 	public static Result look(String email) {
 		return ok(views.html.apenasVisualizacao.render(grid.getFinder().byId(email), disciplinaForm,
 			grid.getPlanejador()));
@@ -244,8 +247,11 @@ public class Application extends Controller {
 		return redirect(routes.Application.login());
 	}
 	
+	/**
+	 * Adiciona 30 usuarios ao banco
+	 */
 	private static void addUsuariosAoBanco() {
-		grid.flag();
+		grid.deveAdicionarUsuarios();
 		flagUsuariosAdicionados= true;
 	}
 

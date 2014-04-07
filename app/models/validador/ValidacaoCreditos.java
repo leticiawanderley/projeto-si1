@@ -1,7 +1,14 @@
 package models.validador;
 
+/**
+ * Implementacoes do Validador de creditos dos periodos dos alunos
+ *
+ */
 public enum ValidacaoCreditos implements ValidadorDeCreditos {
 
+	/**
+	 * Validador minimo
+	 */
 	MIN {
 		@Override
 		public boolean permiteNumeroDeCreditos(int numeroDeCreditos) {
@@ -14,6 +21,9 @@ public enum ValidacaoCreditos implements ValidadorDeCreditos {
 		}
 	},
 	
+	/**
+	 * Validador maximo
+	 */
 	MAX {
 		@Override
 		public boolean permiteNumeroDeCreditos(int numeroDeCreditos) {
@@ -26,6 +36,9 @@ public enum ValidacaoCreditos implements ValidadorDeCreditos {
 		}
 	},
 	
+	/**
+	 * Validador maximo e minimo
+	 */
 	MINMAX {
 		@Override
 		public boolean permiteNumeroDeCreditos(int numeroDeCreditos) {

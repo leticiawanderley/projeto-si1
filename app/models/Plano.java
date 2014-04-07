@@ -45,7 +45,6 @@ public class Plano extends Model {
 	}
 
 	/**
-	 * TODO MELHORAR
 	 * 
 	 * @param periodoAtual
 	 *            o periodo em que o aluno estah atualmente
@@ -93,7 +92,6 @@ public class Plano extends Model {
 	}
 
 	/**
-	 * TODO melhorar
 	 * 
 	 * @param disciplina
 	 *            disciplina analisada do aluno
@@ -131,7 +129,6 @@ public class Plano extends Model {
 	 * @return true se algum pre-requisito da disciplina estah fora da grade,
 	 *         false caso contrario
 	 */
-	// TODO
 	private boolean verificaPreRequisitosNaoAlocados(Disciplina disciplina) {
 		for (Disciplina d : disciplina.getListaDePreRequisitos()) {
 			if (!getTodasDisciplinas().contains(d)) {
@@ -191,7 +188,6 @@ public class Plano extends Model {
 	}
 
 	/**
-	 * TODO MELHORAR Metodo utilizado na interface
 	 * 
 	 * @param disciplina
 	 * @param periodo

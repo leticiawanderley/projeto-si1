@@ -8,7 +8,8 @@ create table aluno (
   name                      varchar(255),
   password                  varchar(255),
   plano_do_aluno_id         bigint,
-  tipo_fluxograma           varchar(255),
+  tipo_fluxograma           integer,
+  constraint ck_aluno_tipo_fluxograma check (tipo_fluxograma in (0,1,2)),
   constraint pk_aluno primary key (email))
 ;
 
