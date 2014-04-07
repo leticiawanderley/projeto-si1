@@ -53,7 +53,7 @@ public class Application extends Controller {
 		Form<Usuario> loginForm = Form.form(Usuario.class).bindFromRequest();
 		String mensagemDeProblema = verificacaoDosDadosDoCadastro(loginForm);
 		if (!mensagemDeProblema.equals("")) {
-			flash("sucess", mensagemDeProblema);
+			flash("success", mensagemDeProblema);
 			return cadastrarNovoUsuario();
 		}
 
