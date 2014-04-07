@@ -61,4 +61,5 @@ public class Aluno extends Usuario {
 	public void setTipoFluxograma(TipoDeFluxograma tipoFluxograma) {
 		this.tipoFluxograma = tipoFluxograma;
 	}
+	
 }

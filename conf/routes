@@ -8,23 +8,34 @@ GET     /                         						controllers.Application.index()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file              						controllers.Assets.at(path="/public", file)
 
+#Rota para cadastrar novo usuario no sistema
 GET 	/cadastrar										controllers.Application.cadastrarNovoUsuario()
 
+#Rota para adicionar novo usuario no sistema
 POST	/criar											controllers.Application.criarUsuario()
 
+#Rota para logar no sistema
 GET     /login                  						controllers.Application.login()
 POST    /login											controllers.Application.authenticate()
 
+#Rota para fazer logout no sistema
 GET     /logout                     					controllers.Application.logout()
 
+#Rota para visualizar grade (imagem)
 GET		/verGrade										controllers.Application.verGrade()
+
+#Rota para selecionar disciplinas de um periodo
 GET 	/selecionarDisciplinas							controllers.Application.selecionarDisciplinas()
 
+#Rota para matricular e remover uma disciplina do usuario
 GET		/matriculaNaDisciplina/:periodo/:disciplina		controllers.Application.matriculaNaDisciplina(periodo: Integer, disciplina: String)
 GET 	/removerDisciplina/:disciplina					controllers.Application.removeDisciplina(disciplina: String)
 
+#Rota para alterar o fluxograma do usuario do sistema
 GET 	/setarFluxograma/:tipoFluxograma				controllers.Application.setarFluxograma(tipoFluxograma: String)
 GET     /selecionarPeriodo/:periodoAtual 				controllers.Application.setarPeriodoAtual(periodoAtual: Integer)
 
+#Roata para fazer uma buscar 
+#visualizar usuarios contidos no sistema
 GET 	/search											controllers.Application.search()
 GET 	/look											controllers.Application.look(email:String)

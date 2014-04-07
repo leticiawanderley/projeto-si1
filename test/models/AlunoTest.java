@@ -1,7 +1,10 @@
 package models;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 
@@ -9,8 +12,6 @@ import models.Grade.DisciplinasDSC;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import exception.AlunoNaoPossuiPreRequisitosException;
 
 /**
  * Testes para a classe Aluno
@@ -69,7 +70,7 @@ public class AlunoTest {
 	}
 	
 	@Test
-	public void userStoriesTest() throws AlunoNaoPossuiPreRequisitosException {
+	public void userStoriesTest() {
 		Periodo primeiroPeriodo = new Periodo(sistema.getGrade().getDisciplinasDoPrimeiroPeriodo(), PRIMEIRO_PERIODO);
 		aluno.getPlanoDoAluno().addPeriodo(primeiroPeriodo);
 		//Verifica se o pré-requisito da cadeira já foi pago

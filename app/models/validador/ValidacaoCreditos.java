@@ -57,4 +57,5 @@ public enum ValidacaoCreditos implements ValidadorDeCreditos {
 			return retorno;
 		}		
 	}
+	
 }

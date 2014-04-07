@@ -126,7 +126,6 @@ public class Application extends Controller {
 	 * 
 	 * @return um resultado/pagina que serah exibida no navegador
 	 */
-	@Security.Authenticated(Secured.class)
 	public static Result index() {
 		if (session("email") == null) {
 			return redirect(routes.Application.login());

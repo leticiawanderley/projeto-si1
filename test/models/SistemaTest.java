@@ -2,12 +2,8 @@ package models;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.inMemoryDatabase;
-import static play.test.Helpers.start;
 import models.Grade.DisciplinasDSC;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import controllers.GridSystem;

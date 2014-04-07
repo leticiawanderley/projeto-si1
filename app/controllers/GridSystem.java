@@ -162,6 +162,11 @@ public class GridSystem {
 		}
 	}
 
+	/**
+	 * 
+	 * @param tipoFluxograma nome do tipo de fluxograma
+	 * @return o tipo de fluxograma correspondente
+	 */
 	public TipoDeFluxograma getTipoDeFluxograma(String tipoFluxograma) {
 		if (tipoFluxograma.equals(TipoDeFluxograma.NOVO.getTipoDeFluxoGrama())) {
 			return TipoDeFluxograma.NOVO;

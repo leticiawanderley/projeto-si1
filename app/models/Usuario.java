@@ -14,13 +14,10 @@ import play.db.ebean.Model;
 @Entity
 public class Usuario extends Model {
 
-	private static final long serialVersionUID = 1L;
 	private String name;
 	@Id
     private String email;
     private String password;
-    
-    public static Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class); 
     
     /**
      * Construtor de classe 

@@ -1,14 +1,11 @@
 package models;
 
-import static org.junit.Assert.assertNotNull;
 import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.start;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import models.*;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,6 +15,9 @@ import play.db.ebean.Model.Finder;
 
 public class PersistenciaTest {
 	
+	public static Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class); 
+	
+	
 	@Before
 	public void setUp() {
 		start(fakeApplication(inMemoryDatabase()));
@@ -25,10 +25,9 @@ public class PersistenciaTest {
 	
 	@Test
     public void pegarUsuarioDoBD() {
-		
 		new Usuario("Bob","bob@email.com", "senha").save();
-		Assert.assertTrue(!Usuario.find.all().isEmpty());
-		Assert.assertEquals("Bob", Usuario.find.byId("bob@email.com").getName());
+		Assert.assertTrue(!find.all().isEmpty());
+		Assert.assertEquals("Bob", find.byId("bob@email.com").getName());
 
     }	
 	
@@ -71,24 +70,5 @@ public class PersistenciaTest {
 		Assert.assertNotNull(plano.getTodasDisciplinas());
 		
 	}
-	
-	/*@Test
-	public void pegarGrade() {
-		Finder<String,Grade> findGrade = new Finder<String,Grade>(String.class, Grade.class);
-		Finder<String,Periodo> findPeriodo = new Finder<String,Periodo>(String.class, Periodo.class); 
-		
-		Grade grade = new GradeComum();
-		grade.save();
-		Assert.assertTrue(!findGrade.all().isEmpty());
-		
-		Usuario usuario = new Usuario("Bob","bob@email.com", "senha");
-		usuario.save();
-		
-		Plano plano = new Plano();
-		plano.save();
-		
-		Assert.assertTrue(!findPeriodo.all().isEmpty());
-		
-	}*/
 
 }

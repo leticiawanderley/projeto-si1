@@ -12,10 +12,18 @@ public enum TipoDeFluxograma {
 	
 	private String tipoDeFluxoGrama;
 	
+	/**
+	 * 
+	 * @param tipoDeFluxoGrama tipo/nome do tipo de fluxograma
+	 */
 	TipoDeFluxograma(String tipoDeFluxoGrama) {
 		this.tipoDeFluxoGrama = tipoDeFluxoGrama;
 	}
 	
+	/**
+	 * 
+	 * @return o tipo/nome do fluxograma
+	 */
 	public String getTipoDeFluxoGrama() {
 		return this.tipoDeFluxoGrama;
 	}
