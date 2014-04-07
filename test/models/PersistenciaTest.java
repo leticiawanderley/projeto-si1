@@ -1,41 +1,94 @@
 package models;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.start;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static play.test.Helpers.*;
+import models.*;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import play.libs.Yaml;
+import play.db.ebean.Model.Finder;
 
-import com.avaje.ebean.Ebean;
-import play.test.WithApplication;
-public class PersistenciaTest extends WithApplication{
-//	Application aplicacao;
+public class PersistenciaTest {
+	
 	@Before
 	public void setUp() {
-		start(fakeApplication(inMemoryDatabase()/*, fakeGlobal()*/));
-		//Ebean.save((List) Yaml.load("usuarios.yml"));
+		start(fakeApplication(inMemoryDatabase()));
 	}
-	 @Test
-	    public void fullTest() {
+	
+	@Test
+    public void pegarUsuarioDoBD() {
+		
+		new Usuario("Bob","bob@email.com", "senha").save();
+		Assert.assertTrue(!Usuario.find.all().isEmpty());
+		Assert.assertEquals("Bob", Usuario.find.byId("bob@email.com").getName());
 
-		 
-	        // Count things
-	     //   assertEquals(1, User.find.findRowCount());
-
-	        // Try to authenticate as users
-	        /*assertNotNull(User.authenticate("bob@example.com", "fafa="));
-	        assertNotNull(User.authenticate("jane@example.com", "12mo"));
-	        assertNull(User.authenticate("jeff@example.com", "badpassword"));
-	        assertNull(User.authenticate("tom@example.com", "secret"));
-*/
-
-	    }
+    }	
+	
+	@Test
+	public void pegarPeriodoEDisciplinasDoBD() {
+		
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		
+		Finder<String,Disciplina> findDisciplina = new Finder<String,Disciplina>(String.class, Disciplina.class); 
+		Finder<String,Periodo> findPeriodo = new Finder<String,Periodo>(String.class, Periodo.class); 
+		
+		Disciplina grafos = new Disciplina("Teoria dos Grafos", 2, 4);
+		grafos.save();
+		disciplinas.add(grafos);
+		
+		Disciplina discreta = new Disciplina("Matemática discreta", 4, 4);
+		discreta.save();
+		disciplinas.add(discreta);
+		
+		Assert.assertEquals(2, findDisciplina.all().size());
+		
+		Periodo periodo = new Periodo(disciplinas, 2);
+		periodo.save();
+		Assert.assertTrue(!findPeriodo.all().isEmpty());
+		
+	}
+	
+	@Test
+	public void pegarPlano() {
+		
+		Finder<String,Plano> findPlano = new Finder<String,Plano>(String.class, Plano.class); 
+		
+		Usuario usuario = new Usuario("Bob","bob@email.com", "senha");
+		usuario.save();
+		
+		Plano plano = new Plano();
+		plano.save();
+		
+		Assert.assertTrue(!findPlano.all().isEmpty());
+		Assert.assertNotNull(plano.getTodasDisciplinas());
+		
+	}
+	
+	/*@Test
+	public void pegarGrade() {
+		Finder<String,Grade> findGrade = new Finder<String,Grade>(String.class, Grade.class);
+		Finder<String,Periodo> findPeriodo = new Finder<String,Periodo>(String.class, Periodo.class); 
+		
+		Grade grade = new GradeComum();
+		grade.save();
+		Assert.assertTrue(!findGrade.all().isEmpty());
+		
+		Usuario usuario = new Usuario("Bob","bob@email.com", "senha");
+		usuario.save();
+		
+		Plano plano = new Plano();
+		plano.save();
+		
+		Assert.assertTrue(!findPeriodo.all().isEmpty());
+		
+	}*/
 
 }
