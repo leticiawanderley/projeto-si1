@@ -16,6 +16,7 @@ import models.GradeNova;
 import models.GradeOficial;
 import models.Periodo;
 import models.Planejador;
+import models.TipoDeFluxograma;
 import play.db.ebean.Model.Finder;
 
 /**
@@ -48,16 +49,29 @@ public class GridSystem {
 		this.planejador = new Planejador();
 	}
 	
+	/**
+	 * 
+	 * @return finder para busca no BD dos alunos no sistema
+	 */
 	public Finder<String, Aluno> getFinder() {
 		return finder;
 	}
 
+	/**
+	 * 
+	 * @param aluno aluno que esta cadastrando-se no sistema
+	 */
 	public void alocandoNovoUsuario(Aluno aluno) {
 		if (aluno.getPlanoDoAluno().semPeriodos()) {
 			addPeriodosAoAluno(aluno, aluno.getTipoFluxograma());
 		}
 	}
 	
+	/**
+	 * 
+	 * @param nome nome pesquisado de alunos no sistema
+	 * @return uma lista com os alunos que possuem o nome inserido na busca
+	 */
 	public List<Aluno> buscaAlunoPorNome(String nome) {
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		for (Aluno aluno : finder.all()) {
@@ -80,12 +94,12 @@ public class GridSystem {
 	 * Inicia os periodos do aluno
 	 * @param aluno 
 	 */
-	public static void addPeriodosAoAluno(Aluno aluno, String tipoDeGrade) {
+	public static void addPeriodosAoAluno(Aluno aluno, TipoDeFluxograma tipoDeGrade) {
 		
-		if (tipoDeGrade.equals("comum")) {
+		if (tipoDeGrade.equals(TipoDeFluxograma.COMUM)) {
 			planejador.setGrade(new GradeComum());
 		}
-		else if (tipoDeGrade.equals("novo")) {
+		else if (tipoDeGrade.equals(TipoDeFluxograma.NOVO)) {
 			planejador.setGrade(new GradeNova());
 		}
 		else {
@@ -107,6 +121,9 @@ public class GridSystem {
 		aluno.getPlanoDoAluno().addPeriodo(new Periodo(new ArrayList<Disciplina>(), DECIMO_PERIODO));
 	}
 	
+	/**
+	 * Metodo para carregar alunos do arquivo (os planos sao alterados de forma aleatoria).
+	 */
 	private static void adicionaUsuarios() {
 		InputStream inputStream = play.Play.application().resourceAsStream("resource/usuarios.txt");
 		try {
@@ -121,7 +138,7 @@ public class GridSystem {
 		while(scanner.hasNextLine()) {
 			String[] elementos = scanner.nextLine().split("-");
 			Aluno aluno = new Aluno(elementos[0], elementos[1], elementos[2]);
-			addPeriodosAoAluno(aluno,"oficial");
+			addPeriodosAoAluno(aluno, TipoDeFluxograma.OFICIAL);
 			new Planejador().removeDisciplinaESeusPreRequisitos(aluno, aluno.getPlanoDoAluno().getPeriodo(PRIMEIRO_PERIODO)
 					.getDisciplinas()
 					.get((int) (Math.random()*6)));
@@ -136,10 +153,22 @@ public class GridSystem {
 		}
 	}
 
-	public void flag() {
+	/**
+	 * Método para verificar se deve adicionar usuários bd, quando o sistema é iniciado pela primeira vez
+	 */
+	public void deveAdicionarUsuarios() {
 		if (finder.all().isEmpty()) {
 			adicionaUsuarios();
 		}
+	}
+
+	public TipoDeFluxograma getTipoDeFluxograma(String tipoFluxograma) {
+		if (tipoFluxograma.equals(TipoDeFluxograma.NOVO.getTipoDeFluxoGrama())) {
+			return TipoDeFluxograma.NOVO;
+		} else if (tipoFluxograma.equals(TipoDeFluxograma.OFICIAL.getTipoDeFluxoGrama())) {
+			return TipoDeFluxograma.OFICIAL;
+		} 
+		return TipoDeFluxograma.COMUM;
 	}
 	
 }

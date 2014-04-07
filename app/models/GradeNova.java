@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GradeNova extends Grade {
+	
 	public enum DisciplinasDSC {
 		P1(new Disciplina("Programação I", QUATRO_CREDITOS, MEDIO)),
         LP1(new Disciplina("Laboratório de Programação I", QUATRO_CREDITOS, MEDIO)),
@@ -293,4 +294,5 @@ public class GradeNova extends Grade {
 		List<Disciplina> disciplinasTECC = new ArrayList<Disciplina>();
 		return disciplinasTECC;
 	}	
+	
 }

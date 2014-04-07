@@ -199,7 +199,7 @@ public class Planejador {
 		estatisticas.put(CREDITOS_PAGOS, 0);
 		estatisticas.put(CREDITOS_EM_CURSO, 0);
 		estatisticas.put(CREDITOS_PLANEJADOS, 0);
-		// TODO
+
 		List<Periodo> periodos = new ArrayList<Periodo>();
 		for (int i = 0; i < aluno.getPlanoDoAluno().getNumeroDePeriodos(); i++) {
 			periodos.add(aluno.getPlanoDoAluno().getPeriodo(i));

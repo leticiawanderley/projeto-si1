@@ -11,17 +11,13 @@ import play.data.validation.Constraints;
  * Classe que representa um aluno
  * 
  */
-/**
- * @author leticia
- *
- */
 @Entity
 public class Aluno extends Usuario {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@Constraints.Required
 	private Plano planoDoAluno;
-	private String tipoFluxograma;
+	private TipoDeFluxograma tipoFluxograma;
 
 	/**
 	 * 
@@ -31,7 +27,7 @@ public class Aluno extends Usuario {
 	public Aluno(String name, String email, String password) {
 		super(name, email, password);
 		this.planoDoAluno = new Plano();
-		this.tipoFluxograma = "oficial";
+		this.tipoFluxograma = TipoDeFluxograma.OFICIAL;
 	}
 
 	/**
@@ -50,11 +46,19 @@ public class Aluno extends Usuario {
 		this.planoDoAluno = planoDoAluno;
 	}
 	
-	public String getTipoFluxograma() {
+	/**
+	 * 
+	 * @return o tipo de fluxograma
+	 */
+	public TipoDeFluxograma getTipoFluxograma() {
 		return tipoFluxograma;
 	}
 
-	public void setTipoFluxograma(String tipoFluxograma) {
+	/**
+	 * 
+	 * @param tipoFluxograma o tipo de fluxo grama
+	 */
+	public void setTipoFluxograma(TipoDeFluxograma tipoFluxograma) {
 		this.tipoFluxograma = tipoFluxograma;
 	}
 }

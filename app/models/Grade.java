@@ -167,6 +167,10 @@ public abstract class Grade {
 		return -1;
 	}
 	
+	/**
+	 * 
+	 * @return as disciplina optativas
+	 */
 	public List<Disciplina> getDisciplinasOptativas() {
 		List<Disciplina> disciplinasOptativas = Arrays.asList(DisciplinasDSC.CALC3.getDisciplina(),
 				DisciplinasDSC.BASQUETE.getDisciplina(),
@@ -176,6 +180,10 @@ public abstract class Grade {
 		return disciplinasOptativas;
 	}
 	
+	/**
+	 * 
+	 * @return as disciplina TECC
+	 */
 	public List<Disciplina> getDisciplinasTECC() {
 		List<Disciplina> disciplinasTECC = Arrays.asList(DisciplinasDSC.COMPPARALELA.getDisciplina(),
 				DisciplinasDSC.COMPQUANTICA.getDisciplina(),
