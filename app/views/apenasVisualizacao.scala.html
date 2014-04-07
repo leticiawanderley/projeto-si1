@@ -85,10 +85,10 @@
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(0).getDificuldadeDoPeriodo()</div>						  
 						</ul>
 
-						<div  class="periodo connected" ondrop="drop(event, 1)" ondragover="allowDrop(event)" >
+						<div  class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(0).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 0)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 0)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
@@ -96,7 +96,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
 										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
@@ -122,18 +122,18 @@
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(1).getDificuldadeDoPeriodo()</div>
 						</ul>
 
-						<div class="periodo connected" ondrop="drop(event, 2)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(1).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno,disciplina,1)){
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
-									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 1)">
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" 
+										title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 1)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
 										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
 										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
@@ -158,10 +158,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(2).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 3)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(2).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 2)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 2)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -169,7 +169,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
 										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
@@ -194,10 +194,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(3).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 4)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(3).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 3)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 3)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -205,7 +205,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
 										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
@@ -230,10 +230,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(4).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 5)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(4).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 4)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 4)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -241,7 +241,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
 										<span class="badgeD">@disciplina.getDificuldade()</span>									    								  
@@ -270,10 +270,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(5).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 6)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(5).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 5)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 5)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>
@@ -281,7 +281,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
 										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
@@ -306,10 +306,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(6).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 7)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(6).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 6)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 6)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -317,7 +317,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
 										<span class="badgeD">@disciplina.getDificuldade()</span>								    								  
@@ -342,10 +342,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(7).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 8)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(7).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 7)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 7)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -353,7 +353,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>		
 										<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
@@ -378,10 +378,10 @@
 							<br>
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(8).getDificuldadeDoPeriodo()</div>
 						</ul>
-						<div class="periodo connected" ondrop="drop(event, 9)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(8).getDisciplinas()) {
 								 @if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 8)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 8)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -389,7 +389,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>		
 										<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
@@ -415,10 +415,10 @@
 						    <div class="dificuldade">Dificuldade do período: @aluno.getPlanoDoAluno().getPeriodo(9).getDificuldadeDoPeriodo()</div>
 						</ul>
 
-						<div class="periodo connected" ondrop="drop(event, 10)" ondragover="allowDrop(event)">
+						<div class="periodo connected">
 							@for(disciplina <- aluno.getPlanoDoAluno().getPeriodo(9).getDisciplinas()) {
 								@if(planejador.verificaPeriodoDiferenteDosRequisitos(aluno, disciplina, 9)) {
-									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)"
+									<div align="center" style="background:#FF0000;" id="@disciplina.getNome()" class="list-group"
 									title="Pré-requisitos não satisfeitos: @planejador.getRequisitosNaoPreenchidos(aluno, disciplina, 9)">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>	
@@ -426,7 +426,7 @@
 									</div>
 								 
 								} else {
-									<div align="center" id="@disciplina.getNome()" class="list-group" draggable="true" ondragstart="drag(event)">
+									<div align="center" id="@disciplina.getNome()" class="list-group">
 										@disciplina.getNome()
 										<span class="badgeC">@disciplina.getCreditos()</span>		
 										<span class="badgeD">@disciplina.getDificuldade()</span>							    								  
