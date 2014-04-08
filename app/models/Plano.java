@@ -201,7 +201,7 @@ public class Plano extends Model {
 					.getDisciplinas()) {
 				if (disciplina.getListaDePreRequisitos().contains(
 						disciplinaAnalisada)
-						&& periodoAnalisado.getNumeroDoPeriodo() - 1 >= periodo) {
+						&& periodoAnalisado.getNumeroDoPeriodo() >= periodo) {
 					requisitosNaoPreenchidos += disciplinaAnalisada.getNome()
 							+ "\n";
 				}
