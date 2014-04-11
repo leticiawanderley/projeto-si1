@@ -88,7 +88,7 @@ public class Planejador {
 	 * @return String com todos as disciplinas pré-requisito não alocadas
 	 *         corretamente
 	 */
-	public String getRequisitosNaoPreenchidos(Aluno aluno, Disciplina disciplina, int periodo) {
+	public List<String> getRequisitosNaoPreenchidos(Aluno aluno, Disciplina disciplina, int periodo) {
 		return aluno.getPlanoDoAluno().getNomeDaDisciplinasRequisitos(disciplina, periodo);
 	}
 

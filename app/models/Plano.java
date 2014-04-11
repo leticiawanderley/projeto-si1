@@ -193,23 +193,22 @@ public class Plano extends Model {
 	 * @param periodo
 	 * @return
 	 */
-	public String getNomeDaDisciplinasRequisitos(Disciplina disciplina,
+	public List<String> getNomeDaDisciplinasRequisitos(Disciplina disciplina,
 			int periodo) {
-		String requisitosNaoPreenchidos = "\n";
+		List<String> requisitosNaoPreenchidos = new ArrayList<String>();
 		for (Periodo periodoAnalisado : listaDePeriodo) {
 			for (Disciplina disciplinaAnalisada : periodoAnalisado
 					.getDisciplinas()) {
 				if (disciplina.getListaDePreRequisitos().contains(
 						disciplinaAnalisada)
 						&& periodoAnalisado.getNumeroDoPeriodo() >= periodo) {
-					requisitosNaoPreenchidos += disciplinaAnalisada.getNome()
-							+ "\n";
+					requisitosNaoPreenchidos.add(disciplinaAnalisada.getNome());
 				}
 			}
 		}
 		for (Disciplina d : disciplina.getListaDePreRequisitos()) {
 			if (!getTodasDisciplinas().contains(d)) {
-				requisitosNaoPreenchidos += d.getNome() + "\n";
+				requisitosNaoPreenchidos.add(d.getNome());
 			}
 		}
 		return requisitosNaoPreenchidos;
